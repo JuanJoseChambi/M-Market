@@ -1,10 +1,12 @@
 const {Category,Prod} =require('../db');
 
 const allProducts=()=>{
-    console.log("aqui envio todos los productos de bd");
+    
+    return ("todos los productos")
 };
 const createProduct = ()=>{
-    console.log("estoy creando producto en bd");
+    
+    return("voy a crear")
 }
 module.exports={
     allProducts,
