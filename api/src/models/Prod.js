@@ -38,10 +38,6 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        image: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
         score: {
             type: DataTypes.INTEGER,
             allowNull: false,
