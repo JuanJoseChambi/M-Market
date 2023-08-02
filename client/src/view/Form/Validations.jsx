@@ -25,21 +25,22 @@ export default function Validation (input) {
     //-----------------------price
     if(input.price == 0) errors.price = "Required Price";
     //-----------------------price Regular
+    if(input.priceRegular > input.price) errors.priceRegular = "Error Price Regular";
+    
     if(input.priceRegular == 0) errors.priceRegular = "Required Price Regular";
     //-----------------------description
     if((input.description).length === 0) errors.description = "Required Description"
     //-----------------------sku
-    if(input.sku === 0) errors.sku = "Required Sku"
-    //-----------------------category
-    if(!onlyLetters.test(input.category)) errors.category = "Only Letters"
-    
-    if((input.category).length === 0) errors.category = "Required Category"
+    //-----------------------category    
+    if(input.category.length === 0) errors.category = "Select at least 1 Category";
     //-----------------------sub category
-    if(!onlyLetters.test(input.subcategory)) errors.subcategory = "Only Letters"
     
-    if((input.subcategory).length === 0) errors.subcategory = "Required Category"
     //-----------------------score
-
+    // if(input.score === 0) errors.score = "No Score";
+    
+    // if(input.score > 100) errors.score = "Score Max";
+    
+    // if((input.score).length === 0) errors.score = "Required Score"
     //-----------------------discount
     if(input.discount === 0) errors.discount = "No Discount";
     

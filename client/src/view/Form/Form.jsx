@@ -1,8 +1,41 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import style from "./Form.module.css";
 import Validation from "./Validations";
 
 export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
+  const category = [
+    {
+      id: 1,
+      name:"almacen"
+    },
+    {
+      id: 2,
+      name: "almacenTodo"
+    },
+    {
+      id: 3,
+      name: "TodoElAlmacen"
+    },
+    {
+      id: 4,
+      name: "Categoria A"
+    },
+    {
+      id: 5,
+      name: "Categoria B"
+    },
+    {
+      id: 6,
+      name: "Categoria C"
+    },
+    {
+      id: 7,
+      name: "Categoria D"
+    }
+  ]
+
+
     const [newProduct, setNewProduct] = useState({
         name: "",
         brand: "",
@@ -11,9 +44,7 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
         price: 0,
         priceRegular: 0,
         description: "",
-        sku: 0,
         category: [],
-        subcategory: [],
         score: 0,
         discount: 0
     })
@@ -26,12 +57,32 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
         price: undefined,
         priceRegular: undefined,
         description: "",
-        sku: undefined,
         category: [],
-        subcategory: [],
+        score: 0,
         discount: undefined
-    })
+      })
 
+// ------------------------------Renderizado de Categorias------------------------------------------------------------------------------
+      // const [unicos, setUnicos] = useState(undefined)
+      let productCategory = [];
+      for (let i = 0; i < newProduct.category.length; i++) {
+    const selecteCategory = category.find(category => category.id.toString() === newProduct.category[i]);
+    if (selecteCategory) {
+      productCategory.push(selecteCategory);
+    }
+  }
+  let unicas = [...new Set(productCategory)]
+  // setUnicos(unicas)
+ 
+  // function handlerDeleteCategory(ele) {
+  //   unicas = unicas.filter((category) => category.name !== ele.name);   //Falta
+  //   setNewProduct({
+  //     ...newProduct,
+  //     category: newProduct.category.filter((category) => category.id !== ele.id),
+  //   });
+  // }
+
+// -------------------------------------------------------------------------------------------------------------
     function handlerChange (event){
         setNewProduct({
             ...newProduct,
@@ -47,34 +98,17 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
 
     function handlerSelectChange (event) {
         const value = event.target.value;
-        const name = event.target.name;
-        if (name === "category") {
-            if (!newProduct.category.includes(value)) {
-                setNewProduct({
+          if (!newProduct.category.includes(value)) {
+              setNewProduct({
+                  ...newProduct,
+                  category:[...newProduct.category, value]
+              })
+              setErrors(
+                  Validation({
                     ...newProduct,
-                    category:[...newProduct.category, value]
-                })
-                setErrors(
-                    Validation({
-                      ...newProduct,
-                      category
-                    })
-                )
-            }
-        }
-        if (name === "subcategory") {
-            if (!newProduct.subcategory.includes(value)) {
-                setNewProduct({
-                    ...newProduct,
-                    subcategory:[...newProduct.subcategory, value]
-                })
-                setErrors(
-                    Validation({
-                      ...newProduct,
-                      subcategory
-                    })
-                )
-            }
+                    category
+                  })
+              )
         }
     }
 
@@ -88,9 +122,7 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             price: 0,
             priceRegular: 0,
             description: "",
-            sku: 0,
             category: [],
-            subcategory: [],
             score: 0,
             discount: 0
         })
@@ -100,8 +132,11 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
 
   return (
     <div className={style.formView}>
+      <NavLink to="/home">
+        <button className={style.returnBack}>Home</button>
+      </NavLink>
       <form className={style.form} onSubmit={handlerSubmit}>
-
+        <h2 className={style.titleCreate}></h2>
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
             <label>Name</label>
@@ -184,40 +219,23 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             <p className={style.error}>{errors.discount}</p>
           </div>
           <div className={style.inputRight}>
-            <label>Sku</label>
-            <input className={style.inputs} type="number"
-            value={newProduct.sku}
-            name="sku"
-            min="0"
-            onChange={handlerChange}
-            autoComplete="off"/>
-            <p className={style.error}>{errors.sku}</p>
-          </div>
-        </div>
-
-            
-        <div className={style.blocksInputs}>
-          <div className={style.inputLeft}>
-            <select value={newProduct.category} name="category" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
+          <select value={newProduct.category} name="category" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
                 <option value="" className={style.options}>Categoria</option>
                 <option value="1" className={style.options}>Almacen</option>
-                <option value="2" className={style.options}>Almacen</option>
+                <option value="2" className={style.options}>AlmacenTodo</option>
+                <option value="3" className={style.options}>TodoElAlmacen</option>
+                <option value="4" className={style.options}>Categoria A</option>
+                <option value="5" className={style.options}>Categoria B</option>
+                <option value="6" className={style.options}>Categoria C</option>
+                <option value="7" className={style.options}>Categoria D</option>
             </select>
             <p className={style.error}>{errors.category}</p>
             <div className={style.viewOptions}>
-                
+                {unicas?.map((ele, i) => <p key={i} className={style.categoryInBlock}>
+                  {ele.name}
+                </p>)}
             </div>
-          </div>
-          <div className={style.inputRight}>
-            <select value={newProduct.subcategory} name="subcategory" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
-                <option value="" className={style.options}>SubCategorias</option>
-                <option value="1" className={style.options}>Aceites</option>
-                <option value="2" className={style.options}>Vinagres</option>
-            </select>
-            <p className={style.error}>{errors.subcategory}</p>
-            <div className={style.viewOptions}>
-                
-            </div>
+
           </div>
         </div>
 
@@ -242,9 +260,7 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             !errors.priceRegular && 
             !errors.description && 
             !errors.category && 
-            !errors.subcategory && 
-            !errors.unit &&
-            !errors.discount
+            !errors.unit 
             ?style.btnActive
             :style.btnDesactive} type="submit">Enviar</button>
 
