@@ -1,11 +1,12 @@
 const { Router } = require('express');
-const { getProducts,  postProducts } = require('../handlers/products');
+const { getProducts,  postProducts, getIdProduct } = require('../handlers/products');
 
 
  routerProduct =Router();
 
  routerProduct
  .get('/', getProducts)
+ .get('/:id', getIdProduct)
  .post('/', postProducts)
 
 

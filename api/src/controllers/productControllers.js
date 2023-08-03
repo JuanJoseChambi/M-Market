@@ -1,9 +1,49 @@
 const {Category,Prod} =require('../db');
+const { Op } = require("sequelize");
 
-const allProducts=()=>{
-    
-    return ("todos los productos")
+
+const product = async (name) => {
+    const detailProduct = await Prod.findAll({
+        where: {
+            name: {
+                [Op.iLike]: "%" + name + "%"
+            }
+        },
+        // include: [
+        //     {
+        //         model: Category,
+        //         as: 'category',
+        //         attributes: ["name"]
+        //     }
+        // ]
+    });
+    return detailProduct;
 };
+
+const allProducts = async()=>{
+ 
+    const allProducts = await Prod.findAll(({
+        include: [{
+            model: Category,
+            attributes: ['name'],
+            // through: {
+            //     attributes: [],
+            // }
+        }]
+    }));
+   
+    return  allProducts
+};
+ 
+const  productById = async(id)=>{
+    const productId = await Prod.findByPk(id, 
+    //     {include:{
+    //     model:Category, attributes: [id]
+    // }}
+    )
+    return productId;
+}
+
 const createProduct = async (name, category, description, image, priceRegular, brand, unit) => {
     const newProduct = await Prod.create({
         name, description, image, priceRegular, brand, unit
@@ -16,5 +56,7 @@ const createProduct = async (name, category, description, image, priceRegular, b
 }
 module.exports={
     allProducts,
-    createProduct
+    createProduct,
+    productById,
+    product
 }
