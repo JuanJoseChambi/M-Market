@@ -22,10 +22,6 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        priceRegular: {
-            type: DataTypes.FLOAT,
-            allowNull: false,
-        },
         unit: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -40,11 +36,7 @@ module.exports = (sequelize) => {
         },
         score: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        discount: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
 
 
