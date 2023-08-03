@@ -35,8 +35,8 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         score: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
+            type: DataTypes.FLOAT,
+            allowNull: false,
         },
 
 
