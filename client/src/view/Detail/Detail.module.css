@@ -127,15 +127,16 @@
     left: 5%;
 }
 .changerButton{
-    background-color: #313130;
+    background-color: #daa023;
     width: 20px;
     height: 40px;
-    color: #ffff;
+    color: black;
     border: 0;
     position: absolute;
     left: 0;
     top: 0;
     cursor: pointer;
+    font-size: 18px;
 }
 /* --------------------------------------------------------------------- */
 .otherInfo{
