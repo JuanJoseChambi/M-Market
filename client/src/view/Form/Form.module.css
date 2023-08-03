@@ -10,7 +10,7 @@
   font-family: 'Poppins', sans-serif;
 }
 .returnBack{
-  background-color: black;
+  background-color: rgb(254, 138, 60);
   padding: 10px;
   border-radius: 0 20px 20px 0; 
   color: white;
@@ -59,6 +59,16 @@
   
   /* background-color: red; */
 }
+.inputRightSelect{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  min-height: 150%;
+  margin-bottom: 130px;
+  /* background-color: red; */
+}
 
 .inputs {
   width: 80%;
@@ -66,8 +76,12 @@
   border: 0px;
   outline: none;
   background-color: transparent;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(166, 161, 161);
   font-family: 'Poppins', sans-serif;
+  transition: border-bottom .5s;
+}
+.inputs:hover, .inputs:focus{
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 .textArea {
   width: 140%;
@@ -77,13 +91,20 @@
   outline: none;
   /* background-color: red; */
   resize: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(166, 161, 161);
   font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  transition: border-bottom .5s;
+}
+.textArea:hover, .textArea:focus{
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 .select{
     border: 0px;
     outline: none;
     font-family: 'Poppins', sans-serif;
+    margin-top: 30px;
+    font-size: 13px;
 }
 .viewOptions{
   display: flex;
@@ -91,23 +112,20 @@
   align-items: start;
   flex-direction: row;
   flex-wrap: wrap;
-  min-width: 85%;
-  min-height: 65px;
-  /* background-color: rgb(86, 83, 83); */
+  min-width: 100%;
+  min-height: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.227);
   color: white;
   border-radius: 15px;
   padding: 2px 3px;
 }
 .categoryInBlock{
-  display: flex;
-  justify-content: center;
-  align-items: center;
   /* height: 20px; */
   background-color: rgb(57, 56, 56);
   margin: 3px 2px;
-  padding: 3px 5px;
+  padding: 3px 10px;
   border-radius: 5px;
-  font-size: 13px;
+  font-size: 12px;
   position: relative;
 }
 .error {
@@ -209,12 +227,13 @@
 
 .titleCreate{
   width: 400px;
-  height: 100px;
+  height: 60px;
   animation: escribiendo 6s steps(20) forwards;
   overflow: hidden;
   white-space: nowrap;
   font-family: 'Poppins', sans-serif;
   font-size: 40px;
+  margin-top: 10px;
   /* background-color: rebeccapurple; */
 }
 

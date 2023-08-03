@@ -3,70 +3,13 @@ import { NavLink } from "react-router-dom";
 import style from "./Form.module.css";
 import Validation from "./Validations";
 import axios from "axios"
-
-export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
-  const category = [
-    {
-      id: 1,
-      name:"Almacen"
-    },
-    {
-      id: 2,
-      name: "Perfumeria"
-    },
-    {
-      id: 3,
-      name: "Lacteos y productos frescos"
-    },
-    {
-      id: 4,
-      name: "Comida"
-    },
-    {
-      id: 5,
-      name: "Comida"
-    },
-    {
-      id: 6,
-      name: "embutidos"
-    },
-    {
-      id: 7,
-      name: "Carnes"
-    },
-    {
-      id: 8,
-      name: "Bebidas"
-    },
-    {
-      id: 9,
-      name: "Limpieza"
-    },
-    {
-      id: 10,
-      name: "Lacteos"
-    },
-    {
-      id: 11,
-      name: "Verduras"
-    },
-    {
-      id: 12,
-      name: "Aperitivos"
-    },
-    {
-      id: 13,
-      name: "Panaderia"
-    },
-    {
-      id: 14,
-      name: "higiene personal"
-    }
-  ]
+const category = [{id: 1,name:"Almacen"},{id: 2,name: "Perfumeria"},{id: 3,name:"Lacteos y productos frescos"},{id: 4,name:"Comida"},{id: 5,name:"Comida"},{id: 6,name:"embutidos"},{id: 7,name: "Carnes"},{id: 8,name: "Bebidas"},{id: 9,name: "Limpieza"},{id: 10,name: "Lacteos"},{id: 11,  name: "Verduras"},{id: 12,name:"Aperitivos"},{id: 13,name: "Panaderia"},{id: 14,name: "higiene personal"}
+]
+export default function Form({/*FuncionCreate - FuncionSync*/}) {
   async function CreateProduct (newProduct) {
-    const {name, category, description, image, priceRegular, brand, unit} = newProduct;
-    if (name && category && description && image && priceRegular && brand && unit) {
-      await axios.post('http://localhost:3001/product/',newProduct)
+    const {name, category, price, description, image, score, brand, unit} = newProduct;
+    if (name && category && price && description && image && score && brand && unit) {
+      await axios.post('/product',newProduct)
       alert("Prdoucto Creado")
     }else{
       alert("Datos Incorrectos/ Faltantes")
@@ -79,11 +22,9 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
         image: "",
         unit: "",
         price: 0,
-        priceRegular: 0,
         description: "",
         category: [],
         score: 0,
-        discount: 0
     })
 
     const [errors, setErrors] = useState({
@@ -92,11 +33,9 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
         image: "",
         unit: "",
         price: undefined,
-        priceRegular: undefined,
         description: "",
         category: [],
-        score: 0,
-        discount: undefined
+        score: undefined,
       })
 
 // ------------------------------Renderizado de Categorias------------------------------------------------------------------------------
@@ -146,11 +85,9 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             image: "",
             unit: "",
             price: 0,
-            priceRegular: 0,
             description: "",
             category: [],
             score: 0,
-            discount: 0
         })
         CreateProduct(newProduct)
         /*ActualizacionDeHome*/
@@ -202,6 +139,7 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             <input className={style.inputs} type="number"
             value={newProduct.unit}
             name="unit"
+            min="0"
             onChange={handlerChange}
             placeholder="Unit"
             autoComplete="off"/>
@@ -221,30 +159,22 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             <p className={style.error}>{errors.price}</p>
           </div>
           <div className={style.inputRight}>
-            <label>Price Regular</label>
-            <input className={style.inputs} type="number"
-            value={newProduct.priceRegular}
-            name="priceRegular"
-            min="0"
-            onChange={handlerChange}
-            autoComplete="off"/>
-            <p className={style.error}>{errors.priceRegular}</p>
+            
           </div>
         </div>
     
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
-          <label>Discount</label>
+          <label>Score</label>
             <input className={style.inputs} type="number"
-            value={newProduct.discount}
-            name="discount"
+            value={newProduct.score}
+            name="score"
             min="0"
-            max="100"
             onChange={handlerChange}
             autoComplete="off"/>
-            <p className={style.error}>{errors.discount}</p>
+            <p className={style.error}>{errors.score}</p>
           </div>
-          <div className={style.inputRight}>
+          <div className={style.inputRightSelect}>
           <select value={newProduct.category} name="category" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
                 <option value="" className={style.options}>Categoria</option>
                 <option value="1" className={style.options}>Almacen</option>
@@ -291,11 +221,11 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             !errors.name &&
             !errors.image &&
             !errors.brand && 
-            // !errors.price &&
-            !errors.priceRegular && 
+            !errors.price &&
             !errors.description && 
-            !errors.category  
-            // !errors.unit 
+            !errors.category  &&
+            !errors.unit && 
+            !errors.score
             ?style.btnActive
             :style.btnDesactive} type="submit" onClick={handlerSubmit}>Enviar</button>
 
