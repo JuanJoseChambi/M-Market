@@ -12,8 +12,9 @@ const getProducts=async (req, res)=>{
 
 }
 const postProducts =async (req, res)=>{
+    const {name, category, description, image, priceRegular, brand, unit} = req.body
 try {
-   const response =createProduct();
+   const response = await createProduct(name, category, description, image, priceRegular, brand, unit);
     res.status(200).json(response);
     
 } catch (error) {
