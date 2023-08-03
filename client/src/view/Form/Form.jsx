@@ -64,9 +64,9 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
     }
   ]
   async function CreateProduct (newProduct) {
-    const {name, category, description, image, priceRegular, brand, unit} = newProduct;
-    if (name && category && description && image && priceRegular && brand && unit) {
-      await axios.post('http://localhost:3001/product/',newProduct)
+    const {name, category, price, description, image, score, brand, unit} = newProduct;
+    if (name && category && price && description && image && score && brand && unit) {
+      await axios.post('http://localhost:3001/product',newProduct)
       alert("Prdoucto Creado")
     }else{
       alert("Datos Incorrectos/ Faltantes")
@@ -79,11 +79,9 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
         image: "",
         unit: "",
         price: 0,
-        priceRegular: 0,
         description: "",
         category: [],
         score: 0,
-        discount: 0
     })
 
     const [errors, setErrors] = useState({
@@ -92,11 +90,9 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
         image: "",
         unit: "",
         price: undefined,
-        priceRegular: undefined,
         description: "",
         category: [],
-        score: 0,
-        discount: undefined
+        score: undefined,
       })
 
 // ------------------------------Renderizado de Categorias------------------------------------------------------------------------------
@@ -221,28 +217,21 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             <p className={style.error}>{errors.price}</p>
           </div>
           <div className={style.inputRight}>
-            <label>Price Regular</label>
-            <input className={style.inputs} type="number"
-            value={newProduct.priceRegular}
-            name="priceRegular"
-            min="0"
-            onChange={handlerChange}
-            autoComplete="off"/>
-            <p className={style.error}>{errors.priceRegular}</p>
+            
           </div>
         </div>
     
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
-          <label>Discount</label>
+          <label>Score</label>
             <input className={style.inputs} type="number"
-            value={newProduct.discount}
-            name="discount"
+            value={newProduct.score}
+            name="score"
             min="0"
-            max="100"
+            max="5"
             onChange={handlerChange}
             autoComplete="off"/>
-            <p className={style.error}>{errors.discount}</p>
+            <p className={style.error}>{errors.score}</p>
           </div>
           <div className={style.inputRight}>
           <select value={newProduct.category} name="category" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
@@ -291,11 +280,11 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             !errors.name &&
             !errors.image &&
             !errors.brand && 
-            // !errors.price &&
-            !errors.priceRegular && 
+            !errors.price &&
             !errors.description && 
-            !errors.category  
-            // !errors.unit 
+            !errors.category  &&
+            !errors.unit && 
+            !errors.score
             ?style.btnActive
             :style.btnDesactive} type="submit" onClick={handlerSubmit}>Enviar</button>
 
