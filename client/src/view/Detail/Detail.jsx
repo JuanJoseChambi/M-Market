@@ -13,7 +13,7 @@ export default function Detail() {
   return (
     <div className={style.detailView}>
       <NavLink to="/home">
-        <button className={style.returnBack}>Home</button>
+        <button className={style.returnBack}>|Home</button>
       </NavLink>
       <div className={style.cardProduct}>
         <div className={style.containerImg}>
