@@ -7,7 +7,8 @@
         "unit": 40,
         "description": "Aceite de girasol",
         "image": "https://jumboargentina.vtexassets.com/arquivos/ids/427751-800-auto?v=636495154762100000&width=800&height=auto&aspect=true",
-        "category": "Almacen"
+        "category": "Almacen",
+        "score":0
       },
       {
       "brand": "Classic",
