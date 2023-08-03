@@ -11,7 +11,7 @@ export default function Detail() {
       product()
     }, [])
     async function product () {
-      const { data } = await axios.get(`http://localhost:3001/product/${id}`);
+      const { data } = await axios.get(`/product/${id}`);
       const {brand, description, image, name, price, score, unit } = data;
       const infoProducts = {brand, description, image, name, price, score, unit};
       setProducts(infoProducts)
@@ -30,11 +30,13 @@ export default function Detail() {
             <h2 className={style.nameProduct}>{products.name}</h2>
             <div className={style.brandUnitContainer}>
                 <h5 className={style.brandProduct}>{products.brand}</h5>
-                <h5 className={style.unitProduct}>|U {products.unit}</h5>
+                <h5 className={style.unitProduct}>| U{products.unit}</h5>
             </div>
             <h6 className={style.scoreProduct}>⭐{products.score}</h6>
+            <div className={style.descriptionCard}>
             <label className={style.textDescription}>Description</label>
-            <div className={style.descriptionCard}>{products.description}</div>
+              {products.description}
+              </div>
             <h3 className={style.priceProduct}>${products.price}</h3>
             <button className={style.btn}>Comprar</button>
         </div>
