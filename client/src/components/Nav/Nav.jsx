@@ -1,9 +1,16 @@
+import React from 'react';
+import './nav.css';
+import Sidebar from './Sidebar.jsx';
 
-import React from 'react'
-
-export default function Nav() {
+const Nav = () => {
   return (
-    <div>Nav</div>
+    <div className='nav_container'>
+      <div>
+        <Sidebar />
+      </div>
+    </div>
   )
-}
+};
+
+export default Nav;
 
