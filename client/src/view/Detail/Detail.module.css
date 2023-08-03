@@ -83,29 +83,29 @@
     display: flex;
     align-items: center;
     /* background-color: violet; */
-    font-size: 25px;
-    margin: 15px 0px;
+    font-size: 15px;
+    margin: 15px 0px 0 0;
 }
-.descountProduct{
-    position: relative;
-    min-width: auto;
-    /* background-color: brown; */
-    margin: 20px 0 15px 0;
-    font-size: 21px;
-}
-.descount{
-    background-color: rgb(233, 233, 233);
+.textDescription{
     position: absolute;
-    top: -10px;
-    right: -28px;
-    font-size: 12px;
-    padding: 0 5px;
-    border: 1px solid rgb(237, 6, 6);
+    top: 32.8%;
+    left: 15px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.227);
+    padding: 1px 10px;
+}
+.descriptionCard{
+    width: 90%;
+    height: 30%;
+    padding: 15px 10px;
+    margin: 15px 0px 0 0;
+    border: 1px solid rgba(0, 0, 0, 0.227);
     border-radius: 10px;
 }
 .priceProduct{
     /* background-color: greenyellow; */
-    margin: 0 0 15px 0;
+    margin: 15px 0px 0 0;
     font-size: 23px;
 }
 .btn{
@@ -134,22 +134,20 @@
     cursor: pointer;
     font-size: 18px;
 }
-/* --------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------
 .otherInfo{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 70vh;
-    /* margin-top: 60px; */
-    /* background-color: red; */
+    background-color: red;
     position: relative;
 }
 .blockInfo{
     width: 85%;
     height: 85%;
-    /* background-color: blue; */
-    /* border-radius: 10px; */
+    background-color: blue;
     position: relative;
 
 }
@@ -159,7 +157,7 @@
     align-items: end;
     width: 100%;
     height: 45px;
-    /* background-color: purple; */
+    background-color: purple;
     position: relative;
 }
 .tabs{
@@ -167,7 +165,6 @@
     color: white;
     width: 140px;
     height: 35px;
-    /* border: 1px solid black; */
     border: 1px solid rgba(0, 0, 0, 0.227);
 
     border-radius: 20px 20px 0 0;
@@ -185,7 +182,7 @@
 .blockView{
     width: 97.5%;
     height: 87%;
-    /* background-color: violet; */
+    background-color: violet;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.227);
     padding: 5px 15px;
@@ -193,7 +190,4 @@
 }
 .blockView:hover{
     box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
-
-    /* box-shadow: 0px 15px 20px 0px #3d3a3a; */
-
-}
+} */
