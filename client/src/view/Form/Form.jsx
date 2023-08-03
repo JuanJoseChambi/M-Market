@@ -2,39 +2,76 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Form.module.css";
 import Validation from "./Validations";
+import axios from "axios"
 
 export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
   const category = [
     {
       id: 1,
-      name:"almacen"
+      name:"Almacen"
     },
     {
       id: 2,
-      name: "almacenTodo"
+      name: "Perfumeria"
     },
     {
       id: 3,
-      name: "TodoElAlmacen"
+      name: "Lacteos y productos frescos"
     },
     {
       id: 4,
-      name: "Categoria A"
+      name: "Comida"
     },
     {
       id: 5,
-      name: "Categoria B"
+      name: "Comida"
     },
     {
       id: 6,
-      name: "Categoria C"
+      name: "embutidos"
     },
     {
       id: 7,
-      name: "Categoria D"
+      name: "Carnes"
+    },
+    {
+      id: 8,
+      name: "Bebidas"
+    },
+    {
+      id: 9,
+      name: "Limpieza"
+    },
+    {
+      id: 10,
+      name: "Lacteos"
+    },
+    {
+      id: 11,
+      name: "Verduras"
+    },
+    {
+      id: 12,
+      name: "Aperitivos"
+    },
+    {
+      id: 13,
+      name: "Panaderia"
+    },
+    {
+      id: 14,
+      name: "higiene personal"
     }
   ]
-
+  async function CreateProduct (newProduct) {
+    const {name, category, description, image, priceRegular, brand, unit} = newProduct;
+    if (name && category && description && image && priceRegular && brand && unit) {
+      await axios.post('http://localhost:3001/product/',newProduct)
+      alert("Prdoucto Creado")
+    }else{
+      alert("Datos Incorrectos/ Faltantes")
+    }
+  }
 
     const [newProduct, setNewProduct] = useState({
         name: "",
@@ -63,7 +100,6 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
       })
 
 // ------------------------------Renderizado de Categorias------------------------------------------------------------------------------
-      // const [unicos, setUnicos] = useState(undefined)
       let productCategory = [];
       for (let i = 0; i < newProduct.category.length; i++) {
     const selecteCategory = category.find(category => category.id.toString() === newProduct.category[i]);
@@ -72,16 +108,6 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
     }
   }
   let unicas = [...new Set(productCategory)]
-  // setUnicos(unicas)
- 
-  // function handlerDeleteCategory(ele) {
-  //   unicas = unicas.filter((category) => category.name !== ele.name);   //Falta
-  //   setNewProduct({
-  //     ...newProduct,
-  //     category: newProduct.category.filter((category) => category.id !== ele.id),
-  //   });
-  // }
-
 // -------------------------------------------------------------------------------------------------------------
     function handlerChange (event){
         setNewProduct({
@@ -126,7 +152,7 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             score: 0,
             discount: 0
         })
-        /* Funcion */
+        CreateProduct(newProduct)
         /*ActualizacionDeHome*/
     }
 
@@ -135,8 +161,8 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
       <NavLink to="/home">
         <button className={style.returnBack}>Home</button>
       </NavLink>
-      <form className={style.form} onSubmit={handlerSubmit}>
-        <h2 className={style.titleCreate}></h2>
+      <form className={style.form} >
+        <h2 className={style.titleCreate}>Create Product</h2>
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
             <label>Name</label>
@@ -173,7 +199,7 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
           </div>
           <div className={style.inputRight}>
             <label>Unit</label>
-            <input className={style.inputs} type="text"
+            <input className={style.inputs} type="number"
             value={newProduct.unit}
             name="unit"
             onChange={handlerChange}
@@ -222,12 +248,21 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
           <select value={newProduct.category} name="category" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
                 <option value="" className={style.options}>Categoria</option>
                 <option value="1" className={style.options}>Almacen</option>
-                <option value="2" className={style.options}>AlmacenTodo</option>
-                <option value="3" className={style.options}>TodoElAlmacen</option>
-                <option value="4" className={style.options}>Categoria A</option>
-                <option value="5" className={style.options}>Categoria B</option>
-                <option value="6" className={style.options}>Categoria C</option>
-                <option value="7" className={style.options}>Categoria D</option>
+                <option value="2" className={style.options}>Perfumeria</option>
+                <option value="3" className={style.options}>Lacteos y productos frescos</option>
+                <option value="4" className={style.options}>Comida</option>
+                <option value="5" className={style.options}>pastas</option>
+                <option value="6" className={style.options}>embutidos</option>
+                <option value="7" className={style.options}>Carnes</option>
+                <option value="8" className={style.options}>Bebidas</option>
+                <option value="9" className={style.options}>Limpieza</option>
+                <option value="10" className={style.options}>Lacteos</option>
+                <option value="11" className={style.options}>Verduras</option>
+                <option value="12" className={style.options}>Aperitivos</option>
+                <option value="13" className={style.options}>Panaderia</option>
+                <option value="14" className={style.options}>higiene personal</option>
+
+                
             </select>
             <p className={style.error}>{errors.category}</p>
             <div className={style.viewOptions}>
@@ -256,29 +291,15 @@ export default function Form({/* Funcion */ /*ActualizacionDeHome*/}) {
             !errors.name &&
             !errors.image &&
             !errors.brand && 
-            !errors.price &&
+            // !errors.price &&
             !errors.priceRegular && 
             !errors.description && 
-            !errors.category && 
-            !errors.unit 
+            !errors.category  
+            // !errors.unit 
             ?style.btnActive
-            :style.btnDesactive} type="submit">Enviar</button>
+            :style.btnDesactive} type="submit" onClick={handlerSubmit}>Enviar</button>
 
       </form>
     </div>
   );
 }
-
-//   "id": 6,
-//   "brand": "", Marca
-//   "name": "", Nombre
-//   "sku": 0,  ?
-//   "price": 0, Precio
-//   "priceRegular": 0,  Precio Individual(?
-//   "unit": "", Unidad
-//   "description": "", Descripcion
-//   "image": "", Imagen
-//   "category": "", Categoria
-//   "subcategory": "", SubCategoria
-//   "score": 0, Puntuacion
-//   "discount": 0 Descuento

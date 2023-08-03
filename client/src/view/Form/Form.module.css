@@ -29,7 +29,14 @@
   flex-direction: column;
   width: 50%;
   height: 95vh;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.227);
   /* background-color: green; */
+  transition: box-shadow .5s;
+}
+.form:hover{
+  box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
+
 }
 
 .blocksInputs {
@@ -52,28 +59,7 @@
   
   /* background-color: red; */
 }
-.btnDesactive {
-  padding: 8px 25px;
-  border: 0px;
-  color: white;
-  user-select: none;
 
-  color: #3a3737;
-  background-color: rgba(62, 57, 57, 0.575);
-  pointer-events: none;
-  font-family: 'Poppins', sans-serif;
-}
-.btnActive {
-  padding: 8px 25px;
-  border: 0px;
-  color: white;
-  user-select: none;
-  
-  color: #ffffff;
-  background-color: rgb(39, 38, 38);
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-}
 .inputs {
   width: 80%;
   padding: 5px 5px;
@@ -124,23 +110,6 @@
   font-size: 13px;
   position: relative;
 }
-/* .btnDelete{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  color: white;
-  width: 10px;
-  height: 10px;
-  font-size: 7px;
-  border-radius: 50%;
-  border: none;
-  position: absolute;
-  outline: 1px solid white;
-  right: -5px;
-  top: -7px;
-  cursor: pointer;
-} */
 .error {
   color: rgb(3, 3, 3);
   text-align: center;
@@ -151,14 +120,32 @@
   margin-left: 0px;
   font-family: 'Poppins', sans-serif;
 }
+.btnDesactive {
+  padding: 8px 25px;
+  border: 0px;
+  color: white;
+  user-select: none;
 
-
-.titleCreate{
-  position: relative;
-  width: auto;
-  height: 10vh;
+  color: #3a3737;
+  background-color: rgba(62, 57, 57, 0.575);
+  pointer-events: none;
+  font-family: 'Poppins', sans-serif;
+  margin: 10px 0;
 }
-.titleCreate::after{
+.btnActive {
+  padding: 8px 25px;
+  border: 0px;
+  color: white;
+  user-select: none;
+  
+  color: #ffffff;
+  background-color: rgb(39, 38, 38);
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  margin: 10px 0;
+}
+
+/* .titleCreate::after{
   content:'';
   animation-name: textCreate;
   animation-duration: 3s;
@@ -218,5 +205,29 @@
   100% {
     content: 'Create Product';
   }
+} */
+
+.titleCreate{
+  width: 400px;
+  height: 100px;
+  animation: escribiendo 6s steps(20) forwards;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  /* background-color: rebeccapurple; */
 }
 
+@keyframes escribiendo {
+  0%,
+  100%{
+    width: 0;
+  }
+  40%,
+  60% {
+    width: 320px;
+  }
+  100%{
+    width: 320px;
+  }
+}

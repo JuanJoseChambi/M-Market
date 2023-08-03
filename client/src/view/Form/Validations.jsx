@@ -24,9 +24,7 @@ export default function Validation (input) {
     if((input.unit).length === 0) errors.unit = "Required Unit";
     //-----------------------price
     if(input.price == 0) errors.price = "Required Price";
-    //-----------------------price Regular
-    if(input.priceRegular > input.price) errors.priceRegular = "Error Price Regular";
-    
+    //-----------------------price Regular    
     if(input.priceRegular == 0) errors.priceRegular = "Required Price Regular";
     //-----------------------description
     if((input.description).length === 0) errors.description = "Required Description"
