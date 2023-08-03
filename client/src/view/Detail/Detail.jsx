@@ -5,7 +5,7 @@ import { NavLink, useParams } from "react-router-dom";
 export default function Detail() {
     const { id } = useParams()
     const [button, setButton] = useState(false)
-
+    // Falta Data de DB
     function handlerButton(){
         setButton(!button)
     }
