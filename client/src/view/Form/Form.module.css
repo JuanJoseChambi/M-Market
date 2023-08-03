@@ -1,7 +1,233 @@
-.formView{
-    width: 100%;
-    min-height: 100vh;
-    margin: 0px;
-    padding: 0px;
-    background-color: rebeccapurple;
+.formView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  /* background-color: rebeccapurple; */
+  font-family: 'Poppins', sans-serif;
+}
+.returnBack{
+  background-color: black;
+  padding: 10px;
+  border-radius: 0 20px 20px 0; 
+  color: white;
+  border: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  font-family: 'Poppins', sans-serif;
+
+}
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  height: 95vh;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  /* background-color: green; */
+  transition: box-shadow .5s;
+}
+.form:hover{
+  box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
+
+}
+
+.blocksInputs {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  width: 95%;
+  height: 20vh;
+  /* background-color: rgb(80, 80, 186); */
+}
+.inputRight,
+.inputLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  min-height: 90%;
+  
+  /* background-color: red; */
+}
+
+.inputs {
+  width: 80%;
+  padding: 5px 5px;
+  border: 0px;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+  font-family: 'Poppins', sans-serif;
+}
+.textArea {
+  width: 140%;
+  height: 50px;
+  padding: 5px 5px;
+  border: 0px;
+  outline: none;
+  /* background-color: red; */
+  resize: none;
+  border-bottom: 1px solid black;
+  font-family: 'Poppins', sans-serif;
+}
+.select{
+    border: 0px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+.viewOptions{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 85%;
+  min-height: 65px;
+  /* background-color: rgb(86, 83, 83); */
+  color: white;
+  border-radius: 15px;
+  padding: 2px 3px;
+}
+.categoryInBlock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 20px; */
+  background-color: rgb(57, 56, 56);
+  margin: 3px 2px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  font-size: 13px;
+  position: relative;
+}
+.error {
+  color: rgb(3, 3, 3);
+  text-align: center;
+  margin: 0px;
+  font-size: 11px;
+  width: 100%;
+  height: 2.5vh;
+  margin-left: 0px;
+  font-family: 'Poppins', sans-serif;
+}
+.btnDesactive {
+  padding: 8px 25px;
+  border: 0px;
+  color: white;
+  user-select: none;
+
+  color: #3a3737;
+  background-color: rgba(62, 57, 57, 0.575);
+  pointer-events: none;
+  font-family: 'Poppins', sans-serif;
+  margin: 10px 0;
+}
+.btnActive {
+  padding: 8px 25px;
+  border: 0px;
+  color: white;
+  user-select: none;
+  
+  color: #ffffff;
+  background-color: rgb(39, 38, 38);
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  margin: 10px 0;
+}
+
+/* .titleCreate::after{
+  content:'';
+  animation-name: textCreate;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+}
+@keyframes textCreate {
+  0% {
+    content: '|';
+  }
+  6% {
+    content: 'C|';
+  }
+  12% {
+    content: 'Cr|';
+  }
+  18% {
+    content: 'Cre|';
+  }
+  24% {
+    content: 'Crea|';
+  }
+  30% {
+    content: 'Creat|';
+  }
+  36% {
+    content: 'Create|';
+  }
+  42% {
+    content: 'Create |';
+  }
+  48% {
+    content: 'Create P|';
+  }
+  54% {
+    content: 'Create Pr|';
+  }
+  60% {
+    content: 'Create Pro|';
+  }
+  66% {
+    content: 'Create Prod|';
+  }
+  72% {
+    content: 'Create Produ|';
+  }
+  78% {
+    content: 'Create Produc|';
+  }
+  84% {
+    content: 'Create Product|';
+  }
+  90% {
+    content: 'Create Product|';
+  }
+  100% {
+    content: 'Create Product';
+  }
+} */
+
+.titleCreate{
+  width: 400px;
+  height: 100px;
+  animation: escribiendo 6s steps(20) forwards;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  /* background-color: rebeccapurple; */
+}
+
+@keyframes escribiendo {
+  0%,
+  100%{
+    width: 0;
+  }
+  40%,
+  60% {
+    width: 320px;
+  }
+  100%{
+    width: 320px;
+  }
 }
