@@ -25,7 +25,7 @@ const CategoryBD = require('./src/utils/categories.js')
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
-    ChargedDB()
+    // ChargedDB()
     CategoryBD()
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });

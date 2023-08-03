@@ -25,9 +25,9 @@ const getProducts=async (req, res)=>{
      }
  }
 const postProducts =async (req, res)=>{
-    const {name, category, description, image, priceRegular, brand, unit} = req.body
+    const {name, category, description, image, price, brand, unit} = req.body
 try {
-   const response = await createProduct(name, category, description, image, priceRegular, brand, unit);
+   const response = await createProduct(name, category, description, image, price, brand, unit);
     res.status(200).json(response);
     
 } catch (error) {

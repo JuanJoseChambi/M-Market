@@ -44,9 +44,9 @@ const  productById = async(id)=>{
     return productId;
 }
 
-const createProduct = async (name, category, description, image, priceRegular, brand, unit) => {
+const createProduct = async (name, category, description, image, price, brand, unit) => {
     const newProduct = await Prod.create({
-        name, description, image, priceRegular, brand, unit
+        name, description, image, price, brand, unit
     });
     const categoryDB = await Category.findAll({
         where: {name: category}
