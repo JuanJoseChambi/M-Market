@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsShopWindow } from 'react-icons/bs';
 import { TbBottleFilled } from 'react-icons/tb';
 
@@ -35,4 +34,9 @@ export const SidebarData = [
         path: '/congelados',
         className: 'sidebar_text',
     },
+    {
+        title: 'Perfumeria',
+        path: '/perfumeria',
+        className: 'sidebar_text',
+    }
 ];
