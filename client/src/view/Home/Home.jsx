@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { allProducts } from "../../redux/slices/productsData";
 import Paginado from "../../components/Paginado/Paginado";
+import ProductContainer from "../../components/ProductContainer/ProductContainer"
+
 export default function Home() {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
@@ -11,6 +13,7 @@ export default function Home() {
   //PAGINATION VARS
   let [currentPage, setCurrentPage] = useState(1);
   let cardsInPage = 20;
+
 
 const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
@@ -37,17 +40,10 @@ const lastIndex = currentPage * cardsInPage;
         totalCards={products?.length}
         setPagina={setPagina}
       />
-      </div>
+         </div>
       <h1>Mini Market</h1>
-
-      <div>
-        {cardsShowed?.map(({ id, name, image }) => (
-          <div key={id}>
-            <h3>{name}</h3>
-            <img src={image} alt={name} />
-          </div>
-        ))}
-      </div>
+      <ProductContainer/>
+   
 
     
     </div>

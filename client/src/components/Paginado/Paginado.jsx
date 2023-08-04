@@ -1,7 +1,8 @@
 import React from "react";
 
 export default function Paginado(props) {
-  console.log(props)
+  console.log( "Propssss")
+  console.log( props)
   let isFirstPage = props.currentPage === 1 ? "disabled" : "";
   let isLastPage =
     props.currentPage === Math.ceil(props.totalCards / props.cardsInPage)

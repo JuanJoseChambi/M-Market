@@ -6,6 +6,7 @@ import axios from "axios";
 axios.defaults.baseURL="http://localhost:3001";
 import Detail from "./view/Detail/Detail";
 
+
 function App() {
   return (
     <div>
