@@ -29,15 +29,15 @@ export default function Detail() {
         <div className={style.containerInfoProduct}>
             <h2 className={style.nameProduct}>{products.name}</h2>
             <div className={style.brandUnitContainer}>
-                <h5 className={style.brandProduct}>{products.brand}</h5>
-                <h5 className={style.unitProduct}>| U{products.unit}</h5>
+                <b className={style.brandProduct}>{products.brand}</b>
+                <p className={style.unitProduct}>| U{products.unit}</p>
             </div>
             <h6 className={style.scoreProduct}>⭐{products.score}</h6>
             <div className={style.descriptionCard}>
             <label className={style.textDescription}>Description</label>
               {products.description}
               </div>
-            <h3 className={style.priceProduct}>${products.price}</h3>
+            <p className={style.priceProduct}>$ {products.price}</p>
             <button className={style.btn}>Comprar</button>
         </div>
       </div>
