@@ -4,30 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { allProducts } from "../../redux/slices/productsData";
 import Paginado from "../../components/Paginado/Paginado";
-import ProductContainer from "../../components/ProductContainer/ProductContainer"
+import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Footer from "../../components/Footer/Footer";
+
 
 export default function Home() {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
 
-  //PAGINATION VARS
-  let [currentPage, setCurrentPage] = useState(1);
-  let cardsInPage = 20;
+  // PAGINATION VARS
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardsInPage, setCardsInPage] = useState(20);
 
-
-const lastIndex = currentPage * cardsInPage;
+  const totalCards = products.length;
+  const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
-  const cardsShowed = (function () {
-    if (products.length === 0)
-      return products; //Si no hay productos para mostrar
-    else return products?.slice(firstIndex, lastIndex); //Dividimos el array original con los proveedores a mostrar
-  })();
+  const cardsShowed = products.slice(firstIndex, lastIndex); // Dividimos el array original con los productos a mostrar
 
   const setPagina = (num) => {
     setCurrentPage(num);
   };
+
   useEffect(() => {
     dispatch(allProducts());
   }, [dispatch]);
@@ -36,19 +34,23 @@ const lastIndex = currentPage * cardsInPage;
     <div id="Home">
       <div>
         <Nav />
+        <h1>Mini Market</h1>
         <Paginado
-        currentPage={currentPage}
-        cardsInPage={cardsInPage}
-        totalCards={products?.length}
-        setPagina={setPagina}
-      />
-         </div>
-      <h1>Mini Market</h1>
+          currentPage={currentPage}
+          cardsInPage={cardsInPage}
+          totalCards={totalCards}
+          setPagina={setPagina}
+        />
+       
+        <ProductContainer products={cardsShowed} />
+      </div>
+    
       <Ordenamiento/>
       <ProductContainer/>
    
 
       <Footer/>
+
     </div>
   );
 }

@@ -11,9 +11,9 @@
   }
   
   .paginationButton {
-    background-color: goldenrod;
+    background-color: #ff8000;
     color: white;
-    font-family: "Stencil Std Bold";
+    font-family:  'Poppins', sans-serif;;
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
@@ -21,7 +21,8 @@
   }
   
   .activeButton {
-    background-color:  rgb(75, 60, 21);
+    background-color:  #47C7FC;
     box-shadow: 0 0 10px 3px rgb(235, 234, 231);
   }
+  
   
