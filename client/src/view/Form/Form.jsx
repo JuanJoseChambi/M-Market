@@ -20,7 +20,7 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
         name: "",
         brand: "",
         image: "",
-        unit: "",
+        unit: 0,
         price: 0,
         description: "",
         category: [],
@@ -31,7 +31,7 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
         name: "",
         brand: "",
         image: "",
-        unit: "",
+        unit: undefined,
         price: undefined,
         description: "",
         category: [],
@@ -141,7 +141,6 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
             name="unit"
             min="0"
             onChange={handlerChange}
-            placeholder="Unit"
             autoComplete="off"/>
             <p className={style.error}>{errors.unit}</p>
           </div>
