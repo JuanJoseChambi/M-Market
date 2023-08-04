@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import './nav.css';
 
+
 const Sidebar = () => {
-
-    const [sidebar, setSidebar] = useState(false);
-
-    const showSidebar = () => setSidebar(!sidebar);
 
     return(
         <>
@@ -27,10 +24,9 @@ const Sidebar = () => {
                     {SidebarData.map((item, index) => {
                         return(
                             <li key={index} className={item.className}>
-                                <Link to={item.path}>
-                                    {item.icon}
+                                <button className='sidebar_button' >
                                     <span>{item.title}</span>
-                                </Link>
+                                </button>
                             </li>
                         )
                     })}
