@@ -32,7 +32,7 @@ export default function Footer() {
             
         </div>
         <div className={style.blockRight}>
-        <h3 className={style.textIframe}>Donde nose Encontramos</h3>
+        <h3 className={style.textIframe}>Donde nos Encontramos</h3>
         <iframe className={style.iframe} src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.946153287807!2d-58.409132573046854!3d-34.6055231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccbe25655e197%3A0xa87d48db46b1fb59!2sCleanliness%20Market%2F%20%40omarmrlumoss!5e0!3m2!1ses!2sar!4v1691163119507!5m2!1ses!2sar" ></iframe>
         <button className={style.btn} onClick={handlerScrollHome}>Inicio</button>
         </div>
