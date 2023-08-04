@@ -21,7 +21,7 @@ export default function Home() {
         id: e.id,
         name: e.name,
         image: e.image,
-        price: e.price,
+        price: e.price,    
       };
     });
     dispatch(setProducts(info))

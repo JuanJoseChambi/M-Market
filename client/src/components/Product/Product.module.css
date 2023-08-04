@@ -1,0 +1,65 @@
+/* Product.module.css */
+
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: 0.3s;
+    width: 90%;
+    margin-bottom: 10px;
+    background-color: white;
+    padding-bottom: 15px;
+    border: 1px solid grey;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+    width: 100%;
+    max-width: 70%;
+    height: 150px; /* Establece una altura fija para las imágenes */
+    object-fit: cover; /* Ajusta la imagen para llenar el espacio y recortar si es necesario */
+    border-radius: 10px;
+    cursor: pointer;
+    padding-bottom: 15px;
+    transition: transform 0.3s;
+    margin-top: 15px;
+}
+
+.image:hover {
+    transform: scale(0.9);
+}
+
+.textcenter {
+    text-align: center;
+    padding: 0 10px;
+    font-family: "Poppins", sans-serif;
+    color: black;
+}
+
+.buttonCard {
+    background-color: #ff8000;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center; /* Alinea el contenido del botón al centro */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+
+

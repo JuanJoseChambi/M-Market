@@ -1,43 +1,9 @@
+
 import Product from "../Product/Product";
+import { useSelector } from "react-redux";
 
 const ProductContainer = () => {
-    const products = [
-        {
-            id: 1,
-            name: "Product 1",
-            description: "This is product 1",
-            price: 100,
-            image: "https://picsum.photos/200/200"
-        },
-        {
-            id: 2,
-            name: "Product 2",
-            description: "This is product 2",
-            price: 200,
-            image: "https://picsum.photos/200/200"
-        },
-        {
-            id: 3,
-            name: "Product 3",
-            description: "This is product 3",
-            price: 300,
-            image: "https://picsum.photos/200/200"
-        },
-        {
-            id: 4,
-            name: "Product 4",
-            description: "This is product 4",
-            price: 400,
-            image: "https://picsum.photos/200/200"
-        },
-        {
-            id: 5,
-            name: "Product 5",
-            description: "This is product 5",
-            price: 500,
-            image: "https://picsum.photos/200/200"
-        },
-    ];
+    const { products } = useSelector((state) => state.products);
 
     return (
         <div className="container">

@@ -1,17 +1,20 @@
 import { Link } from 'react-router-dom';
+import style from './Product.module.css';
 
 const Product = (products) => {
-    const { id, name, description, price, image } = products;
+    const { id, name, price, image } = products;
     return (
-        <div>
-            <Link to={`/detail/${id}`} className='text-decoration-none'>
-            <div className="card">
-            <img src={image} alt="product" className='rounded'/>
-                <h4 className="text-center">{name}</h4>
-                <p className="text-center">Description: {description}</p>
-                <p className="text-center">Price: {price}</p>
+        <div className={style.card}>
+           <Link to={`/detail/${id}`} className={`${style['text-decoration-none']}`}>
+        <div className={style.cardContent}>
+            <img src={image} alt="product" className={style.image} />
+            <div className={style.textcenter}> {/* Agrega la clase textcenter aquí */}
+                <h4>{name}</h4>
+                <p>Precio: {price}</p>
+                <button className={style.buttonCard}>Añadir</button>
             </div>
-            </Link>
+        </div>
+    </Link>
         </div>
     );
 }
