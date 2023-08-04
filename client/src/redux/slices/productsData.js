@@ -6,10 +6,12 @@ export const productsSlice = createSlice({
   name: "products", //Nombre del slice
   initialState: {
     products: [],
+    
    },
    reducers: {
       setProducts: (state, action) => {
       state.products = action.payload;
+
     },
 
     
