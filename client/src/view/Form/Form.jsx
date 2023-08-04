@@ -90,25 +90,23 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
         <button className={style.returnBack}>Home</button>
       </NavLink>
       <form className={style.form} >
-        <h2 className={style.titleCreate}>Create Product</h2>
+        <h2 className={style.titleCreate}>Crear Producto</h2>
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
-            <label>Name</label>
+            <label>Nombre</label>
             <input className={style.inputs} type="text"
             value={newProduct.name}
             name="name"
             onChange={handlerChange}
-            placeholder="Nombre"
             autoComplete="off"/>
             <p className={style.error}>{errors.name}</p>
           </div>
           <div className={style.inputRight}>
-            <label>Brand</label>
+            <label>Marca</label>
             <input className={style.inputs} type="text"
             value={newProduct.brand}
             name="brand"
             onChange={handlerChange}
-            placeholder="Marca"
             autoComplete="off"/>
             <p className={style.error}>{errors.brand}</p>
           </div>
@@ -116,17 +114,16 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
 
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
-            <label> Image</label>
+            <label>Imagen</label>
             <input className={style.inputs} type="text"
             value={newProduct.image}
             name="image"
             onChange={handlerChange}
-            placeholder="Imagen"
             autoComplete="off"/>
             <p className={style.error}>{errors.image}</p>
           </div>
           <div className={style.inputRight}>
-            <label>Unit</label>
+            <label>Unidades</label>
             <input className={style.inputs} type="number"
             value={newProduct.unit}
             name="unit"
@@ -139,7 +136,7 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
 
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
-            <label>Price</label>
+            <label>Precio</label>
             <input className={style.inputs} type="number"
             value={newProduct.price}
             name="price"
@@ -155,7 +152,7 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
     
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
-          <label>Score</label>
+          <label>Puntuacion</label>
             <input className={style.inputs} type="number"
             value={newProduct.score}
             name="score"
@@ -194,12 +191,11 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
 
         <div className={style.blocksInputs}>
           <div className={style.inputRight}>
-          <label>Description</label>
+          <label>Descripcion</label>
             <textarea className={style.textArea} type="text"
             value={newProduct.description}
             name="description"
             onChange={handlerChange}
-            placeholder="Description"
             autoComplete="off"/>
             <p className={style.error}>{errors.description}</p>
           </div>
@@ -212,7 +208,7 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
             !errors.price &&
             !errors.description && 
             !errors.category  &&
-            !errors.unit && 
+            !errors.unit &&
             !errors.score
             ?style.btnActive
             :style.btnDesactive} type="submit" onClick={handlerSubmit}>Enviar</button>

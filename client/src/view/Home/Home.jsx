@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { allProducts } from "../../redux/slices/productsData";
 import Paginado from "../../components/Paginado/Paginado";
 import ProductContainer from "../../components/ProductContainer/ProductContainer";
+import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
+import Footer from "../../components/Footer/Footer";
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -28,18 +31,26 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div id="Home">
       <div>
         <Nav />
+        <h1>Mini Market</h1>
         <Paginado
           currentPage={currentPage}
           cardsInPage={cardsInPage}
           totalCards={totalCards}
           setPagina={setPagina}
         />
-        <h1>Mini Market</h1>
+       
         <ProductContainer products={cardsShowed} />
       </div>
+    
+      <Ordenamiento/>
+      <ProductContainer/>
+   
+
+      <Footer/>
+
     </div>
   );
 }
