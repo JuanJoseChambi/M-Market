@@ -10,7 +10,7 @@
 }
 
 .returnBack {
-  background-color: rgb(254, 138, 60);
+  background-color: #ff8000;
   padding: 10px;
   border-radius: 0 20px 20px 0;
   color: white;
@@ -110,13 +110,14 @@
     width: 160px;
     height: 40px;
     border: 0;
-    background-color: black;
+    background-color: #ff8000;
     color: white;
     position: relative;
     cursor: pointer;
     font-family: "Poppins", sans-serif;
     font-size: 15px;
     position: relative;
+    border-radius: 10px;
     bottom: -5%;
     left: 0%;
 }

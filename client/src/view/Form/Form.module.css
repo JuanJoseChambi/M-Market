@@ -121,7 +121,8 @@
 }
 .categoryInBlock{
   /* height: 20px; */
-  background-color: rgb(57, 56, 56);
+  background-color: rgb(105, 93, 93);
+  border: 1px solid rgba(0, 0, 0, 0.227);
   margin: 3px 2px;
   padding: 3px 10px;
   border-radius: 5px;
@@ -129,7 +130,7 @@
   position: relative;
 }
 .error {
-  color: rgb(3, 3, 3);
+  color: rgb(255, 0, 0);
   text-align: center;
   margin: 0px;
   font-size: 11px;
@@ -162,69 +163,6 @@
   font-family: 'Poppins', sans-serif;
   margin: 10px 0;
 }
-
-/* .titleCreate::after{
-  content:'';
-  animation-name: textCreate;
-  animation-duration: 3s;
-  animation-fill-mode: forwards;
-  font-family: 'Poppins', sans-serif;
-  font-size: 40px;
-}
-@keyframes textCreate {
-  0% {
-    content: '|';
-  }
-  6% {
-    content: 'C|';
-  }
-  12% {
-    content: 'Cr|';
-  }
-  18% {
-    content: 'Cre|';
-  }
-  24% {
-    content: 'Crea|';
-  }
-  30% {
-    content: 'Creat|';
-  }
-  36% {
-    content: 'Create|';
-  }
-  42% {
-    content: 'Create |';
-  }
-  48% {
-    content: 'Create P|';
-  }
-  54% {
-    content: 'Create Pr|';
-  }
-  60% {
-    content: 'Create Pro|';
-  }
-  66% {
-    content: 'Create Prod|';
-  }
-  72% {
-    content: 'Create Produ|';
-  }
-  78% {
-    content: 'Create Produc|';
-  }
-  84% {
-    content: 'Create Product|';
-  }
-  90% {
-    content: 'Create Product|';
-  }
-  100% {
-    content: 'Create Product';
-  }
-} */
-
 .titleCreate{
   width: 400px;
   height: 65px;
@@ -235,7 +173,6 @@
   font-size: 40px;
   margin-top: 10px;
   /* background-color: rebeccapurple; */
-
 }
 
 @keyframes escribiendo {
@@ -245,9 +182,9 @@
   }
   40%,
   60% {
-    width: 320px;
+    width: 305px;
   }
   100%{
-    width: 320px;
+    width: 305px;
   }
 }
