@@ -1,9 +1,9 @@
 .detailView {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 100%;
   min-height: 100vh;
   /* background-color: red; */
   font-family: "Poppins", sans-serif;
@@ -19,110 +19,112 @@
   position: absolute;
   top: 10px;
   left: 0px;
+  z-index: 10;
   font-family: "Poppins", sans-serif;
 }
-.cardProduct{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    width: 85%;
-    height: 90vh;
-    background-color: rgb(255, 255, 255);
-    position: relative;
-    border-radius: 10px;
-    margin: 30px 0;
-    border: 1px solid rgba(0, 0, 0, 0.227);
-    transition: box-shadow .5s;
+.cardProduct {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 85%;
+  min-height: 90vh;
+  /* background-color: rgb(255, 255, 255); */
+  position: relative;
+  border-radius: 10px;
+  margin: 30px 0;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  transition: box-shadow 0.5s;
 }
-.cardProduct:hover{
-    box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
+.cardProduct:hover {
+  box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
 }
-.containerImg{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    height: 80vh;
-    /* background-color: blue; */
+.containerImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 90vh;
+  overflow: hidden;
+  /* background-color: blue; */
 }
-.image{
-    width: 100%;
+.image {
+  width: 94%;
 }
 /* -------------------------------------------------------- */
-.containerInfoProduct{
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-    width: 50%;
-    height: 85vh;
-    /* background-color: purple; */
-    position: relative;
+.containerInfoProduct {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  min-width: 50%;
+  height: 85vh;
+  /* background-color: purple; */
+  position: relative;
 }
 
-.nameProduct{
-    width: 100%;
-    padding: 0 10px;
-    /* background-color: blue; */
-    position: relative;
-    margin: 50px 0 10px 0;
-    border-left: 1px solid black;
+.nameProduct {
+  min-width: 100%;
+  padding: 0 10px;
+  /* background-color: blue; */
+  position: relative;
+  margin: 50px 0 10px 0;
+  border-left: 1px solid black;
 }
-.brandUnitContainer{
-    /* background-color: red; */
-    display: flex;
-    flex-direction: row;
+.brandUnitContainer {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
 }
-.brandProduct,.unitProduct{
-    padding: 0 10px;
+.brandProduct,
+.unitProduct {
+  padding: 0 10px;
 }
-.scoreProduct{
-    display: flex;
-    align-items: center;
-    /* background-color: violet; */
-    font-size: 15px;
-    margin: 2px 0px 2px 0;
+.scoreProduct {
+  display: flex;
+  align-items: center;
+  /* background-color: violet; */
+  font-size: 15px;
+  margin: 2px 0;
 }
-.descriptionCard{
-    width: 90%;
-    height: 30%;
-    padding: 15px 10px;
-    margin: 15px 0px 0 0;
-    border: 1px solid rgba(0, 0, 0, 0.227);
-    border-radius: 10px;
-    position: relative;
+.descriptionCard {
+  width: 90%;
+  height: 30%;
+  padding: 15px 10px;
+  margin: 15px 0px 0 0;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  border-radius: 10px;
+  position: relative;
 }
-.textDescription{
-    position: absolute;
-    top: -14px;
-    left: 15px;
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.227);
-    padding: 1px 10px;
+.textDescription {
+  position: absolute;
+  top: -14px;
+  left: 15px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  padding: 1px 10px;
 }
-.priceProduct{
-    /* background-color: greenyellow; */
-    margin: 15px 0px 0 0;
-    font-size: 23px;
+.priceProduct {
+  /* background-color: greenyellow; */
+  margin: 15px 0px 0 0;
+  font-size: 23px;
 }
-.btn{
-    width: 160px;
-    height: 40px;
-    border: 0;
-    background-color: #ff8000;
-    color: white;
-    position: relative;
-    cursor: pointer;
-    font-family: "Poppins", sans-serif;
-    font-size: 15px;
-    position: relative;
-    border-radius: 10px;
-    bottom: -5%;
-    left: 0%;
+.btn {
+  width: 160px;
+  height: 40px;
+  border: 0;
+  background-color: #ff8000;
+  color: white;
+  position: relative;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  position: relative;
+  border-radius: 10px;
+  bottom: -5%;
+  left: 0%;
 }
-
-
 
 /* -Proximo Demo------------------------------------------------------------
 .otherInfo{
@@ -181,3 +183,119 @@
 .blockView:hover{
     box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
 } */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  /*Pantallas medianas*/
+  .cardProduct {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    height: auto;
+    box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
+  }
+  .containerImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    /* background-color: blue; */
+  }
+  .image {
+    width: 63%;
+  }
+  .containerInfoProduct {
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 100%;
+    padding: 0 0 0 20px;
+    height: 50vh;
+    /* background-color: purple; */
+    position: relative;
+  }
+  .nameProduct {
+    font-size: 48px;
+  }
+  .brandUnitContainer {
+    font-size: 24px;
+  }
+  .descriptionCard {
+    font-size: 20px;
+    /* background-color: red; */
+    margin-top: 20px;
+    padding: 20px 0 0 10px;
+  }
+  .scoreProduct{
+    font-size: 23px;
+  }
+  .textDescription {
+    font-size: 18px;
+  }
+  .priceProduct {
+    font-size: 32px;
+    margin: 5px 0;
+  }
+  .btn {
+    width: 200px;
+    height: 55px;
+    font-size: 23px;
+    bottom: 0;
+    margin: 15px 0;
+  }
+  .returnBack {
+    display: none;
+  }
+}
+@media (max-width: 600px) { 
+  /*Pantallas Pequeñas*/
+  .cardProduct {
+    /* background-color: #ff8000; */
+    height: auto;
+    position: relative;
+    box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
+  }
+  .containerImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    /* background-color: blue; */
+}
+.image {
+    width: 90%;
+  }
+  .containerInfoProduct {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    flex-direction: column;
+    padding: 0 0 0 20px;
+    width: 100%;
+    max-height: 50vh;
+    /* background-color: purple; */
+    position: relative;
+    margin: 0;
+    bottom: 0;
+  }
+  .nameProduct {
+    margin: 0;
+  }
+  .scoreProduct {
+    margin: 0;
+    font-size: 18px;
+  }
+  .btn {
+    width: 90%;
+    height: 50px;
+    bottom: 0;
+    margin: 10px 0;
+  }
+  .returnBack {
+    display: none;
+  }
+  .priceProduct {
+    margin: 5px 0;
+  }
+}

@@ -1,9 +1,10 @@
 .footerView{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
     width: 100%;
-    height: 90vh;
+    min-height: 90vh;
     background-color: #ff8000;
 }
 /* ------------------------------------------- */
@@ -12,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 50%;
+    min-width: 50%;
     height: 90%;
     /* background-color: blue; */
     border-right: 1px solid rgba(0, 0, 0, 0.227);
@@ -118,7 +119,7 @@
     align-items: center;
     flex-direction: column;
     width: 47%;
-    height: 90%;
+    height: 90vh;
     /* background-color: gray; */
     padding: 0 20px 0 0;
     border-right: 1px solid rgba(0, 0, 0, 0.227);
@@ -135,3 +136,15 @@
     height: 75%;
     border: 1px solid rgba(0, 0, 0, 0.227);
 }
+
+
+/*Pantallas medianas*/
+@media (min-width: 601px) and (max-width: 1024px) {
+
+}
+
+
+/*Pantallas Pequeñas*/
+@media (max-width: 600px) { 
+
+} 
