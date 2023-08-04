@@ -16,15 +16,13 @@ export default function Validation (input) {
     
     if((input.image).length === 0) errors.image = "Required Image";
     //-----------------------unit
-    if(input.unit === 0) errors.unit = "Require Unit";
-    
-    if((input.unit).length === 0) errors.unit = "Required Unit";
+    if(input.unit == 0) errors.unit = "Require Unit";
     //-----------------------price
     if(input.price == 0) errors.price = "Required Price";
     //-----------------------description
     if((input.description).length === 0) errors.description = "Required Description"
     //-----------------------category    
-    if(input.category.length === 0) errors.category = "Select at least 1 Category";
+    if((input.category).length === 0) errors.category = "Select at least 1 Category";
     //-----------------------score
     if(input.score == 0) errors.score = "No Score";
 

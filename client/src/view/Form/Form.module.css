@@ -227,7 +227,7 @@
 
 .titleCreate{
   width: 400px;
-  height: 60px;
+  height: 65px;
   animation: escribiendo 6s steps(20) forwards;
   overflow: hidden;
   white-space: nowrap;
@@ -235,6 +235,7 @@
   font-size: 40px;
   margin-top: 10px;
   /* background-color: rebeccapurple; */
+
 }
 
 @keyframes escribiendo {

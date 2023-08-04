@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&family=Lato:wght@300&family=Rubik&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,6 +18,7 @@
     margin-left: 2rem;
     font-size: 2rem;
     background: none;
+    color: white;
 }
 
 .nav_menu {
@@ -44,7 +47,7 @@
     height: 60px;
 }
 
-.sidebar_text a {
+/* .sidebar_text a {
     text-decoration: none;
     color: white;
     font-size: 18px;
@@ -58,7 +61,7 @@
 
 .sidebar_text a:hover {
     background-color: #47c7fc;
-}
+} */
 
 .nav_menu_items {
     width: 100%;
@@ -77,3 +80,35 @@ span {
     margin-left: 16px;
 }
 
+.nav_form_button {
+    padding-left: 10rem;
+}
+
+.nav_f_button {
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    width: 80px;
+    cursor: pointer;
+    font-family: 'Poppins';
+}
+
+.sidebar_button {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border: none; 
+    background: none; 
+    border-radius: 5px;
+    font-family: 'Poppins';
+}
+
+.sidebar_button:hover {
+    background-color: #47c7fc;
+    cursor: pointer;
+}
