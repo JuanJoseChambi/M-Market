@@ -3,8 +3,7 @@ import { NavLink } from "react-router-dom";
 import style from "./Form.module.css";
 import Validation from "./Validations";
 import axios from "axios"
-const category = [{id: 1,name:"Almacen"},{id: 2,name: "Perfumeria"},{id: 3,name:"Lacteos y productos frescos"},{id: 4,name:"Comida"},{id: 5,name:"Comida"},{id: 6,name:"embutidos"},{id: 7,name: "Carnes"},{id: 8,name: "Bebidas"},{id: 9,name: "Limpieza"},{id: 10,name: "Lacteos"},{id: 11,  name: "Verduras"},{id: 12,name:"Aperitivos"},{id: 13,name: "Panaderia"},{id: 14,name: "higiene personal"}
-]
+
 export default function Form({/*FuncionCreate - FuncionSync*/}) {
   async function CreateProduct (newProduct) {
     const {name, category, price, description, image, score, brand, unit} = newProduct;
@@ -38,16 +37,8 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
         score: undefined,
       })
 
-// ------------------------------Renderizado de Categorias------------------------------------------------------------------------------
-      let productCategory = [];
-      for (let i = 0; i < newProduct.category.length; i++) {
-    const selecteCategory = category.find(category => category.id.toString() === newProduct.category[i]);
-    if (selecteCategory) {
-      productCategory.push(selecteCategory);
-    }
-  }
-  let unicas = [...new Set(productCategory)]
-// -------------------------------------------------------------------------------------------------------------
+      const categoriesSet = [...new Set(newProduct.category)]
+      
     function handlerChange (event){
         setNewProduct({
             ...newProduct,
@@ -71,7 +62,7 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
               setErrors(
                   Validation({
                     ...newProduct,
-                    category
+                    category:newProduct.category
                   })
               )
         }
@@ -176,27 +167,25 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
           <div className={style.inputRightSelect}>
           <select value={newProduct.category} name="category" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
                 <option value="" className={style.options}>Categoria</option>
-                <option value="1" className={style.options}>Almacen</option>
-                <option value="2" className={style.options}>Perfumeria</option>
-                <option value="3" className={style.options}>Lacteos y productos frescos</option>
-                <option value="4" className={style.options}>Comida</option>
-                <option value="5" className={style.options}>pastas</option>
-                <option value="6" className={style.options}>embutidos</option>
-                <option value="7" className={style.options}>Carnes</option>
-                <option value="8" className={style.options}>Bebidas</option>
-                <option value="9" className={style.options}>Limpieza</option>
-                <option value="10" className={style.options}>Lacteos</option>
-                <option value="11" className={style.options}>Verduras</option>
-                <option value="12" className={style.options}>Aperitivos</option>
-                <option value="13" className={style.options}>Panaderia</option>
-                <option value="14" className={style.options}>higiene personal</option>
-
-                
+                <option value="Almacen" className={style.options}>Almacen</option>
+                <option value="Perfumeria" className={style.options}>Perfumeria</option>
+                <option value="Lacteos y productos frescos" className={style.options}>Lacteos y productos frescos</option>
+                <option value="Comida" className={style.options}>Comida</option>
+                <option value="pastas" className={style.options}>pastas</option>
+                <option value="embutidos" className={style.options}>embutidos</option>
+                <option value="Carnes" className={style.options}>Carnes</option>
+                <option value="Bebidas" className={style.options}>Bebidas</option>
+                <option value="Limpieza" className={style.options}>Limpieza</option>
+                <option value="Lacteos" className={style.options}>Lacteos</option>
+                <option value="Verduras" className={style.options}>Verduras</option>
+                <option value="Aperitivos" className={style.options}>Aperitivos</option>
+                <option value="Panaderia" className={style.options}>Panaderia</option>
+                <option value="higiene personal" className={style.options}>higiene personal</option>
             </select>
             <p className={style.error}>{errors.category}</p>
             <div className={style.viewOptions}>
-                {unicas?.map((ele, i) => <p key={i} className={style.categoryInBlock}>
-                  {ele.name}
+                {categoriesSet?.map((ele, i) => <p key={i} className={style.categoryInBlock}>
+                  {ele}
                 </p>)}
             </div>
 

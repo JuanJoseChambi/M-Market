@@ -22,7 +22,7 @@ export default function Validation (input) {
     //-----------------------description
     if((input.description).length === 0) errors.description = "Required Description"
     //-----------------------category    
-    if(input.category.length === 0) errors.category = "Select at least 1 Category";
+    if((input.category).length === 0) errors.category = "Select at least 1 Category";
     //-----------------------score
     if(input.score == 0) errors.score = "No Score";
 
