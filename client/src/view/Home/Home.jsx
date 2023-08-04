@@ -12,23 +12,6 @@ export default function Home() {
   let [currentPage, setCurrentPage] = useState(1);
   let cardsInPage = 20;
 
-  async function allProducts () {
-    const { data } = await axios.get("/product");
-    console.log(data)
-  if (data) {
-    const info = await data.map((e) => {
-      
-      return {
-        id: e.id,
-        name: e.name,
-        image: e.image,
-        price: e.price,    
-      };
-    });
-    dispatch(setProducts(info))
-  }
-  }
-
 const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
   const cardsShowed = (function () {
