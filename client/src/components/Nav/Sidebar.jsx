@@ -7,6 +7,10 @@ import './nav.css';
 
 const Sidebar = () => {
 
+    const [sidebar, setSidebar] = useState(false);
+
+    const showSidebar = () => setSidebar(!sidebar);
+
     return(
         <>
             <div className='sidebar_container'>
