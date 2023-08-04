@@ -1,27 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
- 
 
-
-const initialState ={
+const initialState = {
   page: 1,
   products: [],
-}
+};
 
 export const reducerSlice = createSlice({
-  name: 'products',
+  name: "products",
   initialState: initialState,
-  reducers:{  
+  reducers: {
     //------- DatosProductos -----------------------------------------
-     setProducts: (state, action) => {
+    setProducts: (state, action) => {
       state.products = action.payload;
-      
     },
+
     
-  }
-  
-})
- // Action creators are genereted for each case reducer
+  },
+});
+// Action creators are genereted for each case reducer
 export const { setProducts } = reducerSlice.actions;
-  
 
 export default reducerSlice.reducer;

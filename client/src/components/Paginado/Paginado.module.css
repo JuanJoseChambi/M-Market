@@ -1,0 +1,27 @@
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .paginationItem {
+    margin-right: 5px;
+  }
+  
+  .paginationButton {
+    background-color: goldenrod;
+    color: white;
+    font-family: "Stencil Std Bold";
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-color: aliceblue;
+  }
+  
+  .activeButton {
+    background-color:  rgb(75, 60, 21);
+    box-shadow: 0 0 10px 3px rgb(235, 234, 231);
+  }
+  
