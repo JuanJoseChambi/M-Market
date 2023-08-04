@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { allProducts } from "../../redux/slices/productsData";
 import Paginado from "../../components/Paginado/Paginado";
 import ProductContainer from "../../components/ProductContainer/ProductContainer"
+import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Footer from "../../components/Footer/Footer";
 
 export default function Home() {
@@ -43,6 +44,7 @@ const lastIndex = currentPage * cardsInPage;
       />
          </div>
       <h1>Mini Market</h1>
+      <Ordenamiento/>
       <ProductContainer/>
    
 
