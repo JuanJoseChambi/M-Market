@@ -4,7 +4,7 @@ import style from "./Form.module.css";
 import Validation from "./Validations";
 import axios from "axios"
 
-export default function Form({/*FuncionCreate - FuncionSync*/}) {
+export default function Form() {
   async function CreateProduct (newProduct) {
     const {name, category, price, description, image, score, brand, unit} = newProduct;
     if (name && category && price && description && image && score && brand && unit) {
@@ -62,7 +62,7 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
               setErrors(
                   Validation({
                     ...newProduct,
-                    category:newProduct.category
+                    category:[newProduct.category]
                   })
               )
         }
@@ -211,7 +211,7 @@ export default function Form({/*FuncionCreate - FuncionSync*/}) {
             !errors.unit &&
             !errors.score
             ?style.btnActive
-            :style.btnDesactive} type="submit" onClick={handlerSubmit}>Enviar</button>
+            :style.btnDesactive} type="submit" onClick={handlerSubmit}>Crear</button>
 
       </form>
     </div>

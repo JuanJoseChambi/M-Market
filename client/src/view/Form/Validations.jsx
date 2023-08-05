@@ -20,7 +20,7 @@ export default function Validation (input) {
     //-----------------------description
     if((input.description).length === 0) errors.description = "Descripcion es Requerida"
     //-----------------------category    
-    if((input.category).length === 0) errors.category = "Selecionar al menos 1 Categoria";
+    if(input.category.length === 0) errors.category = "Selecionar al menos 1 Categoria";
     //-----------------------score
     if(input.score === 0) errors.score = "Sin Puntuacion"
     
