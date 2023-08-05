@@ -7,7 +7,7 @@
   }
   
   .paginationItem {
-    margin-right: 5px;
+    margin-right: 10px;
   }
   
   .paginationButton {
@@ -19,10 +19,12 @@
     cursor: pointer;
     border-color: aliceblue;
   }
-  
+  .paginationButton:first-child {
+    text-decoration: underline;
+  }
   .activeButton {
     background-color:  #47C7FC;
-    box-shadow: 0 0 10px 3px rgb(235, 234, 231);
+    box-shadow: 0 0 10px 5px rgb(199, 188, 156);
   }
   
   

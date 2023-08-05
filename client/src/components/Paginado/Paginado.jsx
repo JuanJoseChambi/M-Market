@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./Paginado.module.css";
 
 export default function Paginado({ currentPage, cardsInPage, totalCards, setPagina }) {
+ 
+
   const [activeButton, setActiveButton] = useState(currentPage);
 
   const pageNumbers = [];
@@ -38,7 +40,7 @@ export default function Paginado({ currentPage, cardsInPage, totalCards, setPagi
   };
 
   const visiblePageNumbers = [];
-  const maxVisibleButtons = 5;
+  const maxVisibleButtons = 7;
 
   if (pageNumbers.length <= maxVisibleButtons) {
     visiblePageNumbers.push(...pageNumbers);
