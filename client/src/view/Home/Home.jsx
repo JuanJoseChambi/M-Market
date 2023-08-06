@@ -8,6 +8,7 @@ import ProductContainer from "../../components/ProductContainer/ProductContainer
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Footer from "../../components/Footer/Footer";
 import Product from "../../components/Product/Product";
+import Carousel from "../../components/Carousel/Carousel";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ export default function Home() {
     <div id="Home">
       <div>
         <Nav />
-        <h1>Mini Market</h1>
+        <Carousel />
         <Paginado
           currentPage={currentPage}
           cardsInPage={cardsInPage}
