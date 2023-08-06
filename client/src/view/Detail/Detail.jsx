@@ -34,7 +34,7 @@ export default function Detail() {
             </div>
             <h6 className={style.scoreProduct}>⭐{products.score}</h6>
             <div className={style.descriptionCard}>
-            <label className={style.textDescription}>Description</label>
+            <label className={style.textDescription}>Descripcion</label>
               {products.description}
               </div>
             <p className={style.priceProduct}>$ {products.price}</p>

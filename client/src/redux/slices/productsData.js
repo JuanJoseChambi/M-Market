@@ -13,8 +13,6 @@ export const productsSlice = createSlice({
       state.products = action.payload;
 
     },
-
-    
   },
 });
 // Action creators are genereted for each case reducer
