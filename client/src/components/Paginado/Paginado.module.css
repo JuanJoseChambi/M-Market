@@ -13,15 +13,14 @@
   .paginationButton {
     background-color: #ff8000;
     color: white;
-    font-family:  'Poppins', sans-serif;;
+    font-family:  'Poppins', sans-serif;
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
     border-color: aliceblue;
   }
-  .paginationButton:first-child {
-    text-decoration: underline;
-  }
+ 
+  
   .activeButton {
     background-color:  #47C7FC;
     box-shadow: 0 0 10px 5px rgb(199, 188, 156);

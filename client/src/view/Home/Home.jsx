@@ -1,14 +1,16 @@
-import React from "react";
-import Nav from "../../components/Nav/Nav";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { allProducts } from "../../redux/slices/productsData";
+import Nav from "../../components/Nav/Nav";
 import Paginado from "../../components/Paginado/Paginado";
-import ProductContainer from "../../components/ProductContainer/ProductContainer";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
-import Footer from "../../components/Footer/Footer";
 import Product from "../../components/Product/Product";
+
 import Carousel from "../../components/Carousel/Carousel";
+
+import Footer from "../../components/Footer/Footer";
+import styles from "./Home.module.css"
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -16,13 +18,15 @@ export default function Home() {
 
   // PAGINATION VARS
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsInPage, setCardsInPage] = useState(32);
+  const [cardsInPage] = useState(30);
 
   const totalCards = products.length;
   const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
-  const cardsShowed = products.slice(firstIndex, lastIndex); // Dividimos el array original con los productos a mostrar
-  console.log(cardsShowed);
+  const cardsShowed = products.slice(firstIndex, lastIndex);
+
+  
+
   const setPagina = (num) => {
     setCurrentPage(num);
   };
@@ -30,25 +34,36 @@ export default function Home() {
   useEffect(() => {
     dispatch(allProducts());
   }, [dispatch]);
-
+ 
+  const resetPage = () => {
+    setCurrentPage(1);
+  };
+  
   return (
     <div id="Home">
       <div>
         <Nav />
+
         <Carousel />
+
+        <h1 className={styles.container}> 🛍️ Mini Market 🛍️  </h1>
+        <br></br>
+
         <Paginado
           currentPage={currentPage}
           cardsInPage={cardsInPage}
           totalCards={totalCards}
           setPagina={setPagina}
+        
         />
 
-        <Ordenamiento />
+      
+        <Ordenamiento  resetPage={resetPage}/>
 
         <div className="container">
           <div className="row justify-content-center">
             {cardsShowed.map((item) => (
-              <div className="col-md-3 mb-3" key={item.id}>
+              <div className="col-md-4 mb-3" key={item.id}>
                 <Product
                   id={item.id}
                   name={item.name}
@@ -59,8 +74,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        {/* <ProductContainer/>  */}
 
         <Footer />
       </div>
