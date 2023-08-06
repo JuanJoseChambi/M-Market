@@ -3,11 +3,12 @@
 .container_nav_search {
     display: flex;
     align-items: center;
-    padding-left: 40rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav_search_input {
-    width: 250px;
+    width: 300px;
     height: 30px;
     font-size: 12px;
     border-radius: 5px;
