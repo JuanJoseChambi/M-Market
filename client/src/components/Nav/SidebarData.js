@@ -9,7 +9,7 @@ export const SidebarData = [
         className: 'sidebar_text',
     },
     {
-        title: 'Lacteos',
+        title: 'Lacteos y productos frescos',
         className: 'sidebar_text',
     },
     {
@@ -21,11 +21,11 @@ export const SidebarData = [
         className: 'sidebar_text',
     },
     {
-        title: 'Congelados',
+        title: 'Lacteos',
         className: 'sidebar_text',
     },
     {
-        title: 'Perfumeria',
+        title: 'Aperitivos',
         className: 'sidebar_text',
     },
     {
@@ -35,9 +35,5 @@ export const SidebarData = [
     {
         title: 'Limpieza',
         className: 'sidebar_text',
-    },
-    {
-        title: 'Aperitivos',
-        className: 'sidebar_text',
-    },
-];
+    }
+]

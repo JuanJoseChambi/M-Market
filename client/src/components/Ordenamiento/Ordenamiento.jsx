@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { allProducts, setProducts } from '../../redux/slices/productsData';
+import {allProducts, setProducts } from '../../redux/slices/productsData';
 import style from './Ordenamiento.module.css';
 
-const Ordenamiento = (props) => {
+const Ordenamiento = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
 
@@ -38,8 +38,7 @@ const Ordenamiento = (props) => {
     const reset = () => {
         setNombreOrden('');
         setPrecioOrden('');
-        dispatch(allProducts());
-        
+        dispatch(allProducts())        
     };
 
     return (

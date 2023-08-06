@@ -1,24 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
-import { setProducts } from '../../redux/slices/productsData';
+import { setFiltred, setCurrentPage } from '../../redux/slices/productsData';
 import './nav.css';
 
 const Sidebar = () => {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.products.products);
-
-    const filterCategory = (filterProducts) => {
-        return products.filter((product) => product.Categories.some(category => category.name === filterProducts));
-    };
 
     const handleFilter = (selectedCategory) => {
-        const filteredProducts = filterCategory(selectedCategory);
-        dispatch(setProducts(filteredProducts));
+        dispatch(setFiltred(selectedCategory));
+        dispatch(setCurrentPage(1))
     };
 
     return (
