@@ -5,8 +5,12 @@ import Nav from "../../components/Nav/Nav";
 import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Product from "../../components/Product/Product";
+
+import Carousel from "../../components/Carousel/Carousel";
+
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -39,8 +43,12 @@ export default function Home() {
     <div id="Home">
       <div>
         <Nav />
+
+        <Carousel />
+
         <h1 className={styles.container}> 🛍️ Mini Market 🛍️  </h1>
         <br></br>
+
         <Paginado
           currentPage={currentPage}
           cardsInPage={cardsInPage}
