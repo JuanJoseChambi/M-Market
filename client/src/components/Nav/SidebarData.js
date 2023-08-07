@@ -1,7 +1,7 @@
 
 export const SidebarData = [
     {
-        title: 'Almacén',
+        title: 'Almacen',
         className: 'sidebar_text',
     },
     {
@@ -17,7 +17,7 @@ export const SidebarData = [
         className: 'sidebar_text',
     },
     {
-        title: 'Panadería',
+        title: 'Panaderia',
         className: 'sidebar_text',
     },
     {
@@ -27,5 +27,17 @@ export const SidebarData = [
     {
         title: 'Perfumeria',
         className: 'sidebar_text',
-    }
+    },
+    {
+        title: 'higiene personal',
+        className: 'sidebar_text',
+    },
+    {
+        title: 'Limpieza',
+        className: 'sidebar_text',
+    },
+    {
+        title: 'Aperitivos',
+        className: 'sidebar_text',
+    },
 ];

@@ -18,10 +18,10 @@ export default function Footer() {
         <div className={style.blockLeft}>
             <div className={style.contactos}>
                 <h2 className={style.h2BL}>Contactanos</h2>
-                <a className={style.aLinks} href=''><i class='bx bxs-phone'></i>+(54) 9 11 81972522</a>
-                <a className={style.aLinks} href=''><i class='bx bxl-gmail'></i> Market@gmail.com</a>
-                <a className={style.aLinks} href=''><i class='bx bxl-twitter'></i>MMarket</a>
-                <a className={style.aLinks} href=''><i class='bx bxl-instagram' ></i> MMarket</a>
+                <a className={style.aLinks} href=''><i className='bx bxs-phone'></i>+(54) 9 11 81972522</a>
+                <a className={style.aLinks} href=''><i className='bx bxl-gmail'></i> Market@gmail.com</a>
+                <a className={style.aLinks} href=''><i className='bx bxl-twitter'></i>MMarket</a>
+                <a className={style.aLinks} href=''><i className='bx bxl-instagram' ></i> MMarket</a>
             </div>
             <div className={style.feedback}>
                 <h2 className={style.h2BL}>FeedBack</h2>

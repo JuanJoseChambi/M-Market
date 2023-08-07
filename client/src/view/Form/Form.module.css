@@ -6,39 +6,39 @@
   min-height: 100vh;
   margin: 0px;
   padding: 0px;
-  /* background-color: rebeccapurple; */
+  background-color: #ff8000;
   font-family: 'Poppins', sans-serif;
 }
-.returnBack{
-  background-color: rgb(254, 138, 60);
+.returnBack {
+  background-color: #ffffff;
   padding: 10px;
-  border-radius: 0 20px 20px 0; 
-  color: white;
-  border: 0;
+  border-radius: 0 20px 20px 0;
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.227);
   cursor: pointer;
   position: absolute;
   top: 10px;
   left: 0px;
-  font-family: 'Poppins', sans-serif;
-
+  z-index: 10;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0px 5px 5px 0px rgb(32, 31, 31);
+  transition: color .2s;
+}
+.returnBack:hover{
+  color: #ff8000;
 }
 .form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50%;
+  width: 80%;
   height: 95vh;
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.227);
-  /* background-color: green; */
-  transition: box-shadow .5s;
+  background-color: #ffffff;
+  box-shadow: 0px 15px 20px 0px rgb(34, 33, 33);
 }
-.form:hover{
-  box-shadow: 0px 15px 30px 0px rgb(118, 118, 118);
-
-}
-
 .blocksInputs {
   display: flex;
   justify-content: space-evenly;
@@ -56,7 +56,7 @@
   flex-direction: column;
   width: 50%;
   min-height: 90%;
-  
+  font-size: 15px;
   /* background-color: red; */
 }
 .inputRightSelect{
@@ -93,7 +93,7 @@
   resize: none;
   border-bottom: 1px solid rgb(166, 161, 161);
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   transition: border-bottom .5s;
 }
 .textArea:hover, .textArea:focus{
@@ -104,7 +104,7 @@
     outline: none;
     font-family: 'Poppins', sans-serif;
     margin-top: 30px;
-    font-size: 13px;
+    font-size: 14px;
 }
 .viewOptions{
   display: flex;
@@ -112,7 +112,7 @@
   align-items: start;
   flex-direction: row;
   flex-wrap: wrap;
-  min-width: 100%;
+  min-width: 80%;
   min-height: 100px;
   border: 1px solid rgba(0, 0, 0, 0.227);
   color: white;
@@ -121,12 +121,12 @@
 }
 .categoryInBlock{
   /* height: 20px; */
-  background-color: rgb(105, 93, 93);
+  background-color: #ff8000;
   border: 1px solid rgba(0, 0, 0, 0.227);
   margin: 3px 2px;
   padding: 3px 10px;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 14px;
   position: relative;
 }
 .error {
@@ -139,29 +139,23 @@
   margin-left: 0px;
   font-family: 'Poppins', sans-serif;
 }
-.btnDesactive {
+.btnActive, .btnDesactive {
   padding: 8px 25px;
   border: 0px;
   color: white;
   user-select: none;
-
-  color: #3a3737;
-  background-color: rgba(62, 57, 57, 0.575);
-  pointer-events: none;
-  font-family: 'Poppins', sans-serif;
-  margin: 10px 0;
-}
-.btnActive {
-  padding: 8px 25px;
-  border: 0px;
-  color: white;
-  user-select: none;
-  
-  color: #ffffff;
-  background-color: rgb(39, 38, 38);
+  border-radius: 10px;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   margin: 10px 0;
+}
+.btnDesactive{
+  color: #3a3737;
+  background-color: #b4712e;
+}
+.btnActive{
+  color: #ffffff;
+  background-color: #ff8000;
 }
 .titleCreate{
   width: 400px;
@@ -186,5 +180,125 @@
   }
   100%{
     width: 305px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  /*Pantallas medianas*/
+  .titleCreate{
+    display: none;
+  }
+  .formView{
+    padding: 30px 0;
+  }
+  .form{
+    width: 90%;
+    min-height:100vh;
+  }
+  .blocksInputs{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    font-size: 20px;
+  }
+  .inputLeft{
+    width: 90%;
+    min-height: 10vh;
+    /* background-color: red; */
+    /* margin: 10px 0; */
+  }
+  .inputRight{
+    width: 90%;
+    min-height: 10vh;
+    /* background-color: green; */
+  }
+  .select{
+    position: absolute;
+    top: 0;
+    margin: 0;
+  }
+  .inputRightSelect{
+    /* background-color: red; */
+    min-height: 80%;
+    width: 100%;
+    position: relative;
+  }
+  .viewOptions{
+    min-width: 90%;
+    /* background-color: rebeccapurple; */
+  }
+  .textArea{
+    width: 90%;
+  }
+  .returnBack{
+    display: none;
+  }
+  .select{
+    width: 60%;
+    /* background-color: red; */
+  }
+  .btnActive, .btnDesactive{
+    width: 80%;
+  }
+  .categoryInBlock{
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  /*Pantallas Pequeñas*/
+  .formView{
+    padding: 10px 0;
+  }
+  .form{
+    width: 90%;
+    min-height:100vh;
+  }
+  .blocksInputs{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  .inputLeft{
+    width: 90%;
+    min-height: 10vh;
+    /* background-color: red; */
+    /* margin: 10px 0; */
+  }
+  .inputRight{
+    width: 90%;
+    min-height: 10vh;
+    /* background-color: green; */
+  }
+  .select{
+    position: absolute;
+    top: 0;
+    margin: 0;
+  }
+  .inputRightSelect{
+    /* background-color: red; */
+    min-height: 80%;
+    width: 100%;
+    position: relative;
+  }
+  .viewOptions{
+    min-width: 90%;
+    /* background-color: rebeccapurple; */
+  }
+  .textArea{
+    width: 90%;
+  }
+  .returnBack{
+    display: none;
+  }
+  .select{
+    width: 60%;
+    /* background-color: red; */
+  }
+  .btnActive, .btnDesactive{
+    width: 80%;
+  }
+  .categoryInBlock{
+    font-size: 10px;
   }
 }
