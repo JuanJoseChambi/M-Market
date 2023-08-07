@@ -9,7 +9,7 @@ export default function Form() {
     const {name, category, price, description, image, score, brand, unit} = newProduct;
     if (name && category && price && description && image && score && brand && unit) {
       await axios.post('/product',newProduct)
-      alert("Prdoucto Creado")
+      alert("Producto Creado")
     }else{
       alert("Datos Incorrectos/ Faltantes")
     }

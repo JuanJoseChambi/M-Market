@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allProducts, setCurrentPage } from "../../redux/slices/productsData";
+import { allProducts } from "../../redux/slices/productsData";
 import Nav from "../../components/Nav/Nav";
 import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
@@ -17,8 +17,7 @@ export default function Home() {
   const { products, currentPage } = useSelector((state) => state.products);
 
   // PAGINATION VARS
-  const [cardsInPage] = useState(30);
-
+  const cardsInPage = 30;
   const totalCards = products.length;
   const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
