@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allProducts } from "../../redux/slices/productsData";
+import { allProducts, setCurrentPage } from "../../redux/slices/productsData";
 import Nav from "../../components/Nav/Nav";
 import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Product from "../../components/Product/Product";
-
 import Carousel from "../../components/Carousel/Carousel";
-
 import Footer from "../../components/Footer/Footer";
-import styles from "./Home.module.css"
-
+import styles from "./Home.module.css";
+import BienvenidaAlerts from "../../components/Alerts/BienvenidaAlerts";
 
 export default function Home() {
   const dispatch = useDispatch();
   const { products, currentPage } = useSelector((state) => state.products);
 
   // PAGINATION VARS
-  const cardsInPage = 30;
+  const [cardsInPage] = useState(30);
+
   const totalCards = products.length;
   const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
@@ -30,6 +29,7 @@ export default function Home() {
   return (
     <div id="Home">
       <div>
+       
         <Nav />
 
         <Carousel />

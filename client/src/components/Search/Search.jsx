@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { allProducts, searchName, setCurrentPage } from '../../redux/slices/productsData';
+import { useDispatch, useSelector } from 'react-redux';
+import { allProducts, setProducts, setCurrentPage } from '../../redux/slices/productsData';
 import './search.css';
 
 const Search = () => {
+
     const dispatch = useDispatch();
-    const [search, setSearch] = useState("");
+    const { products } = useSelector((state) => state.products);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         dispatch(allProducts());
     }, [dispatch]);
 
-    function handleSearch (search) {
+    const handleSearch = () => {
+        const filteredProducts = products.filter((product) =>
+            product.name.toLowerCase().includes(search.toLowerCase())
+        );
         dispatch(setCurrentPage(1))
-        dispatch(searchName(search));
+        dispatch(setProducts(filteredProducts));
+        console.log('Productos filtrados:', filteredProducts)
     };
 
     const handleChange = (e) => {
-        const name = e.target.value
-        if (name) {
-            setSearch(name);
-            dispatch(searchName(search));
-        }else{
-            setSearch(null)
-            dispatch(allProducts())
-        }
+        setSearch(e.target.value);
     };
 
     return(
@@ -36,7 +35,7 @@ const Search = () => {
             onChange={handleChange} />
             
             <div className='nav_search_button'>
-                <button type='submit' className='nav_s_button' onClick={() => handleSearch(search)} >
+                <button type='submit' className='nav_s_button' onClick={handleSearch} >
                     Buscar
                 </button>
             </div>
