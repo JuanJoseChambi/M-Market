@@ -1,52 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Paginado.module.css";
+import { setCurrentPage, setPrevPage, setNextPage } from "../../redux/slices/productsData";
+import { useDispatch } from "react-redux";
 
-export default function Paginado({ currentPage, cardsInPage, totalCards, setPagina }) {
- 
-
-  const [activeButton, setActiveButton] = useState(currentPage);
+export default function Paginado({ cardsInPage, totalCards, currentPage }) {
+  const dispatch = useDispatch();
 
   const pageNumbers = [];
 
   for (let i = 0; i < Math.ceil(totalCards / cardsInPage); i++) {
     pageNumbers.push(i + 1);
   }
-
   const handleButtonClick = (number) => {
-    setActiveButton(number);
-    setPagina(number);
+    dispatch(setCurrentPage(number));
   };
 
   const handlePreviousClick = () => {
-    const previousPage = Math.max(currentPage - 1, 1);
-    setActiveButton(previousPage);
-    setPagina(previousPage);
+    if (currentPage > 1) {
+      dispatch(setPrevPage());
+  }else{
+      alert("No hay mas paginas")
+  }
   };
 
   const handleNextClick = () => {
-    const nextPage = Math.min(currentPage + 1, pageNumbers.length);
-    setActiveButton(nextPage);
-    setPagina(nextPage);
+    if (currentPage < pageNumbers.length) {
+      dispatch(setNextPage());
+  }else{
+      alert("No hay mas paginas")
+  }
   };
 
   const handleFirstPageClick = () => {
-    setActiveButton(1);
-    setPagina(1);
+    dispatch(setCurrentPage(1));
   };
-
   const handleLastPageClick = () => {
-    setActiveButton(pageNumbers.length);
-    setPagina(pageNumbers.length);
+    dispatch(setCurrentPage(pageNumbers.length));
   };
 
   const visiblePageNumbers = [];
-  const maxVisibleButtons = 7;
+  const maxVisibleButtons = 5;
 
   if (pageNumbers.length <= maxVisibleButtons) {
     visiblePageNumbers.push(...pageNumbers);
   } else {
     const halfMaxVisibleButtons = Math.floor(maxVisibleButtons / 2);
-    const start = Math.max(activeButton - halfMaxVisibleButtons, 1);
+    const start = Math.max(currentPage - halfMaxVisibleButtons, 1);
     const end = Math.min(start + maxVisibleButtons - 1, pageNumbers.length);
 
     for (let i = start; i <= end; i++) {
@@ -57,57 +56,55 @@ export default function Paginado({ currentPage, cardsInPage, totalCards, setPagi
   return (
     <div>
       <nav>
-        <ul className={styles.pagination}>
-          <li className={styles.paginationItem}>
-            <button
-              className={styles.paginationButton}
-              onClick={handleFirstPageClick}
-              disabled={currentPage === 1}
-            >
-              Primera
-            </button>
-          </li>
-          <li className={styles.paginationItem}>
-            <button
-              className={styles.paginationButton}
-              onClick={handlePreviousClick}
-              disabled={currentPage === 1}
-            >
-              Anterior
-            </button>
-          </li>
-          {visiblePageNumbers.map((number) => (
-            <li className={styles.paginationItem} key={number}>
+        {totalCards <= cardsInPage ? null : (
+          <ul className={styles.pagination}>
+            <li className={`${styles.paginationItem} ${currentPage === 1 ? styles.disabled : ""}`}>
               <button
-                className={`${styles.paginationButton} ${
-                  activeButton === number ? styles.activeButton : ""
-                }`}
-                onClick={() => handleButtonClick(number)}
+                className={styles.paginationButton}
+                onClick={handleFirstPageClick}
               >
-                {number}
+                Primera
               </button>
             </li>
-          ))}
-          <li className={styles.paginationItem}>
-            <button
-              className={styles.paginationButton}
-              onClick={handleNextClick}
-              disabled={currentPage === pageNumbers.length}
-            >
-              Siguiente
-            </button>
-          </li>
-          <li className={styles.paginationItem}>
-            <button
-              className={styles.paginationButton}
-              onClick={handleLastPageClick}
-              disabled={currentPage === pageNumbers.length}
-            >
-              Última
-            </button>
-          </li>
-        </ul>
+            <li className={`${styles.paginationItem} ${currentPage === 1 ? styles.disabled : ""}`}>
+              <button
+                className={styles.paginationButton}
+                onClick={handlePreviousClick}
+              >
+                🡸
+              </button>
+            </li>
+            {visiblePageNumbers.map((number) => (
+              <li className={styles.paginationItem} key={number}>
+                <button
+                  className={`${styles.paginationButton} ${
+                    currentPage === number ? styles.activeButton : ""
+                  }`}
+                  onClick={() => handleButtonClick(number)}
+                >
+                  {number}
+                </button>
+              </li>
+            ))}
+            <li className={`${styles.paginationItem} ${currentPage === pageNumbers.length ? styles.disabled : ""}`}>
+              <button
+                className={styles.paginationButton}
+                onClick={handleNextClick}
+              >
+                🡺
+              </button>
+            </li>
+            <li className={`${styles.paginationItem} ${currentPage === pageNumbers.length ? styles.disabled : ""}`}>
+              <button
+                className={styles.paginationButton}
+                onClick={handleLastPageClick}
+              >
+                Última
+              </button>
+            </li>
+          </ul>
+        )}
       </nav>
     </div>
   );
-};
+}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { allProducts, setProducts } from '../../redux/slices/productsData';
+import {allProducts, setProducts } from '../../redux/slices/productsData';
 import style from './Ordenamiento.module.css';
 
 const Ordenamiento = () => {
@@ -38,7 +38,7 @@ const Ordenamiento = () => {
     const reset = () => {
         setNombreOrden('');
         setPrecioOrden('');
-        dispatch(allProducts());
+        dispatch(allProducts())        
     };
 
     return (
