@@ -23,7 +23,7 @@ const Search = () => {
             dispatch(searchName(search));
         }else{
             setSearch(null)
-            dispatch(allProducts())
+            dispatch(searchName(null))
         }
     };
 
