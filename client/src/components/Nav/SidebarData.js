@@ -29,7 +29,7 @@ export const SidebarData = [
         className: 'sidebar_text',
     },
     {
-        title: 'Higiene Personal',
+        title: 'higiene personal',
         className: 'sidebar_text',
     },
     {
