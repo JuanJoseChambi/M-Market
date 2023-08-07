@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./Paginado.module.css";
-import { setCurrentPage, setPrevPage, setNextPage } from "../../redux/slices/productsData";
+import {
+  setCurrentPage,
+  setPrevPage,
+  setNextPage,
+} from "../../redux/slices/productsData";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
 export default function Paginado({ cardsInPage, totalCards, currentPage }) {
   const dispatch = useDispatch();
@@ -18,17 +23,43 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
   const handlePreviousClick = () => {
     if (currentPage > 1) {
       dispatch(setPrevPage());
-  }else{
-      alert("No hay mas paginas")
-  }
+    } else {
+      Swal.fire({
+        title: "Ups... se acabaron las paginas.",
+        icon: "warning",
+        background: "aliceblue",
+        width: "20%",
+        heightAuto: false,
+        height: "1%",
+        padding: "1rem",
+        buttonsStyling: false,
+        customClass: {
+          title: styles.mesageAlert,
+          confirmButton: styles.buttonAlert,
+        },
+      });
+    }
   };
 
   const handleNextClick = () => {
     if (currentPage < pageNumbers.length) {
       dispatch(setNextPage());
-  }else{
-      alert("No hay mas paginas")
-  }
+    } else {
+      Swal.fire({
+        title: "Ups... se acabaron las paginas.",
+        icon: "warning",
+        background: "aliceblue",
+        width: "20%",
+        heightAuto: false,
+        height: "1%",
+        padding: "1rem",
+        buttonsStyling: false,
+        customClass: {
+         title: styles.mesageAlert,
+         confirmButton: styles.buttonAlert,
+        },
+      });
+    }
   };
 
   const handleFirstPageClick = () => {
@@ -58,7 +89,11 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
       <nav>
         {totalCards <= cardsInPage ? null : (
           <ul className={styles.pagination}>
-            <li className={`${styles.paginationItem} ${currentPage === 1 ? styles.disabled : ""}`}>
+            <li
+              className={`${styles.paginationItem} ${
+                currentPage === 1 ? styles.disabled : ""
+              }`}
+            >
               <button
                 className={styles.paginationButton}
                 onClick={handleFirstPageClick}
@@ -66,7 +101,11 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
                 Primera
               </button>
             </li>
-            <li className={`${styles.paginationItem} ${currentPage === 1 ? styles.disabled : ""}`}>
+            <li
+              className={`${styles.paginationItem} ${
+                currentPage === 1 ? styles.disabled : ""
+              }`}
+            >
               <button
                 className={styles.paginationButton}
                 onClick={handlePreviousClick}
@@ -86,7 +125,11 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
                 </button>
               </li>
             ))}
-            <li className={`${styles.paginationItem} ${currentPage === pageNumbers.length ? styles.disabled : ""}`}>
+            <li
+              className={`${styles.paginationItem} ${
+                currentPage === pageNumbers.length ? styles.disabled : ""
+              }`}
+            >
               <button
                 className={styles.paginationButton}
                 onClick={handleNextClick}
@@ -94,7 +137,11 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
                 🡺
               </button>
             </li>
-            <li className={`${styles.paginationItem} ${currentPage === pageNumbers.length ? styles.disabled : ""}`}>
+            <li
+              className={`${styles.paginationItem} ${
+                currentPage === pageNumbers.length ? styles.disabled : ""
+              }`}
+            >
               <button
                 className={styles.paginationButton}
                 onClick={handleLastPageClick}

@@ -5,12 +5,10 @@ import Nav from "../../components/Nav/Nav";
 import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Product from "../../components/Product/Product";
-
 import Carousel from "../../components/Carousel/Carousel";
-
 import Footer from "../../components/Footer/Footer";
-import styles from "./Home.module.css"
-
+import styles from "./Home.module.css";
+import BienvenidaAlerts from "../../components/Alerts/BienvenidaAlerts";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -31,6 +29,7 @@ export default function Home() {
   return (
     <div id="Home">
       <div>
+       
         <Nav />
 
         <Carousel />
