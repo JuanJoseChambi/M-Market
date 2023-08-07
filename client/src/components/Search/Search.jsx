@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { allProducts, setProducts } from '../../redux/slices/productsData';
+import { allProducts, setProducts, setCurrentPage } from '../../redux/slices/productsData';
 import './search.css';
 
 const Search = () => {
@@ -17,6 +17,7 @@ const Search = () => {
         const filteredProducts = products.filter((product) =>
             product.name.toLowerCase().includes(search.toLowerCase())
         );
+        dispatch(setCurrentPage(1))
         dispatch(setProducts(filteredProducts));
         console.log('Productos filtrados:', filteredProducts)
     };
