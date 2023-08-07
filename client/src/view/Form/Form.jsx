@@ -81,7 +81,6 @@ export default function Form() {
             score: 0,
         })
         CreateProduct(newProduct)
-        /*ActualizacionDeHome*/
     }
 
   return (

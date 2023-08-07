@@ -12,11 +12,15 @@ export const productsSlice = createSlice({
   reducers: {
     setProducts: (state, action) => {
       state.productsAll = action.payload;
-      state.products = action.payload
+      state.products = action.payload;
     },
     setFiltred: (state, action) => {
       const category = action.payload;
+      if (category === "All") {
+      state.products = state.productsAll
+      }else{
       state.products = state.productsAll.filter(products => products.Categories.find(categorie => categorie.name === category))
+      }
     },
     setCurrentPage: (state, action) => {
       const page = action.payload;

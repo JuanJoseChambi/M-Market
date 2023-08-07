@@ -1,6 +1,10 @@
 
 export const SidebarData = [
     {
+        title: 'All',
+        className: 'sidebar_text',
+    },
+    {
         title: 'Almacen',
         className: 'sidebar_text',
     },
@@ -28,17 +32,10 @@ export const SidebarData = [
         title: 'Aperitivos',
         className: 'sidebar_text',
     },
-<<<<<<< HEAD
     {
-        title: 'higiene personal',
+        title: 'Higiene personal',
         className: 'sidebar_text',
     },
-=======
-    //{
-    //    title: 'Higiene Personal',
-    //    className: 'sidebar_text',
-    //},
->>>>>>> 4ca72e0159aa294bf4c1ac661cc2ac3598e74cfa
     {
         title: 'Limpieza',
         className: 'sidebar_text',

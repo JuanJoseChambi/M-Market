@@ -21,6 +21,7 @@ const Search = () => {
         if (name) {
             setSearch(name);
             dispatch(searchName(search));
+        dispatch(setCurrentPage(1))
         }else{
             setSearch(null)
             dispatch(searchName(null))
