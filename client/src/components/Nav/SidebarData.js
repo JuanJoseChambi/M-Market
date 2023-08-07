@@ -28,10 +28,10 @@ export const SidebarData = [
         title: 'Aperitivos',
         className: 'sidebar_text',
     },
-    {
-        title: 'Higiene Personal',
-        className: 'sidebar_text',
-    },
+    //{
+    //    title: 'Higiene Personal',
+    //    className: 'sidebar_text',
+    //},
     {
         title: 'Limpieza',
         className: 'sidebar_text',
