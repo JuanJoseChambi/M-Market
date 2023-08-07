@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
-import { setProducts } from '../../redux/slices/productsData';
+import { allProducts, setProducts } from '../../redux/slices/productsData';
 import './nav.css';
 
 const Sidebar = () => {
