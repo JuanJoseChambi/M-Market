@@ -3,15 +3,35 @@ import { NavLink } from "react-router-dom";
 import style from "./Form.module.css";
 import Validation from "./Validations";
 import axios from "axios"
+import Swal from "sweetalert2";
 
 export default function Form() {
   async function CreateProduct (newProduct) {
     const {name, category, price, description, image, score, brand, unit} = newProduct;
     if (name && category && price && description && image && score && brand && unit) {
       await axios.post('/product',newProduct)
-      alert("Producto Creado")
+      Swal.fire({
+        title: 'Buen trabajo!' ,
+        background: 'aliceblue',
+        icon: 'success',
+        toast: 'true',
+        position:'top',     
+        confirmButtonText:'OK',
+        padding: '1,4rem',
+        confirmButtonColor:'#ff8000',
+    });
     }else{
-      alert("Datos Incorrectos/ Faltantes")
+      
+      Swal.fire({
+        title: "Datos Incorrectos/ Faltantes." ,
+        icon: 'warning',
+        background: "aliceblue",
+        toast: 'true',
+        position:'top',     
+        confirmButtonText:'OK',
+        padding: '1,4rem',
+        confirmButtonColor:'#ff8000',
+      });
     }
   }
 

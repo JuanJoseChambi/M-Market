@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../../redux/slices/productsData";
 import Nav from "../../components/Nav/Nav";
 import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Product from "../../components/Product/Product";
-
 import Carousel from "../../components/Carousel/Carousel";
-
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
-
 
 export default function Home() {
   const dispatch = useDispatch();

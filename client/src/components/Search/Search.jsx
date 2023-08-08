@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { allProducts, searchName, setCurrentPage } from '../../redux/slices/productsData';
 import './search.css';
@@ -9,7 +9,7 @@ const Search = () => {
 
     useEffect(() => {
         dispatch(allProducts());
-    }, [dispatch]);
+    }, []);
 
     function handleSearch (search) {
         dispatch(setCurrentPage(1))
@@ -21,7 +21,7 @@ const Search = () => {
         if (name) {
             setSearch(name);
             dispatch(searchName(search));
-        dispatch(setCurrentPage(1))
+            dispatch(setCurrentPage(1))
         }else{
             setSearch(null)
             dispatch(searchName(null))

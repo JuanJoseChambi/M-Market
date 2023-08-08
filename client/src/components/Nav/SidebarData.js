@@ -1,7 +1,7 @@
 
 export const SidebarData = [
     {
-        title: 'All',
+        title: 'Todo',
         className: 'sidebar_text',
     },
     {
@@ -33,11 +33,11 @@ export const SidebarData = [
         className: 'sidebar_text',
     },
     {
-        title: 'Higiene personal',
-        className: 'sidebar_text',
+       title: 'Higiene personal',
+       className: 'sidebar_text',
     },
     {
         title: 'Limpieza',
         className: 'sidebar_text',
-    }
+    },
 ]

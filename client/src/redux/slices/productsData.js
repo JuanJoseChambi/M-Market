@@ -16,7 +16,7 @@ export const productsSlice = createSlice({
     },
     setFiltred: (state, action) => {
       const category = action.payload;
-      if (category === "All") {
+      if (category === "Todo") {
       state.products = state.productsAll
       }else{
       state.products = state.productsAll.filter(products => products.Categories.find(categorie => categorie.name === category))
@@ -39,8 +39,7 @@ export const productsSlice = createSlice({
       }else{
         state.products = state.productsAll.filter(products => products.name.toLowerCase().includes(name.toLowerCase()))
       }
-    }
-
+    },
   },
 });
 // Action creators are genereted for each case reducer
