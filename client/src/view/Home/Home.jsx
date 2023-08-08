@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allProducts } from "../../redux/slices/productsData";
+import { allProducts, setCategory } from "../../redux/slices/productsData";
 import Nav from "../../components/Nav/Nav";
 import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
@@ -22,6 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(allProducts());
+    dispatch(setCategory())
   }, []);
   
   return (
