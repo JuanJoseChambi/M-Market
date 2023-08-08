@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
-import { allProducts, setProducts } from '../../redux/slices/productsData';
 import { setFiltred, setCurrentPage } from '../../redux/slices/productsData';
 import './nav.css';
 
