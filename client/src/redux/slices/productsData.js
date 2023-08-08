@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { SidebarData } from "../../components/Nav/SidebarData";
 
 
 export const productsSlice = createSlice({
@@ -8,6 +9,7 @@ export const productsSlice = createSlice({
     productsAll: [],
     products: [],
     currentPage: 1,
+    categories: []
   },
   reducers: {
     setProducts: (state, action) => {
@@ -40,10 +42,14 @@ export const productsSlice = createSlice({
         state.products = state.productsAll.filter(products => products.name.toLowerCase().includes(name.toLowerCase()))
       }
     },
+    setCategory: (state, action) => {
+      state.categories = SidebarData.filter(category => state.productsAll.some(product => product.Categories.some(categoryInd => categoryInd.name === category.title)))
+      console.log(state.categories);
+    }
   },
 });
 // Action creators are genereted for each case reducer
-export const { setProducts , setFiltred, setPrevPage, setNextPage, setCurrentPage, searchName} = productsSlice.actions;
+export const { setProducts , setFiltred, setPrevPage, setNextPage, setCurrentPage, searchName, setCategory} = productsSlice.actions;
 
 export default productsSlice.reducer;
 

@@ -40,4 +40,24 @@ export const SidebarData = [
         title: 'Limpieza',
         className: 'sidebar_text',
     },
+    {
+        title: 'Verduras',
+        className: 'sidebar_text',
+    },
+    {
+        title: 'embutidos',
+        className: 'sidebar_text',
+    },
+    {
+        title: 'Comida',
+        className: 'sidebar_text',
+    },
+    {
+        title: 'pastas',
+        className: 'sidebar_text',
+    },
+    {
+        title: 'Perfumeria',
+        className: 'sidebar_text',
+    },
 ]
