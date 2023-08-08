@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { SidebarData } from './SidebarData';
-import { allProducts, setProducts } from '../../redux/slices/productsData';
-import { setFiltred, setCurrentPage } from '../../redux/slices/productsData';
+import { setFiltred, setCurrentPage, setCategory} from '../../redux/slices/productsData';
 import './nav.css';
 
 const Sidebar = () => {
     const [sidebar, setSidebar] = useState(false);
-    const showSidebar = () => setSidebar(!sidebar);
+    const showSidebar = () => {
+        setSidebar(!sidebar)
+        dispatch(setCategory())
+    };
     const dispatch = useDispatch();
-
+    const {categories} = useSelector(state => state.products)
     const handleFilter = (selectedCategory) => {
         dispatch(setFiltred(selectedCategory));
         dispatch(setCurrentPage(1))
@@ -31,7 +32,7 @@ const Sidebar = () => {
                             <AiOutlineClose />
                         </Link>
                     </li>
-                    {SidebarData.map((item, index) => (
+                    {categories.map((item, index) => (
                         <li key={index} className={item.className}>
                             <button
                                 className='sidebar_button'
