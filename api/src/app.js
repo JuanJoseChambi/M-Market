@@ -12,10 +12,18 @@ require('./db.js');
 
 const server = express();
 
-const httpServer = http.createServer(server);
+const httpServer = http.createServer(server);//socket.io
 const io = new SocketServer(httpServer);
-
-io
+// Configuración de socket.io-------------
+io.on('connection', (socket) => {
+  console.log('A user connected');
+  
+  socket.on('notificaciones', (data) => { //en esta linea recibe el mensaje.
+    socket.broadcast.emit("notificaciones", data) //en esta linea se configura para que se envie al admin y el usuario no vea el mensaje
+    // console.log(data);
+  });
+});
+//----------------------------------------
 
 
 server.name = 'API';
