@@ -25,26 +25,12 @@ module.exports = (sequelize) => {
 
             // }
         },
-        address: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        user: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+       
         password: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        tel: {
-            type: DataTypes.FLOAT,
-            allowNull: true,
-        },
-        image:{
-            type: DataTypes.TEXT,
-            allowNull: true
-        }
+       
 
 
     }, { timestamps: false, freezeTableName: true })
