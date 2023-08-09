@@ -24,7 +24,8 @@
     "mercadopago": "^1.5.17",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "socket.io": "^4.7.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
