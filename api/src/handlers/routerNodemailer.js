@@ -14,6 +14,7 @@ oAuth2Client.setCredentials({
 });
 
 const sendMail = async (req, res) => {
+    const { products } = req.body;
   try {
     // Crear un token de acceso válido utilizando el cliente OAuth 2.0
     const accessToken = await oAuth2Client.getAccessToken();
@@ -30,7 +31,8 @@ const sendMail = async (req, res) => {
         accessToken: accessToken,
       },
     });
-
+    const productList = products?.map(product => `<li>${product.name}</li>`).join('');
+    
     const mailOptions = {
       from: "chambijuanjose05@gmail.com",
       to: "juanjosech.it@gmail.com",
@@ -38,7 +40,8 @@ const sendMail = async (req, res) => {
       html: `
         <h1>Gracias por tu compra</h1>
         <p>Has comprado los siguientes productos:</p>
-        <ul>Texto de Prueba para todos los archivos</ul>
+        <ul>Todos los productos que compraste</ul>
+        ${productList}
         <p>¡Esperamos que disfrutes de tu compra!</p>
       `,
     };
