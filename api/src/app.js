@@ -5,26 +5,9 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const cors = require('cors')
 
-const http = require("http")
-const {Server: SocketServer} = require("socket.io")
-
 require('./db.js');
 
 const server = express();
-
-const httpServer = http.createServer(server);//socket.io
-const io = new SocketServer(httpServer);
-// Configuración de socket.io-------------
-io.on('connection', (socket) => {
-  console.log('A user connected');
-  // console.log(socket);
-  socket.on('notificaciones', (data) => { //en esta linea recibe el mensaje.
-    socket.broadcast.emit("notificaciones", data) //en esta linea se configura para que se envie al admin y el usuario no vea el mensaje
-    // console.log(data);
-  });
-});
-//----------------------------------------
-
 
 server.name = 'API';
 
@@ -51,4 +34,4 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-module.exports = httpServer;
+module.exports = server;
