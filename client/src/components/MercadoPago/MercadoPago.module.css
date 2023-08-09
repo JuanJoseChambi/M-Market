@@ -1,0 +1,9 @@
+.buttonMP{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #ff8000;
+    font-family:  'Poppins', sans-serif;
+    padding: 7px 10px;
+    border-radius: 5px;
+}
