@@ -8,6 +8,7 @@ import Product from "../../components/Product/Product";
 import Carousel from "../../components/Carousel/Carousel";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
+import MercadoPago from "../../components/MercadoPago/MercadoPago";
 
 import Notifications from "../../components/Notifications/Notifications";
 
@@ -34,7 +35,10 @@ export default function Home() {
       <div>
         <Nav />
         <Notifications/>
+
+              
         <Carousel />
+        
 
         <h1 className={styles.container}> 🛍️ Mini Market 🛍️  </h1>
         <br></br>
