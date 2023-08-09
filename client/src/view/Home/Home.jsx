@@ -9,6 +9,10 @@ import Carousel from "../../components/Carousel/Carousel";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
 
+import Notifications from "../../components/Notifications/Notifications";
+
+
+
 export default function Home() {
   const dispatch = useDispatch();
   const { products, currentPage } = useSelector((state) => state.products);
@@ -29,7 +33,7 @@ export default function Home() {
     <div id="Home">
       <div>
         <Nav />
-
+        <Notifications/>
         <Carousel />
 
         <h1 className={styles.container}> 🛍️ Mini Market 🛍️  </h1>
