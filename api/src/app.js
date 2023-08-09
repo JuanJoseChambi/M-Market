@@ -5,9 +5,18 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const cors = require('cors')
 
+const http = require("http")
+const {Server: SocketServer} = require("socket.io")
+
 require('./db.js');
 
 const server = express();
+
+const httpServer = http.createServer(server);
+const io = new SocketServer(httpServer);
+
+io
+
 
 server.name = 'API';
 
@@ -34,4 +43,4 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(status).send(message);
 });
 
-module.exports = server;
+module.exports = httpServer;
