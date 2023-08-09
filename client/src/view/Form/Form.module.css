@@ -302,3 +302,20 @@
     font-size: 10px;
   }
 }
+
+.inputs_file {
+  width: 80%;
+  padding: 5px 5px;
+  border: 0px;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid rgb(166, 161, 161);
+  font-family: 'Poppins', sans-serif;
+  transition: border-bottom .5s;
+  margin-top: 10px;
+  
+  /* Centrar verticalmente y horizontalmente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

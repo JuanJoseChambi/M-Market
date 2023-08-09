@@ -12,7 +12,7 @@ export default function Validation (input) {
     //-----------------------image
     if(!onlyUlrs.test(input.image)) errors.image = "Solo Urls"
     
-    if((input.image).length === 0) errors.image = "Imagen es Requerido";
+    //if(!input.image) errors.image = "Imagen es Requerido";
     //-----------------------unit
     if(input.unit == 0) errors.unit = "Unidades es Requerido";
     //-----------------------price
