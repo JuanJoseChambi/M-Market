@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Form.module.css";
 import Validation from "./Validations";
@@ -103,6 +103,21 @@ export default function Form() {
         CreateProduct(newProduct)
     }
 
+    const preset_key = "szmwmrsq";
+    const cloud_name = "dvu3hvpzu";
+    const URL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+
+    function handlerUploadImage (event) {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", preset_key);
+      axios.post(URL, formData)
+        .then((response) => { setNewProduct({ ...newProduct, image: response.data.secure_url });
+      })
+      .catch((err) => alert(err));
+    }
+
   return (
     <div className={style.formView}>
       <NavLink to="/home">
@@ -134,12 +149,11 @@ export default function Form() {
         <div className={style.blocksInputs}>
           <div className={style.inputLeft}>
             <label>Imagen</label>
-            <input className={style.inputs} type="text"
-            value={newProduct.image}
+            <input className={`${style.inputs} ${style.inputs_file}`} type="file"
             name="image"
-            onChange={handlerChange}
+            onChange={handlerUploadImage}
             autoComplete="off"/>
-            <p className={style.error}>{errors.image}</p>
+            <p className={style.error}>{}</p>
           </div>
           <div className={style.inputRight}>
             <label>Unidades</label>
@@ -222,7 +236,7 @@ export default function Form() {
 
         <button className={
             !errors.name &&
-            !errors.image &&
+            /*!errors.image && */
             !errors.brand && 
             !errors.price &&
             !errors.description && 

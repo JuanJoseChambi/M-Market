@@ -33,6 +33,7 @@ export default function Home() {
         
         <Carousel />
         
+       
 
         <h1 className={styles.container}> 🛍️ Mini Market 🛍️  </h1>
         <br></br>
