@@ -4,7 +4,6 @@ import style from "./Form.module.css";
 import Validation from "./Validations";
 import axios from "axios"
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
 
 export default function Form() {
   async function CreateProduct (newProduct) {
@@ -35,8 +34,6 @@ export default function Form() {
       });
     }
   }
-  const dispatch = useDispatch();
-
 
     const [newProduct, setNewProduct] = useState({
         name: "",

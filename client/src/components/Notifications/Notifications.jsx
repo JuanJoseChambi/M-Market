@@ -1,6 +1,6 @@
-import { useEffect } from "react"
 import io from "socket.io-client"
 import style from "./Notifications.module.css"
+
 export default function Notifications() {
 
     const socket = io("/")
@@ -19,8 +19,6 @@ export default function Notifications() {
     });
 
     */
-    useEffect(() => {   
-    }, [])
 
   return (
     <div className={style.viewNotifications}>
