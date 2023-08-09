@@ -1,6 +1,6 @@
 const { Category, Prod } = require('../db');
 const { Op } = require("sequelize");
-const { uploadImage } = require('../utils/cloudinary')
+
 
 const product = async (name) => {
     const detailProduct = await Prod.findAll({
@@ -47,8 +47,7 @@ const productById = async (id) => {
 const createProduct = async (brand, name, price, unit, description, image, score, category) => {
 
 
-    const cloudinaryResponse = await uploadImage(image);
-    updatedImage = cloudinaryResponse.secure_url;
+
 
     const product = {
         brand,
@@ -56,7 +55,7 @@ const createProduct = async (brand, name, price, unit, description, image, score
         price,
         unit,
         description,
-        image: updatedImage,
+        image,
         score,
        
     }
