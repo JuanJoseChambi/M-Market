@@ -20,6 +20,6 @@ router.use('/user',routerUser)
 
 router.use('/pay', pay)
 
-router.use('/paymentdone', sendMail)
+router.use('/notification', sendMail)
 
 module.exports = router;

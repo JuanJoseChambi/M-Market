@@ -1,8 +1,9 @@
 const { Router } = require("express");
-const { sendMail } = require('../handlers/routerNodemailer')
+const { sendMail, register } = require('../handlers/routerNodemailer')
 
 const routerNodemailer = Router();
 
-routerNodemailer.post("/", sendMail);
+routerNodemailer.post("/paid", sendMail);
+routerNodemailer.post("/register", register);
 
 module.exports = routerNodemailer
