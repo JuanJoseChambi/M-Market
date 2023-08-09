@@ -1,6 +1,6 @@
-const {Category,Prod} =require('../db');
+const { Category, Prod } = require('../db');
 const { Op } = require("sequelize");
-
+const { uploadImage } = require('../utils/cloudinary')
 
 const product = async (name) => {
     const detailProduct = await Prod.findAll({
@@ -20,8 +20,8 @@ const product = async (name) => {
     return detailProduct;
 };
 
-const allProducts = async()=>{
- 
+const allProducts = async () => {
+
     const allProducts = await Prod.findAll(({
         include: [{
             model: Category,
@@ -31,31 +31,52 @@ const allProducts = async()=>{
             // }
         }]
     }));
-   
-    return  allProducts
+
+    return allProducts
 };
- 
-const  productById = async(id)=>{
-    const productId = await Prod.findByPk(id, 
-    //     {include:{
-    //     model:Category, attributes: [id]
-    // }}
+
+const productById = async (id) => {
+    const productId = await Prod.findByPk(id,
+        //     {include:{
+        //     model:Category, attributes: [id]
+        // }}
     )
     return productId;
 }
 
-const createProduct = async (brand,name,price,unit,description,image,score,category ) => {
-    
-    const newProduct = await Prod.create({
-        name, description, image, price, brand, unit,score
-    });
+const createProduct = async (brand, name, price, unit, description, image, score, category) => {
+
+
+    const cloudinaryResponse = await uploadImage(image);
+    updatedImage = cloudinaryResponse.secure_url;
+
+    const product = {
+        brand,
+        name,
+        price,
+        unit,
+        description,
+        image: updatedImage,
+        score,
+       
+    }
+
+//    console.log(product.image);
+
+    const newProduct = await Prod.create(product);
+
+
     const categoryDB = await Category.findAll({
         where: {name: category}
     })
     newProduct.addCategory(categoryDB)
     return newProduct;
+
+
+
+    
 }
-module.exports={
+module.exports = {
     allProducts,
     createProduct,
     productById,
