@@ -8,7 +8,7 @@ import Product from "../../components/Product/Product";
 import Carousel from "../../components/Carousel/Carousel";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
-import MercadoPago from "../../components/MercadoPago/MercadoPago";
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ export default function Home() {
         
         <Carousel />
         
+       
 
         <h1 className={styles.container}> 🛍️ Mini Market 🛍️  </h1>
         <br></br>
