@@ -7,11 +7,11 @@ const MercadoPago = () => {
 
     const [preferenceId, setPreferenceId] = useState(null);
 
-    initMercadoPago("TEST-cd3fd0b1-2d7b-4a77-9254-b61d43fa1c4e");
+    initMercadoPago("TEST-44f8df85-57a1-40e8-9c93-e679cc6427cb");
 
     const createPreference = async () => {
         try {
-          const response = await axios.post("http://localhost:8080/create_preference", {
+          const response = await axios.post("http://localhost:3001/pay", {
             description: "Bananita contenta",
             price: 100,
             quantity: 1,

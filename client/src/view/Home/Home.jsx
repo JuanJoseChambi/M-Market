@@ -30,7 +30,7 @@ export default function Home() {
     <div id="Home">
       <div>
         <Nav />
-
+        
         <Carousel />
         
 
