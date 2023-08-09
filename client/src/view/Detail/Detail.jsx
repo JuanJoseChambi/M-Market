@@ -6,6 +6,11 @@ import axios from "axios";
 export default function Detail() {
     const { id } = useParams()
     const [products, setProducts] = useState({})
+
+    async function handlerNotification () {
+      await axios.post("/notification/paid", products)
+  }
+
     // Falta Data de DB
     useEffect(() => {
       product()
@@ -38,7 +43,7 @@ export default function Detail() {
               {products.description}
               </div>
             <p className={style.priceProduct}>$ {products.price}</p>
-            <button className={style.btn}>Comprar</button>
+            <button className={style.btn} onClick={handlerNotification}>Comprar</button>
         </div>
       </div>
       
