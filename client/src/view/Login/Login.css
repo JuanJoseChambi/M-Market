@@ -1,0 +1,80 @@
+.container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ff8000;
+}
+
+.Auth-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .Auth-form {
+    width: 420px;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: white;
+  }
+  
+  .Auth-form-content {
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+  
+  .Auth-form-title {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 24px;
+    color: rgb(34, 34, 34);
+    font-weight: 800;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(34, 34, 34);
+    font-family: "Poppins", sans-serif;
+  }
+
+  .container-google {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-family: "Poppins", sans-serif;;
+  }
+  .container-google i{
+    font-size: 23px;
+    margin-right: 10px;
+  }
+
+  .returnBack {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 0 20px 20px 0;
+    color: #000000;
+    border: 1px solid rgba(0, 0, 0, 0.227);
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    z-index: 10;
+    font-family: "Poppins", sans-serif;
+    box-shadow: 0px 5px 5px 0px rgb(32, 31, 31);
+    transition: color .2s;
+  }
+  .returnBack:hover{
+    color: #ff8000;
+  }
+  .createAccount {
+    color: black;
+  }

@@ -1,7 +1,7 @@
-import React from 'react';
 import './nav.css';
 import Sidebar from './Sidebar.jsx';
 import Search from '../Search/Search';
+import LogOut from '../../view/Login/Logout.jsx';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
@@ -28,6 +28,7 @@ const Nav = () => {
           <Link to="/login">
             <button className="icons"><i className='bx bx-user-circle' ></i></button>
           </Link>
+          <LogOut />
       </div>
     </div>
   )
