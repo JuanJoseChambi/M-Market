@@ -14,7 +14,8 @@ import MercadoPago from "../MercadoPago/MercadoPago";
   const cartItems = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
   const [showMercadoPago, setShowMercadoPago] = useState(false);
-  
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log("isAuthenticated", isAuthenticated);
   
 
   useEffect(() => {
@@ -51,6 +52,10 @@ import MercadoPago from "../MercadoPago/MercadoPago";
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => total + subtotal(item), 0);
   };
+
+  if (isAuthenticated === undefined) {
+    return null; // O podrías mostrar un spinner de carga u otro indicador
+  }
 
   const isCartEmpty = cartItems.length === 0;
   const totalAmount = calculateTotal();
@@ -90,7 +95,7 @@ import MercadoPago from "../MercadoPago/MercadoPago";
           </button>
         </div>
         <div className="cartSlide_link">
-             {!isCartEmpty && totalAmount > 0 && (
+             {!isCartEmpty && totalAmount > 0 &&(
             <button
               className="go_to_cart"
               onClick={() => setShowMercadoPago(true)}

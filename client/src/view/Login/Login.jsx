@@ -5,11 +5,14 @@ import { NavLink } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { loginSuccess } from '../../redux/slices/userAuth';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     try {
@@ -47,6 +50,8 @@ const Login = () => {
 
       if (success) {
         setUserEmail(email);
+        dispatch(loginSuccess());
+        console.log(loginSuccess());
         localStorage.setItem('email', email);
         Swal.fire({
           title: `Usuario ${email} login exitoso`,
@@ -64,7 +69,9 @@ const Login = () => {
             },
         }).then((result) => {
           if (result.isConfirmed) {
+            
             redirectToLogin();
+            
           }
         });
       } else {
