@@ -154,3 +154,36 @@ span {
     background-color: #47c7fc;
     cursor: pointer;
 }
+
+/* ------ CART ------ */
+.cart_menu {
+    background-color: #ff8000;
+    width: 450px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: 850ms;
+    overflow-y: scroll;
+}
+
+.cart_menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cart_menu.active {
+    right: 0;
+    transition: 350ms;
+}
+
+.cart_menu_close {
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer; 
+}
+
