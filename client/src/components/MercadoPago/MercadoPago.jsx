@@ -3,7 +3,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import styles from "./MercadoPago.module.css";
 
-const MercadoPagoButton = () => {
+const MercadoPago = () => {
   const [preferenceId, setPreferenceId] = useState(null);
   const [fadeButton, setFadeButton] = useState(false); // Estado para controlar el desvanecimiento
 
@@ -47,4 +47,4 @@ const MercadoPagoButton = () => {
   );
 };
 
-export default MercadoPagoButton;
+export default MercadoPago;
