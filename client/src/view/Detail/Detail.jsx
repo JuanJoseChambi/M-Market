@@ -9,7 +9,6 @@ export default function Detail() {
 
     async function handlerNotification () {
       await axios.post("/notification/paid", products)
-      await axios.post("/notification/register")
   }
 
     // Falta Data de DB

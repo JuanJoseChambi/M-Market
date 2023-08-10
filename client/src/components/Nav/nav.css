@@ -172,7 +172,7 @@ span {
     right: -100%;
     transition: 850ms;
     overflow-y: scroll;
-    
+    z-index: 200;
 }
 
 .cart_menu::-webkit-scrollbar {
