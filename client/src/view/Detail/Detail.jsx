@@ -43,7 +43,7 @@ export default function Detail() {
               {products.description}
               </div>
             <p className={style.priceProduct}>$ {products.price}</p>
-            <button className={style.btn} onClick={handlerNotification}>Comprar</button>
+            {/*<button className={style.btn} onClick={handlerNotification}>Comprar</button> */}
         </div>
       </div>
       
