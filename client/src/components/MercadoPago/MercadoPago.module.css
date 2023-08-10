@@ -4,7 +4,7 @@
   background-color: hsla(61, 66%, 67%, 0.767); /* Cambia el valor de opacidad */
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  width: 80%; /* Ajusta el valor según el ancho deseado para el contenedor */
+  width: 100%; /* Ajusta el valor según el ancho deseado para el contenedor */
   margin: 0 auto; /* Centrar horizontalmente */
 }
 

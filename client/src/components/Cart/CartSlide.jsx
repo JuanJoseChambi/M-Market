@@ -102,7 +102,7 @@ import MercadoPago from "../MercadoPago/MercadoPago";
 
         <br />
 
-        {showMercadoPago && <MercadoPago />}
+        {showMercadoPago && <MercadoPago totalAmount={totalAmount}  />}
       </div>
     </div>
   );

@@ -4,7 +4,8 @@ import axios from "axios";
 import styles from "./MercadoPago.module.css";
 import Swal from "sweetalert2";
 
-const MercadoPago = () => {
+const MercadoPago = ({ totalAmount }) => {
+ 
   const [preferenceId, setPreferenceId] = useState(null);
   const [fadeButton, setFadeButton] = useState(false); // Estado para controlar el desvanecimiento
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -17,8 +18,8 @@ const MercadoPago = () => {
   const createPreference = async () => {
     try {
       const response = await axios.post("http://localhost:3001/pay", {
-        description: "Bananita contenta",
-        price: 100,
+        description: "Compra en MMarket",
+        price: totalAmount,
         quantity: 1,
       });
       const { id } = response.data;
