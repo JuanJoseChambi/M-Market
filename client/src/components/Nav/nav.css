@@ -55,6 +55,7 @@
     font-size: 2rem;
     background: none;
     color: white;
+
 }
 
 .nav_menu {
@@ -67,11 +68,13 @@
     top: 0;
     left: -100%;
     transition: 850ms;
+    
 }
 
 .nav_menu.active {
     left: 0;
     transition: 350ms;
+    
 }
 
 .sidebar_text {
@@ -115,6 +118,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
+
 }
 
 span {
@@ -148,6 +152,7 @@ span {
     background: none; 
     border-radius: 5px;
     font-family: 'Poppins';
+    
 }
 
 .sidebar_button:hover {
@@ -167,6 +172,7 @@ span {
     right: -100%;
     transition: 850ms;
     overflow-y: scroll;
+    z-index: 200;
 }
 
 .cart_menu::-webkit-scrollbar {
@@ -176,6 +182,7 @@ span {
 .cart_menu.active {
     right: 0;
     transition: 350ms;
+    
 }
 
 .cart_menu_close {
@@ -185,5 +192,6 @@ span {
     top: 10px;
     right: 10px;
     cursor: pointer; 
+    z-index: 200;
 }
 

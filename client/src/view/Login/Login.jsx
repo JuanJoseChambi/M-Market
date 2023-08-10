@@ -17,6 +17,7 @@ const Login = () => {
       const email = result.user.email;
       setUserEmail(email);
       localStorage.setItem('email', email);
+      await axios.post("/notification/register", {email: email})
     } catch (error) {
       console.error('Error during login:', error);
     }
