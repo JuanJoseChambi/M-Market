@@ -16,7 +16,7 @@ oAuth2Client.setCredentials({
 const sendMail = async (req, res) => {
   const { name, image, price, description } = req.body;
   try {
-    // Crear un token de acceso válido utilizando el cliente OAuth 2.0
+    // Crear un token de acceso válido utilizando el cliente OAuth 2
     const accessToken = await oAuth2Client.getAccessToken();
 
     const transporter = nodemailer.createTransport({
