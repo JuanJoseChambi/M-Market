@@ -14,7 +14,7 @@ oAuth2Client.setCredentials({
 });
 
 const sendMail = async (req, res) => {
-  const { name, image, price, description } = req.body;
+  const { name, price, quantity } = req.body;
   try {
     // Crear un token de acceso válido utilizando el cliente OAuth 2
     const accessToken = await oAuth2Client.getAccessToken();
@@ -117,12 +117,12 @@ const sendMail = async (req, res) => {
           Tu pedido ha sido confirmado y está en proceso de preparación. Aquí tienes un resumen de tu compra:</h3>
           <div class="CardBought">
             <div class="ContainerImagen">
-              <img class="Imagen" src=${image} alt="Imagen">
+              <img class="Imagen" src="null" alt="Imagen">
             </div>
             <div class="ContainerInfo">
               <h3 class="h3Info">${name} <br/></h3>
               <p class="pInfo">$ ${price} </br></p>
-              <p class="pInfo">${description}</p>
+              <p class="pInfo">${quantity}</p>
             </div>
           </div>
           <p class="message">
