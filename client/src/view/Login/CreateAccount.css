@@ -1,0 +1,13 @@
+.buttonAlert{
+    background-color: #ff8000;
+    border-radius: 5px;
+    font-family:  'Poppins', sans-serif;
+    padding: 7px 10px;
+    border-color: aliceblue;
+  }
+  .mesageAlert{
+    font-family:  'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
+  

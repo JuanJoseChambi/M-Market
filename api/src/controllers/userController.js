@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 
 const createUser = async (name, lastname, email, password) => {
 
-
     name = name.toUpperCase();
     lastname = lastname.toUpperCase();
     email = email.toLowerCase();
@@ -28,31 +27,35 @@ const createUser = async (name, lastname, email, password) => {
 
 
 const consultUser = async (email, password) => {
-    let user = await User.findAll({where:{email}})
+    let user = await User.findAll({ where: { email } })
     let userP = user[0].password
 
     // console.log(userP);
 
-    if(!user){
+    if (!user) {
         return "no existe el usuario"
-    }else if(user){
-        const aux = bcrypt.compare(password, userP )
+    } else if (user) {
+        const aux = bcrypt.compare(password, userP)
         return aux
     }
 
+}
 
+const actualizar = async (id, updateUserData) => {
 
-    
+    const userToUpdate = await User.finfByPk(id)
+    if (!userToUpdate) {
+        return "Usuario no encontrado"
+    }
+    userToUpdate.name = updateUserData.name || userToUpdate.name
+    userToUpdate.lastname = updateUserData.lastname || userToUpdate.lastname
+    userToUpdate.email = updateUserData.email || userToUpdate.email
+    userToUpdate.password = updateUserData.password || userToUpdate.password
 
-    
-    
-    
-    
-
-
-
+    await userToUpdate.save()
+    return userToUpdate
 }
 
 
 
-module.exports = { createUser, consultUser }
+module.exports = { createUser, consultUser, actualizar }

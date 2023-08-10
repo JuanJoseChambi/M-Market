@@ -8,7 +8,6 @@ import Detail from "./view/Detail/Detail";
 import Login from "./view/Login/Login";
 import CreateAccount from "./view/Login/CreateAccount";
 
-
 function App() {
   return (
     <div>
