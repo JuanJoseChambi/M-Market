@@ -7,7 +7,7 @@ routerUser=Router();
 
 routerUser
 .post('/',postUser)
-.get('/',getUser)
+.post('/login',getUser)
 .put("/:id", updateUser)
 
 module.exports = routerUser;

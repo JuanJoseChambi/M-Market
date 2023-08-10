@@ -1,21 +1,119 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
+import { useState } from "react"
+import axios from "axios"
+import Swal from "sweetalert2";
+import "./CreateAccount.css"
+
 
 const CreateAccount = () => {
+   
+  const [formData, setFormData] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
+
+
+  const redirectToLogin = () => {
+    window.location.href = "/login"; // Ajusta la ruta según tu estructura
+  };
+  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3001/user", formData);
+      await Swal.fire({
+        title: `Usuario ${formData.email} creado con éxito`,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        background: "white",
+          width: "30%",
+          heightAuto: false,
+          height: "1%",
+          padding: "3rem",
+          buttonsStyling: false,
+          customClass: {
+            title: "mesageAlert",
+            confirmButton: "buttonAlert",
+          },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          redirectToLogin();
+        }
+      });
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        Swal.fire({
+          title: "Error al crear usuario!",
+          text: error.response.data.error,
+          icon: "error",
+          background: "white",
+          width: "30%",
+          heightAuto: false,
+          height: "1%",
+          padding: "3rem",
+          buttonsStyling: false,
+          confirmButtonText: "Aceptar",
+          customClass: {
+            title: "mesageAlert",
+            confirmButton: "buttonAlert",
+          },
+        });
+      } else {
+        Swal.fire({
+          title: "Error al crear usuario!",
+          icon: "error",
+          background: "white",
+          width: "30%",
+          heightAuto: false,
+          height: "1%",
+          padding: "3rem",
+          buttonsStyling: false,
+          customClass: {
+            title: "mesageAlert",
+            confirmButton: "buttonAlert",
+          },
+        });
+      }
+      setFormData({ 
+        name: "",
+        lastname: "",
+        email: "",
+        password: "",
+      });
+    }
+  };
+
     return (
         <div className='container-login'>
       <NavLink to="/home">
         <button className="returnBack">Home</button>
       </NavLink>
       <div className="Auth-form">
-      <form>
+      <form onSubmit={handleSubmit} >
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="form-group mt-3">
-            <label>Nombre Completo</label>
+            <label>Nombre</label>
             <input
-              type="email"
+              type="text"
               className="form-control mt-1"
-              placeholder="Ej: Jorge Perez"
+              placeholder="Ej: Jorge"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })}
+            />
+          </div>
+          <div className="form-group mt-3">
+            <label>Apellido</label>
+            <input
+              type="text"
+              className="form-control mt-1"
+              placeholder="Ej: Perez"
+              value={formData.lastname}
+              onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
             />
           </div>
           <div className="form-group mt-3">
@@ -24,6 +122,8 @@ const CreateAccount = () => {
               type="email"
               className="form-control mt-1"
               placeholder="Ingresar email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
           </div>
           <div className="form-group mt-3">
@@ -32,6 +132,8 @@ const CreateAccount = () => {
               type="password"
               className="form-control mt-1"
               placeholder="Ingresar password"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
           </div>
           <div className="d-grid gap-2 mt-3">
