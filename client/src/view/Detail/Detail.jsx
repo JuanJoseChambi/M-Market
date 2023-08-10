@@ -7,11 +7,6 @@ export default function Detail() {
     const { id } = useParams()
     const [products, setProducts] = useState({})
 
-    async function handlerNotification () {
-      await axios.post("/notification/paid", products)
-  }
-
-    // Falta Data de DB
     useEffect(() => {
       product()
     }, [])

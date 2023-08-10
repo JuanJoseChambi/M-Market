@@ -13,10 +13,9 @@ oAuth2Client.setCredentials({
   refresh_token: REFRESH_TOKEN,
 });
 
-const sendMail = async (req, res) => {
-  const { name, image, price, description } = req.body;
+const sendMail = async ({ name, price, quantity }) => {   //falta el email al que se va a enviar
+    
   try {
-    // Crear un token de acceso válido utilizando el cliente OAuth 2
     const accessToken = await oAuth2Client.getAccessToken();
 
     const transporter = nodemailer.createTransport({
@@ -47,14 +46,15 @@ const sendMail = async (req, res) => {
           width: 90%;
           height: auto;
           background-color: #ff8000;
+          color:white;
           border-radius: 10px 10px 0 0;
           border: 1px solid #0000003a;
           padding: 20px;
-          color: black;
           margin:0;
         }
         .BodyNotification{
-          display:inline-block;
+          display: grid;
+          place-items: center;
           width: 90%;
           min-height: 50vh;
           border-radius: 0px 0px 20px 20px;
@@ -79,23 +79,24 @@ const sendMail = async (req, res) => {
           display: flex;
           justify-content: center;
           align-items: center;
-          width:25%;
+          width:auto;
           height:80px;
           background-color: #ffffff;
           border-radius: 10px 0 0 10px;
         }
         .Imagen{
-          width: 100%;
           border-radius: 10px 0 0 10px;
         }
         .ContainerInfo{
-          width:75%;
+          width:auto;
           display:inline-block;
-          background-color: #ffffff;
+          background-color: transparent;
+          border: 1px solid #0000003a;
+          padding: 5px 10px;
           border-radius: 0px 10px 10px 0;
         }
         .h3Info{
-          font-size:15px;
+          font-size:12px;
           margin:0;
         }
         .pInfo{
@@ -115,16 +116,16 @@ const sendMail = async (req, res) => {
         <div class="BodyNotification">
           <h3 class="message">¡Es un placer saludarte! Queremos agradecerte sinceramente por haber elegido M-Market para tus compras en línea. Tu satisfacción es nuestra prioridad, y estamos encantados de que hayas confiado en nosotros para satisfacer tus necesidades.<br>
           Tu pedido ha sido confirmado y está en proceso de preparación. Aquí tienes un resumen de tu compra:</h3>
-          <div class="CardBought">
-            <div class="ContainerImagen">
-              <img class="Imagen" src=${image} alt="Imagen">
+            <div class="CardBought">
+              <div class="ContainerImagen">
+                <img class="Imagen" src="https://res.cloudinary.com/dvu3hvpzu/image/upload/v1691689314/p5mzh6ueddaacipen4s9.jpg" alt="Imagen">
+              </div>          
+                <div class="ContainerInfo">
+                  <h3 class="h3Info">${name} <br/></h3>
+                  <p class="pInfo">Total:$ ${price} </br></p>
+                  <p class="pInfo">Cantidad:${quantity}</p>
+                </div>
             </div>
-            <div class="ContainerInfo">
-              <h3 class="h3Info">${name} <br/></h3>
-              <p class="pInfo">$ ${price} </br></p>
-              <p class="pInfo">${description}</p>
-            </div>
-          </div>
           <p class="message">
           Una vez más, te agradecemos por ser parte de M-Market. Valoramos tu confianza y esperamos brindarte una experiencia de compra excepcional.<br>
           ¡Gracias por elegirnos y esperamos que disfrutes de tus productos!<br>
@@ -138,9 +139,10 @@ const sendMail = async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({ message: "Correo enviado con éxito" });
+    console.log("Correo electrónico enviado con éxito");
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Error al enviar el correo electrónico:", error);
+    throw error; // Lanzar el error para que pueda ser manejado en el controlador
   }
 };
 
@@ -196,7 +198,6 @@ const register = async (req, res) => {
           height: auto;
           text-align:center;
           background-color: transparent;
-          color: black;
           font-size:19px;
           margin: 0;
           color:white;
