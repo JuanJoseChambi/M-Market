@@ -9,7 +9,8 @@ export const productsSlice = createSlice({
     productsAll: [],
     products: [],
     currentPage: 1,
-    categories: []
+    categories: [],
+    cart: [],
   },
   reducers: {
     setProducts: (state, action) => {
@@ -45,11 +46,45 @@ export const productsSlice = createSlice({
     setCategory: (state, action) => {
       state.categories = SidebarData.filter(category => state.productsAll.some(product => product.Categories.some(categoryInd => categoryInd.name === category.title)))
       console.log(state.categories);
+    },
+    addToCart: (state, action) => {
+      const productToAdd = action.payload;
+      const existingProduct = state.cart.find(product => product.id === productToAdd.id);
+      
+      if (existingProduct) {
+          existingProduct.unit += 1;
+      } else {
+          state.cart.push({ ...productToAdd, unit: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+    incrementQuantity: (state, action) => {
+      const itemId = action.payload;
+      const item = state.cart.find((product) => product.id === itemId);
+      if(item) {
+        item.unit += 1;
+      };
+    },
+    decrementQuantity: (state, action) => {
+      const itemId = action.payload;
+      const item = state.cart.find((product) => product.id === itemId);
+      if(item && item.unit > 1) {
+        item.unit -= 1;
+      };
+    },
+    removeFromCart: (state, action) => {
+      const itemId = action.payload;
+      state.cart = state.cart.filter(product => product.id !== itemId);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+    clearCart: (state) => {
+      state.cart = [];
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     }
   },
 });
 // Action creators are genereted for each case reducer
-export const { setProducts , setFiltred, setPrevPage, setNextPage, setCurrentPage, searchName, setCategory} = productsSlice.actions;
+export const { setProducts , setFiltred, setPrevPage, setNextPage, setCurrentPage, searchName, setCategory, addToCart, incrementQuantity, decrementQuantity, removeFromCart, clearCart } = productsSlice.actions;
 
 export default productsSlice.reducer;
 

@@ -55,6 +55,7 @@
     font-size: 2rem;
     background: none;
     color: white;
+
 }
 
 .nav_menu {
@@ -67,11 +68,13 @@
     top: 0;
     left: -100%;
     transition: 850ms;
+    
 }
 
 .nav_menu.active {
     left: 0;
     transition: 350ms;
+    
 }
 
 .sidebar_text {
@@ -115,6 +118,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
+
 }
 
 span {
@@ -148,9 +152,46 @@ span {
     background: none; 
     border-radius: 5px;
     font-family: 'Poppins';
+    
 }
 
 .sidebar_button:hover {
     background-color: #47c7fc;
     cursor: pointer;
 }
+
+/* ------ CART ------ */
+.cart_menu {
+    background-color: #ff8000;
+    width: 450px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: 850ms;
+    overflow-y: scroll;
+    z-index: 200;
+}
+
+.cart_menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cart_menu.active {
+    right: 0;
+    transition: 350ms;
+    
+}
+
+.cart_menu_close {
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer; 
+    z-index: 200;
+}
+
