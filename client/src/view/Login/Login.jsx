@@ -3,9 +3,13 @@ import { auth, provider } from '../../components/GoogleAuth/firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { NavLink } from 'react-router-dom';
 import './Login.css';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
@@ -25,13 +29,86 @@ const Login = () => {
     }
   }, []);
 
+  const redirectToLogin = () => {
+    window.location.href = "/home";
+  };
+
+  const handleEmailLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:3001/user/login', {
+        email,
+        password,
+      });
+
+      const success = response.data;
+
+      if (success) {
+        setUserEmail(email);
+        localStorage.setItem('email', email);
+        Swal.fire({
+          title: `Usuario ${email} login exitoso`,
+          icon: "success",
+          confirmButtonText: "Aceptar",
+          background: "white",
+            width: "40%",
+            heightAuto: false,
+            height: "1%",
+            padding: "3rem",
+            buttonsStyling: false,
+            customClass: {
+              title: "mesageAlert",
+              confirmButton: "buttonAlert",
+            },
+        }).then((result) => {
+          if (result.isConfirmed) {
+            redirectToLogin();
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Error al iniciar sesión, verifique sus credenciales!",
+          icon: "error",
+          background: "white",
+          width: "30%",
+          heightAuto: false,
+          height: "1%",
+          padding: "3rem",
+          buttonsStyling: false,
+          confirmButtonText: "Aceptar",
+          customClass: {
+            title: "mesageAlert",
+            confirmButton: "buttonAlert",
+          },
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Complete todos los campos!",
+        icon: "error",
+        background: "white",
+        width: "30%",
+        heightAuto: false,
+        height: "1%",
+        padding: "3rem",
+        buttonsStyling: false,
+        confirmButtonText: "Aceptar",
+        customClass: {
+          title: "mesageAlert",
+          confirmButton: "buttonAlert",
+        },
+      });
+    }
+  };
+
   return (
     <div className='container-login'>
       <NavLink to="/home">
         <button className="returnBack">Home</button>
       </NavLink>
       <div className="Auth-form">
-      <form>
+      <form onSubmit={handleEmailLogin}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign In</h3>
           <div className="form-group mt-3">
@@ -40,6 +117,8 @@ const Login = () => {
               type="email"
               className="form-control mt-1"
               placeholder="Ingrese email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group mt-3">
@@ -48,6 +127,8 @@ const Login = () => {
               type="password"
               className="form-control mt-1"
               placeholder="Ingrese password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="d-grid gap-2 mt-3">
