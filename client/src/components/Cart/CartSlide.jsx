@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, incrementQuantity, decrementQuantity, removeFromCart, clearCart } from '../../redux/slices/productsData';
 import './cartslide.css';
-
+import MercadoPago from "../MercadoPago/MercadoPago"
 const CartSlide = () => {
 
     const cartItems = useSelector((state) => state.products.cart);
     const dispatch = useDispatch();
+    const [showMercadoPago, setShowMercadoPago] = useState(false);
 
     useEffect(() => {
         const savedCart = JSON.parse(localStorage.getItem('cart'));
@@ -74,12 +75,13 @@ const CartSlide = () => {
                     <button onClick={handleClearCart} className='button_clear_cart'>Vaciar Carrito</button>
                 </div>
                 <div className='cartSlide_link'>
-                    <Link to='/cart'>
-                        <button className='go_to_cart'>
-                            Ir a Pago
-                        </button>
-                    </Link>
+                   <button className='go_to_cart' onClick={() => setShowMercadoPago(true)}>
+                         Ir a Pago
+                     </button>
                 </div>
+                {showMercadoPago && (
+                    <MercadoPago />
+                    )}
             </div>
         </div>
     );
