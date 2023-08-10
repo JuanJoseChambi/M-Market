@@ -7,6 +7,6 @@ routerUser=Router();
 
 routerUser
 .post('/',postUser)
-.get('/',getUser)
+.post('/login',getUser)
 
 module.exports = routerUser;
