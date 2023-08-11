@@ -6,7 +6,7 @@ const LogOut = () => {
     }
     return (
         <div>
-            <button className="icons" onClick={handleLogout}><i className="bi bi-box-arrow-right"></i></button>
+            <button className="icons" onClick={handleLogout}><i class='bx bx-log-in'></i></button>
         </div>
     )
 }
