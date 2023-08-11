@@ -4,6 +4,7 @@ import style from "./Form.module.css";
 import Validation from "./Validations";
 import axios from "axios"
 import Swal from "sweetalert2";
+import img1 from "../../assets/check.png"
 
 export default function Form() {
   async function CreateProduct (newProduct) {
@@ -13,12 +14,20 @@ export default function Form() {
       Swal.fire({
         title: 'Buen trabajo!' ,
         background: 'aliceblue',
-        icon: 'success',
-        toast: 'true',
-        position:'top',     
-        confirmButtonText:'OK',
-        padding: '1,4rem',
-        confirmButtonColor:'#ff8000',
+        imageUrl: img1,
+        imageWidth: 100,
+        imageHeight: 100,
+        confirmButtonText: "Aceptar",
+        background: "white",
+        width: "40%",
+        heightAuto: false,
+        height: "1%",
+        padding: "3rem",
+        buttonsStyling: false,
+        customClass: {
+          title: "mesageAlert",
+          confirmButton: "buttonAlert",
+        },
     });
     }else{
       
