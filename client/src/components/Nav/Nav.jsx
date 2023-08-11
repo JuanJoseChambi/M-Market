@@ -14,6 +14,7 @@ const Nav = () => {
   const prod = cart.length;
   const [productsInCart, setProductsInCart] = useState(prod)
   const[openedCart, setOpenedCart] = useState(false);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
 
   const showCart = () => {
@@ -53,7 +54,7 @@ const Nav = () => {
           <Link to="/login">
             <button className="icons"><i className='bx bx-user-circle' ></i></button>
           </Link>
-          <LogOut />
+          {isAuthenticated && (<LogOut />)}
       </div>
     </div>
   )
