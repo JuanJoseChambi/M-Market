@@ -1,4 +1,4 @@
-const { User } = require('../db')
+const { User, Purchase } = require('../db')
 const bcrypt = require("bcryptjs");
 
 
@@ -29,17 +29,23 @@ const createUser = async (name, lastname, email, password) => {
 const consultUser = async (email, password) => {
     let user = await User.findAll({ where: { email } })
     let userP = user[0].password
+    let userPiD = user[0].id
 
     // console.log(userP);
 
-    if (!user) {
-        return "no existe el usuario"
-    } else if (user) {
-        const aux = bcrypt.compare(password, userP)
-        return aux
-    }
+    if (!user) return "no existe el usuario"
 
+    let pass = { access: true, userId: userPiD }
+
+    const aux = await bcrypt.compare(password, userP)
+    //  console.log(aux);
+    const res = aux ? pass : "password incorrecta"
+
+
+    return res
 }
+
+
 
 const actualizar = async (id, updateUserData) => {
 
@@ -56,6 +62,41 @@ const actualizar = async (id, updateUserData) => {
     return userToUpdate
 }
 
+const getDataUser = async() => {
+       
+
+    const allUser = await User.findAll({
+        include: [
+            {
+              model: Purchase,
+              as: "Purchase",
+              attributes: ["monto"],
+              
+              
+            },
+          
+          ],
+    })
+
+     return allUser
+};
 
 
-module.exports = { createUser, consultUser, actualizar }
+
+const getIdDataUser= async(id)=>{
+     let aux = await getDataUser()
+
+     let auxFilter = aux.find(item=> item.id === id)
+    
+     if(!auxFilter) return "user not found"
+     
+     return auxFilter
+
+
+}
+
+
+
+
+
+module.exports = { createUser, consultUser, actualizar, getDataUser, getIdDataUser }

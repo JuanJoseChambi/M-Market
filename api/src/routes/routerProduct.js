@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getProducts,  postProducts, getIdProduct } = require('../handlers/products');
+const { getProducts,  postProducts, getIdProduct, updateStock } = require('../handlers/products');
 
 
  routerProduct =Router();
@@ -8,7 +8,7 @@ const { getProducts,  postProducts, getIdProduct } = require('../handlers/produc
  .get('/', getProducts)
  .get('/:id', getIdProduct)
  .post('/', postProducts)
-
+ .put('/:id', updateStock)
 
 
 
