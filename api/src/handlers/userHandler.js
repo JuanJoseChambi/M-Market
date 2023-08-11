@@ -1,5 +1,5 @@
 
-const { createUser, consultUser, actualizar } = require("../controllers/userController");
+const { createUser, consultUser, actualizar, getDataUser, getIdDataUser } = require("../controllers/userController");
 
 const postUser = async (req, res) => {
     const { name, lastname, email, password } = req.body;
@@ -41,11 +41,37 @@ const updateUser = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
-    
-}
+
+};
+
+
+const getUserPurchase = async (req, res) => {
+    try {
+        const getAll = await getDataUser()
+        res.status(201).json(getAll)
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+
+    }
+};
+
+const getUserPurchaseID =async(req,res)=>{
+       try {
+           const {id} = req.params;
+           const getOneUser = await  getIdDataUser(id);
+            res.status(201).json(getOneUser)
+        } catch (error) {
+         res.status(400).json({ error: error.message });
+           
+        }
+ }
+
 
 module.exports = {
     postUser,
     getUser,
-    updateUser
+    updateUser,
+    getUserPurchase,
+    getUserPurchaseID
 }

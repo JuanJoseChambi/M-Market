@@ -1,4 +1,4 @@
-const { allProducts, createProduct, productById, product } = require("../controllers/productControllers");
+const { allProducts, createProduct, productById, product, ApdateProd } = require("../controllers/productControllers");
 
 
 const getProducts=async (req, res)=>{
@@ -35,10 +35,32 @@ try {
     
 }
     
+};
+
+
+
+const updateStock =async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const {unit} = req.body;
+
+        const updateUnit = await ApdateProd(id, unit)
+
+    res.status(200).json(updateUnit);
+         
+
+
+    } catch (error) {
+    res.status(400).json({ error: error.message });
+        
+    }
 }
+
+
 module.exports ={
     getProducts,
     postProducts,
-    getIdProduct
+    getIdProduct,
+    updateStock
 
 }
