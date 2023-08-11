@@ -40,7 +40,7 @@ const payHandler = async (req, res) => {
 	try {
 		const response = await mercadopago.preferences.create(preference);
 		const preferenceId = response.body.id;   		 //falta el email al que se va a enviar
-		await sendMail({ name: req.body.description, price: req.body.price, quantity: req.body.quantity});
+		await sendMail({ name: req.body.description, price: req.body.price, quantity: req.body.quantity, email: req.body.email});
 		res.json({ id: preferenceId });
 	  } catch (error) {
 		console.error("Error:", error);

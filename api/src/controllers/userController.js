@@ -1,6 +1,8 @@
 const { User, Purchase } = require('../db')
 const bcrypt = require("bcryptjs");
 
+const { register } = require("../handlers/routerNodemailer")
+
 
 const createUser = async (name, lastname, email, password) => {
 
@@ -10,7 +12,7 @@ const createUser = async (name, lastname, email, password) => {
 
     const userExists = await User.findOne({ where: { email } });
     if (userExists) throw new Error("El usuario ya existe");
-
+    if (!userExists) await register(email);
     const passwordHash = await bcrypt.hash(password, 10);
 
     const userData = {
