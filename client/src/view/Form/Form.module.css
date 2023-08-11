@@ -319,3 +319,22 @@
   align-items: center;
   justify-content: center;
 }
+
+
+.buttonAlert{
+  background-color: #ff8000;
+  border-radius: 5px;
+  font-family:  'Poppins', sans-serif;
+  padding: 7px 10px;
+  border-color: aliceblue;
+  color: aliceblue;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.mesageAlert{
+  font-family:  'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: black;
+  margin-top: 10px;
+}
