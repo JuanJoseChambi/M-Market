@@ -20,8 +20,6 @@ import Swal from "sweetalert2";
   const dispatch = useDispatch();
   const [showMercadoPago, setShowMercadoPago] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  console.log("isAuthenticated", isAuthenticated);
-  
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart"));
