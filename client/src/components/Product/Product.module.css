@@ -61,4 +61,11 @@
 
 
 
-
+.buttonCard {
+    /* ... (tu código actual) */
+    transition: transform 0.4s; /* Agrega una transición suave */
+  }
+  
+  .buttonCard:active {
+    transform: translateY(10px); /* Efecto de hundimiento al hacer clic */
+  }
