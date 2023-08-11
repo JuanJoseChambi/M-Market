@@ -95,7 +95,7 @@ import MercadoPago from "../MercadoPago/MercadoPago";
           </button>
         </div>
         <div className="cartSlide_link">
-             {!isCartEmpty && totalAmount > 0 &&(
+             {!isCartEmpty && totalAmount > 0 && isAuthenticated && (
             <button
               className="go_to_cart"
               onClick={() => setShowMercadoPago(true)}
