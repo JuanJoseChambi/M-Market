@@ -1,3 +1,5 @@
+// Product.js
+import React from "react";
 import { Link } from 'react-router-dom';
 import style from './Product.module.css';
 import { useDispatch } from 'react-redux';
@@ -21,7 +23,7 @@ const Product = (products) => {
                             <p>Precio: {price}</p>
                         </div>
                         </Link>
-                        <button className={style.buttonCard} onClick={handleAddToCart}>Añadir</button>
+                        <button className={`${style.buttonCard} ${style.addEffect}`} onClick={handleAddToCart}>Añadir</button>
                     </div>
                 </div>
     );

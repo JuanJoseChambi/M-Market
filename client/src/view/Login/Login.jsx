@@ -7,6 +7,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { loginSuccess } from '../../redux/slices/userAuth';
 import { useDispatch } from 'react-redux';
+import img1 from '../../assets/error.png';
+import img2 from '../../assets/check.png';
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState('');
@@ -21,9 +23,9 @@ const Login = () => {
       const email = result.user.email;
       setUserEmail(email);
       localStorage.setItem('email', email);
-      await axios.post("/notification/register", {email: email})
       dispatch(loginSuccess());
       navigate('/home');
+      await axios.post("/notification/register", {email: email})
     } catch (error) {
       console.error('Error during login:', error);
     }
@@ -50,7 +52,9 @@ const Login = () => {
     if (success) {
       await Swal.fire({
         title: `Usuario ${email} login exitoso`,
-        icon: "success",
+        imageUrl: img2,
+        imageWidth: 100,
+        imageHeight: 100,
         confirmButtonText: "Aceptar",
         background: "white",
         width: "40%",
@@ -64,6 +68,7 @@ const Login = () => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
+          localStorage.setItem('email', email);
           dispatch(loginSuccess());
           navigate('/home');
         }
@@ -71,7 +76,9 @@ const Login = () => {
     } else {
       Swal.fire({
         title: "Error al iniciar sesión, verifique sus credenciales!",
-        icon: "error",
+        imageUrl: img1,
+        imageWidth: 100,
+        imageHeight: 100,
         background: "white",
         width: "30%",
         heightAuto: false,
@@ -88,18 +95,18 @@ const Login = () => {
   } catch (error) {
     Swal.fire({
       title: "Complete todos los campos!",
-      icon: "error",
+      imageUrl: img1,
+      imageWidth: 100,
+      imageHeight: 100,
       background: "white",
       width: "30%",
-      heightAuto: false,
-      height: "1%",
-      padding: "3rem",
       buttonsStyling: false,
       confirmButtonText: "Aceptar",
       customClass: {
         title: "mesageAlert",
         confirmButton: "buttonAlert",
       },
+
     });
   }
 };
@@ -112,7 +119,7 @@ const Login = () => {
       <div className="Auth-form">
       <form onSubmit={handleEmailLogin}>
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
+          <h3 className="Auth-form-title">Iniciar Sesión</h3>
           <div className="form-group mt-3">
             <label>Email</label>
             <input
@@ -135,7 +142,7 @@ const Login = () => {
           </div>
           <div className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-dark">
-              Submit
+              Enviar
             </button>
           </div>
           <p className="forgot-password text-right mt-2">
@@ -147,7 +154,7 @@ const Login = () => {
       </form>
       <div className='container-google'>
         <button className="icons" onClick={handleLogin}>
-          <i className="bi bi-google"> Sign</i>
+          <i className="bi bi-google"> Inicio Sesión</i>
         </button>
       </div>
       </div>

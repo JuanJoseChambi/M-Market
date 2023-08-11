@@ -3,6 +3,8 @@ import { useState } from "react"
 import axios from "axios"
 import Swal from "sweetalert2";
 import "./CreateAccount.css"
+import img1 from '../../assets/error.png';
+import img2 from '../../assets/check.png';
 
 
 const CreateAccount = () => {
@@ -26,7 +28,9 @@ const CreateAccount = () => {
       const response = await axios.post("http://localhost:3001/user", formData);
       await Swal.fire({
         title: `Usuario ${formData.email} creado con éxito`,
-        icon: "success",
+        imageUrl: img2,
+        imageWidth: 100,
+        imageHeight: 100,
         confirmButtonText: "Aceptar",
         background: "white",
           width: "30%",
@@ -48,7 +52,9 @@ const CreateAccount = () => {
         Swal.fire({
           title: "Error al crear usuario!",
           text: error.response.data.error,
-          icon: "error",
+          imageUrl: img1,
+          imageWidth: 100,
+          imageHeight: 100,
           background: "white",
           width: "30%",
           heightAuto: false,
@@ -64,7 +70,9 @@ const CreateAccount = () => {
       } else {
         Swal.fire({
           title: "Error al crear usuario!",
-          icon: "error",
+          imageUrl: img1,
+          imageWidth: 100,
+          imageHeight: 100,
           background: "white",
           width: "30%",
           heightAuto: false,
@@ -94,7 +102,7 @@ const CreateAccount = () => {
       <div className="Auth-form">
       <form onSubmit={handleSubmit} >
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign Up</h3>
+          <h3 className="Auth-form-title">Registro de Usuario</h3>
           <div className="form-group mt-3">
             <label>Nombre</label>
             <input
