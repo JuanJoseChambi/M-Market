@@ -7,12 +7,6 @@ export default function Detail() {
     const { id } = useParams()
     const [products, setProducts] = useState({})
 
-    async function handlerNotification () {
-      await axios.post("/notification/paid", products)
-      await axios.post("/notification/register")
-  }
-
-    // Falta Data de DB
     useEffect(() => {
       product()
     }, [])
@@ -44,7 +38,7 @@ export default function Detail() {
               {products.description}
               </div>
             <p className={style.priceProduct}>$ {products.price}</p>
-            <button className={style.btn} onClick={handlerNotification}>Comprar</button>
+            {/*<button className={style.btn} onClick={handlerNotification}>Comprar</button> */}
         </div>
       </div>
       

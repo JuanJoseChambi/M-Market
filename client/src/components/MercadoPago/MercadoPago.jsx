@@ -2,49 +2,40 @@ import React, { useState, useEffect } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import styles from "./MercadoPago.module.css";
+import Swal from "sweetalert2";
 
-const MercadoPagoButton = () => {
+const MercadoPago = ({ totalAmount }) => {
   const [preferenceId, setPreferenceId] = useState(null);
-  const [fadeButton, setFadeButton] = useState(false); // Estado para controlar el desvanecimiento
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   useEffect(() => {
-    initMercadoPago("TEST-ccf47120-6097-4b48-9ac0-ba94be0334fe");
-  }, []);
+    const fetchPreference = async () => {
+      initMercadoPago("TEST-ccf47120-6097-4b48-9ac0-ba94be0334fe");
+      try {
+        const response = await axios.post("http://localhost:3001/pay", {
+          description: "Compra en MMarket",
+          price: totalAmount,
+          quantity: 1,
+        });
+        const { id } = response.data;
+        setPreferenceId(id);
+        setPaymentCompleted(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  const createPreference = async () => {
-    try {
-      const response = await axios.post("http://localhost:3001/pay", {
-        description: "Bananita contenta",
-        price: 100,
-        quantity: 1,
-      });
-      const { id } = response.data;
-      return id;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleBuy = async () => {
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
-      setFadeButton(true); // Activar el desvanecimiento al hacer clic en el botón
-    }
-  };
+    fetchPreference();
+  }, [totalAmount]);
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Mercado Pago</h2>
-      <button
-        className={`${styles.button} ${fadeButton ? styles["fade-out"] : ""}`} // Aplicar la clase de desvanecimiento si se activa
-        onClick={handleBuy}
-      >
-        Pagar
-      </button>
-      {preferenceId && <Wallet initialization={{ preferenceId }} />}
+      {paymentCompleted && preferenceId && (
+        <Wallet initialization={{ preferenceId }} />
+      )}
     </div>
   );
 };
 
-export default MercadoPagoButton;
+export default MercadoPago;

@@ -1,4 +1,4 @@
-
+const { sendMail } = require("../routerNodemailer")
 const mercadopago = require("mercadopago");
 
 // REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
@@ -7,8 +7,7 @@ mercadopago.configure({
 });
 
 
-
-const payHandler = (req, res) => {
+const payHandler = async (req, res) => {
 
     
 
@@ -30,14 +29,23 @@ const payHandler = (req, res) => {
 		
 	};
 
-	mercadopago.preferences.create(preference)
-		.then(function (response) {
-			res.json({
-				id: response.body.id
-			});
-		}).catch(function (error) {
-			console.log(error);
-		});
+	// mercadopago.preferences.create(preference)
+	// 	.then(function (response) {
+	// 		res.json({
+	// 			id: response.body.id
+	// 		});
+	// 	}).catch(function (error) {
+	// 		console.log(error);
+	// 	});
+	try {
+		const response = await mercadopago.preferences.create(preference);
+		const preferenceId = response.body.id;   		 //falta el email al que se va a enviar
+		await sendMail({ name: req.body.description, price: req.body.price, quantity: req.body.quantity});
+		res.json({ id: preferenceId });
+	  } catch (error) {
+		console.error("Error:", error);
+		res.status(500).json({ message: "Error en el proceso de compra" });
+	  }
 }
 
 module.exports= payHandler

@@ -1,86 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&family=Lato:wght@300&family=Rubik&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300&family=Lato:wght@300&family=Rubik&display=swap");
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .nav_container {
-    background-color: #ff8000;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: start;
-    justify-content: center;
-    align-items: center;
+  background-color: #ff8000;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  justify-content: center;
+  align-items: center;
 }
-.sideBar{
-    position: absolute;
-    left: 0;
-    z-index: 100;
+.sideBar {
+  position: absolute;
+  left: 0;
+  z-index: 100;
 }
-.search{
-    width: 32%;
+.search {
+  width: 32%;
 }
-.containerIcons{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    position: absolute;
-    right: 5px;
-    width: 15%;
-    height: auto;
+.containerIcons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  right: 5px;
+  width: 15%;
+  height: auto;
 }
-.icons{
-    background-color: transparent;
-    border: 0;
+.icons {
+  background-color: transparent;
+  border: 0;
+  position: relative;
 }
-.icons i{
-    font-size: 30px;
-    padding: 5px;
-    border-radius: 50px;
-    border-right: 1px solid #0000003a;
-    border-bottom: 1px solid #0000003a;
-    transition: background-color .5s, box-shadow .5s, color .5s;
+.icons i {
+  font-size: 30px;
+  padding: 5px;
+  border-radius: 50px;
+  border-right: 1px solid #0000003a;
+  border-bottom: 1px solid #0000003a;
+  transition: background-color 0.5s, box-shadow 0.5s, color 0.5s;
 }
-.icons i:hover{
-    color: orange;
-    background-color: rgb(243, 239, 239);
-    box-shadow: 0px 4px 5px 0px rgb(33, 32, 32);
-    outline: 1px solid #0000003a;
+.icons i:hover {
+  color: orange;
+  background-color: rgb(243, 239, 239);
+  box-shadow: 0px 4px 5px 0px rgb(33, 32, 32);
+  outline: 1px solid #0000003a;
+}
+.NumberInCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(241, 238, 238);
+  border-bottom: 1px solid #0000003a;
+  border-left: 1px solid #0000003a;
+  border-radius: 50%;
+  padding: 12px;
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 5px;
+  height: 5px;
 }
 .menu_bars {
-    margin-left: 2rem;
-    font-size: 2rem;
-    background: none;
-    color: white;
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+  color: white;
 }
 
 .nav_menu {
-    background-color: #ff8000;
-    width: 250px;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    transition: 850ms;
+  background-color: #ff8000;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
 }
 
 .nav_menu.active {
-    left: 0;
-    transition: 350ms;
+  left: 0;
+  transition: 350ms;
 }
 
 .sidebar_text {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 8px 0px 8px 16px;
-    list-style: none;
-    height: 60px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
 }
 
 /* .sidebar_text a {
@@ -100,25 +117,25 @@
 } */
 
 .nav_menu_items {
-    width: 100%;
-    overflow-y: scroll;
+  width: 100%;
+  overflow-y: scroll;
 }
 
 .nav_menu_items::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .navbar_toggle {
-    background-color: #ff8000;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+  background-color: #ff8000;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
 span {
-    margin-left: 16px;
+  margin-left: 16px;
 }
 
 /* .nav_form_button {
@@ -126,64 +143,65 @@ span {
 } */
 
 .nav_f_button {
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    width: 80px;
-    cursor: pointer;
-    font-size: 12px;
-    font-family: "Poppins", sans-serif;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
 }
 
 .sidebar_button {
-    text-decoration: none;
-    color: white;
-    font-size: 17px;
-    width: 95%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 0;
-    border: none; 
-    background: none; 
-    border-radius: 5px;
-    font-family: 'Poppins';
+  text-decoration: none;
+  color: white;
+  font-size: 17px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 0;
+  border: none;
+  background: none;
+  border-radius: 5px;
+  font-family: "Poppins";
 }
 
 .sidebar_button:hover {
-    background-color: #47c7fc;
-    cursor: pointer;
+  background-color: #47c7fc;
+  cursor: pointer;
 }
 
 /* ------ CART ------ */
 .cart_menu {
-    background-color: #ff8000;
-    width: 450px;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    transition: 850ms;
-    overflow-y: scroll;
+  background-color: #ff8000;
+  width: 450px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: 850ms;
+  overflow-y: scroll;
+  z-index: 200;
 }
 
 .cart_menu::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .cart_menu.active {
-    right: 0;
-    transition: 350ms;
+  right: 0;
+  transition: 350ms;
 }
 
 .cart_menu_close {
-    font-size: 30px;
-    color: white;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer; 
+  font-size: 30px;
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 200;
 }
-

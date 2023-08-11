@@ -45,7 +45,6 @@ export const productsSlice = createSlice({
     },
     setCategory: (state, action) => {
       state.categories = SidebarData.filter(category => state.productsAll.some(product => product.Categories.some(categoryInd => categoryInd.name === category.title)))
-      console.log(state.categories);
     },
     addToCart: (state, action) => {
       const productToAdd = action.payload;

@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
 import { auth, provider } from '../../components/GoogleAuth/firebase';
 import { signInWithPopup } from 'firebase/auth';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { loginSuccess } from '../../redux/slices/userAuth';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -17,6 +21,9 @@ const Login = () => {
       const email = result.user.email;
       setUserEmail(email);
       localStorage.setItem('email', email);
+      await axios.post("/notification/register", {email: email})
+      dispatch(loginSuccess());
+      navigate('/home');
     } catch (error) {
       console.error('Error during login:', error);
     }
@@ -29,63 +36,41 @@ const Login = () => {
     }
   }, []);
 
-  const redirectToLogin = () => {
-    window.location.href = "/home";
-  };
-
   const handleEmailLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await axios.post('http://localhost:3001/user/login', {
-        email,
-        password,
+  try {
+    const response = await axios.post('http://localhost:3001/user/login', {
+      email,
+      password,
+    });
+
+    const success = response.data;
+
+    if (success) {
+      await Swal.fire({
+        title: `Usuario ${email} login exitoso`,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        background: "white",
+        width: "40%",
+        heightAuto: false,
+        height: "1%",
+        padding: "3rem",
+        buttonsStyling: false,
+        customClass: {
+          title: "mesageAlert",
+          confirmButton: "buttonAlert",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(loginSuccess());
+          navigate('/home');
+        }
       });
-
-      const success = response.data;
-
-      if (success) {
-        setUserEmail(email);
-        localStorage.setItem('email', email);
-        Swal.fire({
-          title: `Usuario ${email} login exitoso`,
-          icon: "success",
-          confirmButtonText: "Aceptar",
-          background: "white",
-            width: "40%",
-            heightAuto: false,
-            height: "1%",
-            padding: "3rem",
-            buttonsStyling: false,
-            customClass: {
-              title: "mesageAlert",
-              confirmButton: "buttonAlert",
-            },
-        }).then((result) => {
-          if (result.isConfirmed) {
-            redirectToLogin();
-          }
-        });
-      } else {
-        Swal.fire({
-          title: "Error al iniciar sesión, verifique sus credenciales!",
-          icon: "error",
-          background: "white",
-          width: "30%",
-          heightAuto: false,
-          height: "1%",
-          padding: "3rem",
-          buttonsStyling: false,
-          confirmButtonText: "Aceptar",
-          customClass: {
-            title: "mesageAlert",
-            confirmButton: "buttonAlert",
-          },
-        });
-      }
-    } catch (error) {
+    } else {
       Swal.fire({
-        title: "Complete todos los campos!",
+        title: "Error al iniciar sesión, verifique sus credenciales!",
         icon: "error",
         background: "white",
         width: "30%",
@@ -100,7 +85,24 @@ const Login = () => {
         },
       });
     }
-  };
+  } catch (error) {
+    Swal.fire({
+      title: "Complete todos los campos!",
+      icon: "error",
+      background: "white",
+      width: "30%",
+      heightAuto: false,
+      height: "1%",
+      padding: "3rem",
+      buttonsStyling: false,
+      confirmButtonText: "Aceptar",
+      customClass: {
+        title: "mesageAlert",
+        confirmButton: "buttonAlert",
+      },
+    });
+  }
+};
 
   return (
     <div className='container-login'>
