@@ -50,7 +50,6 @@ const Login = () => {
     const success = response.data;
 
     if (success) {
-      localStorage.setItem('email', email);
       await Swal.fire({
         title: `Usuario ${email} login exitoso`,
         imageUrl: img2,
