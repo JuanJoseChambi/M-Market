@@ -10,6 +10,11 @@ import {
 } from "../../redux/slices/productsData";
 import "./cartslide.css";
 import MercadoPago from "../MercadoPago/MercadoPago";
+import Swal from "sweetalert2";
+
+
+
+
   const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
@@ -20,10 +25,15 @@ import MercadoPago from "../MercadoPago/MercadoPago";
     const savedCart = JSON.parse(localStorage.getItem("cart"));
     if (savedCart) {
       savedCart.forEach((item) => {
-        dispatch(addToCart(item));
+        // Verifica si el elemento ya está en el carrito actual
+        const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+        if (!isItemInCart) {
+          dispatch(addToCart(item));
+        }
       });
     }
-  }, [dispatch]);
+  }, [cartItems, dispatch]);
+  
 
   const handleIncrement = (item) => {
     dispatch(incrementQuantity(item.id));
@@ -32,8 +42,25 @@ import MercadoPago from "../MercadoPago/MercadoPago";
   const handleDecrement = (item) => {
     if (item.unit > 1) {
       dispatch(decrementQuantity(item.id));
+    } else {
+      // Mostrar el diálogo de confirmación
+      Swal.fire({
+        title: "Eliminar artículo",
+        text: "¿Estás seguro de eliminar este artículo del carrito?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(removeFromCart(item.id));
+        }
+      });
     }
   };
+  
 
   const handleRemove = (item) => {
     dispatch(removeFromCart(item.id));
@@ -57,6 +84,25 @@ import MercadoPago from "../MercadoPago/MercadoPago";
 
   const isCartEmpty = cartItems.length === 0;
   const totalAmount = calculateTotal();
+
+  const handleGoToPayment = () => {
+    // Mostrar el diálogo de confirmación
+    Swal.fire({
+      title: "Confirmar compra",
+      text: "¿Estás seguro de proceder con la compra?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#ff8000",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, proceder",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setShowMercadoPago(true);
+      }
+    });
+  };
+
   return (
     <div className="cartSlide_container">
       <div className="cartSlide_allItems">
@@ -96,7 +142,7 @@ import MercadoPago from "../MercadoPago/MercadoPago";
              {!isCartEmpty && totalAmount > 0 && isAuthenticated && (
             <button
               className="go_to_cart"
-              onClick={() => setShowMercadoPago(true)}
+              onClick={handleGoToPayment}
             >
               Ir a Pago
             </button>
