@@ -13,7 +13,6 @@ export default function Form() {
       await axios.post('/product',newProduct)
       Swal.fire({
         title: 'Buen trabajo!' ,
-        background: 'aliceblue',
         imageUrl: img1,
         imageWidth: 100,
         imageHeight: 100,
