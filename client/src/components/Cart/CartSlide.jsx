@@ -142,7 +142,7 @@ import { BsCart4 } from 'react-icons/bs';
           <div className="cartSlide_link">
               {!isCartEmpty && totalAmount > 0 && isAuthenticated && (
               <button
-                className="go_to_cart"
+                className="go_to_pay"
                 onClick={handleGoToPayment}
               >
                 Ir a Pago
