@@ -23,7 +23,7 @@ const ChargedDB = require('./src/utils/backUp.js')
 const CategoryBD = require('./src/utils/categories.js')
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
   server.listen(3001, () => {
     ChargedDB()
     CategoryBD()

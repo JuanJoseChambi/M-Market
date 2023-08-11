@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const routerProduct = require('./routerProduct');
+const purchaseR = require('./purchase.routes')
 
 const pay = require('./mp.routes')
 
@@ -17,8 +18,10 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.use('/product', routerProduct);
 router.use('/user',routerUser)
-
 router.use('/pay', pay)
+router.use('/purchase', purchaseR)
+
+
 
 router.use('/notification', sendMail)
 
