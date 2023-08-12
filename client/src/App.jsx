@@ -7,6 +7,8 @@ axios.defaults.baseURL="http://localhost:3001";
 import Detail from "./view/Detail/Detail";
 import Login from "./view/Login/Login";
 import CreateAccount from "./view/Login/CreateAccount";
+import User from "./view/User/User";
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route exact path="/detail/:id" element={<Detail/>}/>
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/createAccount" element={<CreateAccount/>}/>
+        <Route exact path="/user" element={<User/>}/>
       </Routes>
     </div>
   );

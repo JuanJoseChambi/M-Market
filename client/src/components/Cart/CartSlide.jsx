@@ -19,7 +19,8 @@ import Swal from "sweetalert2";
   const cartItems = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
   const [showMercadoPago, setShowMercadoPago] = useState(false);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const access = localStorage.getItem('email');
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart"));
@@ -78,9 +79,9 @@ import Swal from "sweetalert2";
     return cartItems.reduce((total, item) => total + subtotal(item), 0);
   };
 
-  if (isAuthenticated === undefined) {
-    return null; // O podrías mostrar un spinner de carga u otro indicador
-  }
+  // if (isAuthenticated === undefined) {
+  //   return null; // O podrías mostrar un spinner de carga u otro indicador
+  // }
 
   const isCartEmpty = cartItems.length === 0;
   const totalAmount = calculateTotal();
@@ -139,7 +140,7 @@ import Swal from "sweetalert2";
           </button>
         </div>
         <div className="cartSlide_link">
-             {!isCartEmpty && totalAmount > 0 && isAuthenticated && (
+             {!isCartEmpty && totalAmount > 0 && access && (
             <button
               className="go_to_cart"
               onClick={handleGoToPayment}

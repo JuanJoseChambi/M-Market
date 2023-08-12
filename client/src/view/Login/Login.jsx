@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { loginSuccess } from '../../redux/slices/userAuth';
+import { loginSuccess, getId } from '../../redux/slices/userAuth';
 import { useDispatch } from 'react-redux';
 import img1 from '../../assets/error.png';
 import img2 from '../../assets/check.png';
@@ -48,7 +48,7 @@ const Login = () => {
     });
 
     const success = response.data;
-
+    
     if (success) {
       await Swal.fire({
         title: `Usuario ${email} login exitoso`,
@@ -70,6 +70,7 @@ const Login = () => {
         if (result.isConfirmed) {
           localStorage.setItem('email', email);
           dispatch(loginSuccess());
+          dispatch(getId(success.userId))
           navigate('/home');
         }
       });
