@@ -10,7 +10,7 @@ export const productsSlice = createSlice({
     products: [],
     currentPage: 1,
     categories: [],
-    cart: [],
+    cart: JSON.parse(localStorage.getItem('cart')) || [],
   },
   reducers: {
     setProducts: (state, action) => {
@@ -63,6 +63,7 @@ export const productsSlice = createSlice({
       if(item) {
         item.unit += 1;
       };
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     decrementQuantity: (state, action) => {
       const itemId = action.payload;
@@ -70,6 +71,7 @@ export const productsSlice = createSlice({
       if(item && item.unit > 1) {
         item.unit -= 1;
       };
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     removeFromCart: (state, action) => {
       const itemId = action.payload;
