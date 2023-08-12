@@ -48,7 +48,7 @@ const Login = () => {
     });
 
     const success = response.data;
-
+    
     if (success) {
       await Swal.fire({
         title: `Usuario ${email} login exitoso`,
@@ -68,6 +68,7 @@ const Login = () => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
+          localStorage.setItem('userId', success.userId)
           localStorage.setItem('email', email);
           dispatch(loginSuccess());
           navigate('/home');

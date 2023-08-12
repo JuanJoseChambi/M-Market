@@ -269,7 +269,7 @@ const thirdPartyRegistration = async (req, res) => {
     });
     const mailOptions = {
       from: "MMarket <chambijuanjose05@gmail.com>",
-      to: email,
+      to: `${email}`,
       subject: "M-Market | ¡Bienvenido a M-Market! 🎉",
       html: `
       <html>
