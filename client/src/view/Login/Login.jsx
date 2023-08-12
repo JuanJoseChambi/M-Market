@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { loginSuccess, getId } from '../../redux/slices/userAuth';
+import { loginSuccess } from '../../redux/slices/userAuth';
 import { useDispatch } from 'react-redux';
 import img1 from '../../assets/error.png';
 import img2 from '../../assets/check.png';
@@ -68,9 +68,9 @@ const Login = () => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
+          localStorage.setItem('userId', success.userId)
           localStorage.setItem('email', email);
           dispatch(loginSuccess());
-          dispatch(getId(success.userId))
           navigate('/home');
         }
       });

@@ -12,6 +12,7 @@ import "./cartslide.css";
 import MercadoPago from "../MercadoPago/MercadoPago";
 import Swal from "sweetalert2";
 import { BsCart4 } from 'react-icons/bs';
+import axios from "axios"
 
   const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
@@ -82,9 +83,19 @@ import { BsCart4 } from 'react-icons/bs';
   // }
 
   const isCartEmpty = cartItems.length === 0;
-  const totalAmount = calculateTotal();
+  const totalAmount = calculateTotal().toFixed(2);
 
-  const handleGoToPayment = () => {
+  const idProducts = (cartItems.map(producto => producto.id));
+  const idUser = localStorage.getItem('userId');
+  
+  const purchase = {
+    monto: totalAmount,
+    userId: idUser,
+    prodId: idProducts,
+  };
+
+  const handleGoToPayment = async () => {
+    await axios.post("/purchase", purchase)
     // Mostrar el diálogo de confirmación
     Swal.fire({
       title: "Confirmar compra",

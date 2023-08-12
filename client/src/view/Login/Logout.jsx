@@ -1,13 +1,10 @@
-import { delId } from "../../redux/slices/userAuth"
-import { useDispatch } from "react-redux"
 
 const LogOut = () => {
-    const dispatch = useDispatch()
 
     const handleLogout = () => {
         localStorage.removeItem("email")
+        localStorage.removeItem("userId")
         window.location.reload()
-        dispatch(delId())
     }
     return (
         <div>

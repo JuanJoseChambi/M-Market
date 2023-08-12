@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./User.module.css";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import empty from "../../assets/empty.svg"
 
 function User() {
   const [renderInterface, setRenderInterface] = useState("profile");
+  const [infoPurchase, setInfoPurchase] = useState([])
   const [infoUser, setInfoUser] = useState({
     name: "",
     lastname: "",
     email: "",
     password: "",
   });
-  const { idUser } = useSelector((state) => state.auth);
+  const idUser = localStorage.getItem('userId');
   async function updateUser(e) {
     e.preventDefault();
     try {
@@ -81,13 +83,43 @@ function User() {
       </div>
     );
   }
+  useEffect(() => {
+    purchaseUser()
+  }, [])
 
-  
+  async function purchaseUser () {
+    const {data} = await axios.get("/purchase");
+    const infoFiltered = data.filter((purchase) => purchase.userPurchase === idUser).map(obj => {
+      const fecha = new Date(obj.createdAt);
+      const year = fecha.getFullYear();
+      const month = fecha.getMonth() + 1;
+      const day = fecha.getDate();
+      return {
+      id: obj.id,
+      monto: obj.monto,
+      products: obj.Prods,
+      fecha : [year, month, day]
+    }})
+    console.log(infoFiltered);
+    setInfoPurchase(infoFiltered);
+  }
   if (renderInterface === "detalles") {
     contentRender = (
         <div className={style.updateInfo}>
             <h2 className={style.titleSection}>Compras Realizadas</h2>
-
+                {infoPurchase ? infoPurchase.map((purchase, i) => (
+                  <div key={i} className={style.containerPurchase}>
+                    <div className={style.containerFecha}>{purchase.fecha.map((fecha, i) => <p key={i} className={style.fecha}>{fecha}</p>)}</div>
+                    <div className={style.viewPurchase}>
+                      <div className={style.containerNames}>{purchase.products.map((prod, i) => (<h5 key={i} className={style.nameProds}>{prod.name}</h5>))}</div>
+                      <b className={style.totalPrice}>Total: {purchase.monto}</b>
+                    </div>
+                  </div>
+                )):(
+                <div className={style.containerImage}>
+                  <img src={empty} alt="Vacio" className={style.svgEmpty}/>
+                </div>
+                )}
         </div>
     )
   }
