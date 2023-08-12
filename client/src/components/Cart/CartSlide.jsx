@@ -11,9 +11,7 @@ import {
 import "./cartslide.css";
 import MercadoPago from "../MercadoPago/MercadoPago";
 import Swal from "sweetalert2";
-
-
-
+import { BsCart4 } from 'react-icons/bs';
 
   const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
@@ -107,7 +105,8 @@ import Swal from "sweetalert2";
   return (
     <div className="cartSlide_container">
       <div className="cartSlide_allItems">
-        <h1 className="cartSlide_title">Mi Carrito</h1>
+        <h1 className="cartSlide_title"><BsCart4 className="svg"/> Mi Carrito</h1>
+        <hr />
         <div className="cartSlide_items">
           <ul>
             {cartItems?.map((item) => (
@@ -133,21 +132,24 @@ import Swal from "sweetalert2";
             ))}
           </ul>
         </div>
+        
         <div className="cartSlide_total">
           <p>Total: ${calculateTotal().toFixed(2)}</p>
-          <button onClick={handleClearCart} className="button_clear_cart">
-            Vaciar Carrito
-          </button>
         </div>
-        <div className="cartSlide_link">
-             {!isCartEmpty && totalAmount > 0 && access && (
-            <button
-              className="go_to_cart"
-              onClick={handleGoToPayment}
-            >
-              Ir a Pago
-            </button>
-          )}
+        <div className="buttons_cart_container">
+          <button onClick={handleClearCart} className="button_clear_cart">
+              Vaciar Carrito
+          </button>
+          <div className="cartSlide_link">
+              {!isCartEmpty && totalAmount > 0 && access && (
+              <button
+                className="go_to_pay"
+                onClick={handleGoToPayment}
+              >
+                Ir a Pago
+              </button>
+            )}
+          </div>
         </div>
 
         <br />
