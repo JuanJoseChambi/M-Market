@@ -41,7 +41,7 @@ const consultUser = async (email, password) => {
 
     const aux = await bcrypt.compare(password, userP)
     //  console.log(aux);
-    const res = aux ? pass : "password incorrecta"
+    const res = aux ? pass : { access: false, userId: null }
 
 
     return res

@@ -65,8 +65,9 @@ const Login = () => {
     });
 
     const success = response.data;
+    console.log(success);
     
-    if (success) {
+    if (success.access === true) {
       await Swal.fire({
         title: `Usuario ${email} login exitoso`,
         imageUrl: img2,
