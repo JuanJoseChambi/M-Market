@@ -14,9 +14,9 @@ const Nav = () => {
   const prod = cart.length;
   const [productsInCart, setProductsInCart] = useState(prod)
   const[openedCart, setOpenedCart] = useState(false);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-
+  const access = localStorage.getItem('email');
   const showCart = () => {
     setOpenedCart(!openedCart);
   };
@@ -51,10 +51,14 @@ const Nav = () => {
             </Link>
             {openedCart && <CartSlide/>}
           </div>
-          <Link to="/login">
+          {access 
+          ?<Link to="/user">
+            <button className="icons"><i className='bx bx-user' ></i></button>
+          </Link> 
+          : <Link to="/login">
             <button className="icons"><i className='bx bx-user-circle' ></i></button>
-          </Link>
-          {isAuthenticated && (<LogOut />)}
+          </Link>}
+          {access && (<LogOut />)}
       </div>
     </div>
   )

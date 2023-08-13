@@ -51,7 +51,7 @@ const consultUser = async (email, password) => {
 
 const actualizar = async (id, updateUserData) => {
 
-    const userToUpdate = await User.finfByPk(id)
+    const userToUpdate = await User.findByPk(id)
     if (!userToUpdate) {
         return "Usuario no encontrado"
     }

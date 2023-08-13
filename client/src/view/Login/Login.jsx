@@ -22,6 +22,23 @@ const Login = () => {
       const result = await signInWithPopup(auth, provider);
       const email = result.user.email;
       setUserEmail(email);
+      Swal.fire({
+        title: `Usuario ${email} login exitoso`,
+        imageUrl: img2,
+        imageWidth: 100,
+        imageHeight: 100,
+        confirmButtonText: "Aceptar",
+        background: "white",
+        width: "40%",
+        heightAuto: false,
+        height: "1%",
+        padding: "3rem",
+        buttonsStyling: false,
+        customClass: {
+          title: "mesageAlert",
+          confirmButton: "buttonAlert",
+        },
+      });
       localStorage.setItem('email', email);
       dispatch(loginSuccess());
       navigate('/home');
@@ -48,7 +65,7 @@ const Login = () => {
     });
 
     const success = response.data;
-
+    
     if (success) {
       await Swal.fire({
         title: `Usuario ${email} login exitoso`,
@@ -68,6 +85,7 @@ const Login = () => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
+          localStorage.setItem('userId', success.userId)
           localStorage.setItem('email', email);
           dispatch(loginSuccess());
           navigate('/home');
