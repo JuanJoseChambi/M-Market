@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./User.module.css";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import empty from "../../assets/empty.svg"
 
@@ -100,7 +99,6 @@ function User() {
       products: obj.Prods,
       fecha : [year, month, day]
     }})
-    console.log(infoFiltered);
     setInfoPurchase(infoFiltered);
   }
   if (renderInterface === "detalles") {
