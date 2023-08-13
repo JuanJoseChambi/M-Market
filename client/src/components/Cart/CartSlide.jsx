@@ -95,7 +95,6 @@ import axios from "axios"
   };
 
   const handleGoToPayment = async () => {
-    await axios.post("/purchase", purchase)
     // Mostrar el diálogo de confirmación
     Swal.fire({
       title: "Confirmar compra",
@@ -106,9 +105,10 @@ import axios from "axios"
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, proceder",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then( async (result) => {
       if (result.isConfirmed) {
         setShowMercadoPago(true);
+        await axios.post("/purchase", purchase)
       }
     });
   };
