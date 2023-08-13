@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./User.module.css";
 import { NavLink } from "react-router-dom";
 import Updateusers from "./RenderView/Updateusers/Updateusers"
