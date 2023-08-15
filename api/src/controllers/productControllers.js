@@ -66,10 +66,8 @@ const createProduct = async (brand, name, price, unit, description, image, score
         where: { name: product.name }, // Busca si existe un producto con esa propiedad
         defaults: product // Y si no encuentra crea un producto con los valores de product
     });
-
-    if (!created) {
-        // Si el producto ya existe, se devuelve el producto
-        return newProduct;
+    if (!created) {//si es false es que esta creado, si e true es que no esta creado
+        return newProduct;// Si el producto ya existe, se devuelve el producto
     }
 
     // Si no existe se le agrega la categoria
