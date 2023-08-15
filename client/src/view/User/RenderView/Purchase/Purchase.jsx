@@ -41,7 +41,8 @@ function Purchase() {
           </div>
         )):(
         <div className={style.containerImage}>
-          <img src={empty} alt="Vacio" className={style.svgEmpty}/>
+          hola
+          {/* <img src={empty} alt="Vacio" className={style.svgEmpty}/> */}
         </div>
         )}
 </div>
