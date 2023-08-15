@@ -1,11 +1,15 @@
 
-const { createUser, consultUser, actualizar, getDataUser, getIdDataUser } = require("../controllers/userController");
+const { createUser, consultUser, actualizar, getDataUser, getIdDataUser, createUserGoogle } = require("../controllers/userController");
 
 const postUser = async (req, res) => {
-    const { name, lastname, email, password } = req.body;
+    const { name, lastname, email, password , userGoogle} = req.body;
     // consultar los nombres creados en la BD 
     // nombre, apellido, correo, contraseña, ususario, domicilio, telefono
     try {
+        if(email && userGoogle){
+            const response = await createUserGoogle(email);
+            return res.status(200).json(response);
+        }
         // Aqui debo encriptar la contraseña
         if (!name || !lastname || !email || !password) {
             return res.status(400).send("Datos incompletos")
