@@ -4,6 +4,21 @@ const bcrypt = require("bcryptjs");
 const { register } = require("../handlers/routerNodemailer")
 
 
+const createUserGoogle= async (email)=>{
+    const userExist  = await User.findOne({ where: { email } });
+    if (userExist) throw new Error("El usuario ya existe");
+    const userGoogle = {
+        name: "N/A",
+        lastname:"N/A",
+        email: email,
+        password:"N/A"
+    }
+    const regGoogle = await User.create(userGoogle)
+ 
+    return regGoogle;
+}
+
+
 const createUser = async (name, lastname, email, password) => {
 
     name = name.toUpperCase();
@@ -105,4 +120,4 @@ const getIdDataUser= async(id)=>{
 
 
 
-module.exports = { createUser, consultUser, actualizar, getDataUser, getIdDataUser }
+module.exports = { createUser, consultUser, actualizar, getDataUser, getIdDataUser, createUserGoogle }
