@@ -3,9 +3,12 @@ import style from "./User.module.css";
 import { NavLink } from "react-router-dom";
 import Updateusers from "./RenderView/Updateusers/Updateusers"
 import Purchase from "./RenderView/Purchase/Purchase";
+import AdminPanel from "./RenderAdminPanel/AdminPanel";
 
 function User() {
-  const [renderInterface, setRenderInterface] = useState("profile");
+  const [renderInterface, setRenderInterface] = useState("AdminPanel");
+  const accessAdmin = localStorage.getItem('email');
+
 
   let contentRender;
   if (renderInterface === "profile") {
@@ -13,6 +16,9 @@ function User() {
   }
   if (renderInterface === "detalles") {
     contentRender = <Purchase/>;
+  }
+  if (renderInterface === "AdminPanel") {
+    contentRender = <AdminPanel/>
   }
   
   return (
@@ -27,10 +33,16 @@ function User() {
         <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>
           Compras
         </button>
+        {accessAdmin === "admin@admin.admin"
+        ?(<button onClick={() => setRenderInterface("AdminPanel")} className={renderInterface === "AdminPanel"? style.btnsActive: style.btnsInactive}>
+          Panel de Admin
+          </button>)
+        :null } 
       </div>
       <div className={style.userInterface}>{contentRender}</div>
     </div>
   );
 }
-
+// admin@admin.admin
+// admin1admin
 export default User;

@@ -62,15 +62,22 @@ const createProduct = async (brand, name, price, unit, description, image, score
 
     //    console.log(product.image);
 
-    const newProduct = await Prod.create(product);
+    const [newProduct, created] = await Prod.findOrCreate({
+        where: { name: product.name }, // Busca si existe un producto con esa propiedad
+        defaults: product // Y si no encuentra crea un producto con los valores de product
+    });
+    if (!created) {//si es false es que esta creado, si e true es que no esta creado
+        return newProduct;// Si el producto ya existe, se devuelve el producto
+    }
 
-
+    // Si no existe se le agrega la categoria
     const categoryDB = await Category.findAll({
         where: { name: category }
-    })
-    newProduct.addCategory(categoryDB)
-    return newProduct;
+    });
 
+    await newProduct.addCategory(categoryDB);
+
+    return newProduct;
 }
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addToCart,
@@ -85,7 +85,7 @@ import axios from "axios"
   const isCartEmpty = cartItems.length === 0;
   const totalAmount = calculateTotal().toFixed(2);
 
-  const idProducts = (cartItems.map(producto => producto.id));
+  const idProducts = cartItems.map(producto => producto.id);
   const idUser = localStorage.getItem('userId');
   
   const purchase = {
@@ -93,6 +93,7 @@ import axios from "axios"
     userId: idUser,
     prodId: idProducts,
   };
+  console.log(idProducts);
 
   const handleGoToPayment = async () => {
     // Mostrar el diálogo de confirmación
@@ -152,14 +153,18 @@ import axios from "axios"
               Vaciar Carrito
           </button>
           <div className="cartSlide_link">
-              {!isCartEmpty && totalAmount > 0 && access && (
+              {!isCartEmpty && totalAmount > 0 && access ? (
               <button
                 className="go_to_pay"
                 onClick={handleGoToPayment}
               >
                 Ir a Pago
               </button>
-            )}
+            ): 
+            <NavLink to="/login">
+              <button className="go_to_pay">Ir a Pago</button>
+            </NavLink>
+            }
           </div>
         </div>
 
