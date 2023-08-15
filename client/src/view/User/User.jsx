@@ -20,7 +20,6 @@ function User() {
   if (renderInterface === "AdminPanel") {
     contentRender = <AdminPanel/>
   }
-  
   return (
     <div className={style.viewUser}>
       <NavLink to="/home">
