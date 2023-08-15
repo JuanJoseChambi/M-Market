@@ -6,7 +6,7 @@ import Purchase from "./RenderView/Purchase/Purchase";
 import AdminPanel from "./RenderAdminPanel/AdminPanel";
 
 function User() {
-  const [renderInterface, setRenderInterface] = useState("AdminPanel");
+  const [renderInterface, setRenderInterface] = useState("profile");
   const accessAdmin = localStorage.getItem('email');
 
 
@@ -20,7 +20,6 @@ function User() {
   if (renderInterface === "AdminPanel") {
     contentRender = <AdminPanel/>
   }
-  
   return (
     <div className={style.viewUser}>
       <NavLink to="/home">
@@ -44,5 +43,4 @@ function User() {
   );
 }
 // admin@admin.admin
-// admin1admin
 export default User;

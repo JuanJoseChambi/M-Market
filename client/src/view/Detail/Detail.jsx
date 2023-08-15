@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import style from "./Detail.module.css"
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/productsData";
 
 export default function Detail() {
     const { id } = useParams()
     const [products, setProducts] = useState({})
+    const dispatch = useDispatch()
 
     useEffect(() => {
       product()
@@ -13,9 +16,14 @@ export default function Detail() {
     async function product () {
       const { data } = await axios.get(`/product/${id}`);
       const {brand, description, image, name, price, score, unit } = data;
-      const infoProducts = {brand, description, image, name, price, score, unit};
+      const infoProducts = {id, brand, description, image, name, price, score, unit};
       setProducts(infoProducts)
     }
+
+    function handlerAddCart () {
+      dispatch(addToCart(products))
+    }
+
 
   return (
     <div className={style.detailView}>
@@ -38,7 +46,7 @@ export default function Detail() {
               {products.description}
               </div>
             <p className={style.priceProduct}>$ {products.price}</p>
-            {/*<button className={style.btn} onClick={handlerNotification}>Comprar</button> */}
+            <button className={style.btn} onClick={handlerAddCart}>Añadir</button>
         </div>
       </div>
       

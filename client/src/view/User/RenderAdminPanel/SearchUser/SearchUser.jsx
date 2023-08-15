@@ -28,7 +28,6 @@ function SearchUser() {
       products: obj.Prods,
       fecha : [year, month, day]
     }})
-    console.log(purchseFiltered);
     setInfoUserPurchase(purchseFiltered)
   }
   
