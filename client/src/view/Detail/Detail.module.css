@@ -128,7 +128,13 @@
   bottom: -5%;
   left: 0%;
 }
-
+.btn:hover{
+  background-color: #ff8000e3;
+  transform: translateY(3px);
+}
+.btn:active{
+  transform: translateY(6px);
+}
 /* -Proximo Demo------------------------------------------------------------
 .otherInfo{
     display: flex;
