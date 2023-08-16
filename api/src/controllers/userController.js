@@ -1,4 +1,4 @@
-const { User, Purchase, UserAdmin } = require('../db')
+const { User, Purchase, UserAdmin, Delivery } = require('../db')
 const bcrypt = require("bcryptjs");
 
 const { register } = require("../handlers/routerNodemailer")
@@ -118,6 +118,11 @@ const getDataUser = async() => {
               model: Purchase,
               as: "Purchase",
               attributes: ["monto"],
+            },
+            {
+              model: Delivery,
+              as: "Delivery",
+              attributes: [ "id","receives", "address", "phone", "pickUp", "delivery" ],
             },
               
               
