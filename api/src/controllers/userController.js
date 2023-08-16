@@ -69,6 +69,10 @@ const consultUser = async (email, password) => {
 
 
 const actualizar = async (id, updateUserData) => {
+    
+    const userPass = updateUserData.password
+    
+    const passwordHash = await bcrypt.hash(userPass, 10);
 
     const userToUpdate = await User.findByPk(id)
     if (!userToUpdate) {
@@ -77,7 +81,7 @@ const actualizar = async (id, updateUserData) => {
     userToUpdate.name = updateUserData.name || userToUpdate.name
     userToUpdate.lastname = updateUserData.lastname || userToUpdate.lastname
     userToUpdate.email = updateUserData.email || userToUpdate.email
-    userToUpdate.password = updateUserData.password || userToUpdate.password
+    userToUpdate.password = passwordHash || userToUpdate.password
 
     await userToUpdate.save()
     return userToUpdate
@@ -92,9 +96,9 @@ const getDataUser = async() => {
               model: Purchase,
               as: "Purchase",
               attributes: ["monto"],
-              
-              
             },
+              
+              
           
           ],
     })
