@@ -36,7 +36,7 @@ const getAllPurchase = async () => {
         include: [
           {
             model: Prod,
-            attributes: ["name"],
+            attributes: ["name", "id"],
             through: {
               attributes: [],
             },

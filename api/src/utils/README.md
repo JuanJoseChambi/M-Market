@@ -55,3 +55,5 @@ y mandando por boby
   "userGoogle": true
 }
 
+**ruta de estadisticas-> prod mas vendidos**
+hacer un get en http://localhost:3001/stadistics
