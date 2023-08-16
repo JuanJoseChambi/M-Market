@@ -8,7 +8,8 @@ import Product from "../../components/Product/Product";
 import Carousel from "../../components/Carousel/Carousel";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
-
+import { clearCart } from "../../redux/slices/productsData";
+import axios from "axios";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -21,7 +22,23 @@ export default function Home() {
   const firstIndex = lastIndex - cardsInPage;
   const cardsShowed = products.slice(firstIndex, lastIndex);
 
+  const storedProducts = JSON.parse(localStorage.getItem("PurchaseInfo"));
+  const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
+  async function purchaseUser () {  
+    await axios.post("/purchase", storedProducts);
+    if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
+    
+  }
+  console.log(storedProducts)
+  console.log(notificationConfirmed)
+
   useEffect(() => {
+    if (window.location.search.includes("status=approved")) {
+      purchaseUser()
+      dispatch(clearCart())
+      localStorage.removeItem("PurchaseInfo")
+      localStorage.removeItem("preferenceMP")
+    }
     dispatch(allProducts());
     dispatch(setCategory())
   }, []);
@@ -29,7 +46,7 @@ export default function Home() {
   return (
     <div id="Home">
       <div>
-        <Nav />
+        <Nav/>
         
         <Carousel />
         

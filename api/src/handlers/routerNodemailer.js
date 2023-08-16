@@ -13,8 +13,8 @@ oAuth2Client.setCredentials({
   refresh_token: REFRESH_TOKEN,
 });
 
-const sendMail = async ({ name, price, quantity, email }) => {   //falta el email al que se va a enviar
-    
+const sendMail = async (req, res) => {   
+  const { description, price, quantity, email } = req.body
   try {
     const accessToken = await oAuth2Client.getAccessToken();
 
@@ -121,7 +121,7 @@ const sendMail = async ({ name, price, quantity, email }) => {   //falta el emai
                 <img class="Imagen" src="https://res.cloudinary.com/dvu3hvpzu/image/upload/v1691689314/p5mzh6ueddaacipen4s9.jpg" alt="Imagen">
               </div>          
                 <div class="ContainerInfo">
-                  <h3 class="h3Info">${name} <br/></h3>
+                  <h3 class="h3Info">${description} <br/></h3>
                   <p class="pInfo">Total:$ ${price} </br></p>
                   <p class="pInfo">Cantidad:${quantity}</p>
                 </div>
@@ -139,10 +139,9 @@ const sendMail = async ({ name, price, quantity, email }) => {   //falta el emai
 
     await transporter.sendMail(mailOptions);
 
-    console.log("Correo electrónico enviado con éxito");
+    res.status(200).json({ message: "Correo enviado con éxito" });
   } catch (error) {
-    console.error("Error al enviar el correo electrónico:", error);
-    throw error; // Lanzar el error para que pueda ser manejado en el controlador
+    res.status(500).json({ message: error.message });
   }
 };
 

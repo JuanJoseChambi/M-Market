@@ -22,11 +22,11 @@ const MercadoPago = ({ totalAmount }) => {
         const { id } = response.data;
         setPreferenceId(id);
         setPaymentCompleted(true);
+        localStorage.setItem("preferenceMP", JSON.stringify({description:"Compra en M-Market", price: totalAmount, quantity: 1, email: email}));
       } catch (error) {
         console.log(error);
       }
     };
-
     fetchPreference();
   }, [totalAmount]);
 

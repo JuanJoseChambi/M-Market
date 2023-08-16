@@ -32,13 +32,13 @@ function Purchase() {
     <div className={style.updateInfo}>
     <h2 className={style.titleSection}>Compras Realizadas</h2>
         {infoPurchase ? infoPurchase.map((purchase, i) => (
-          <div key={i} className={style.containerPurchase}>
-            <div className={style.containerFecha}>{purchase.fecha.map((fecha, i) => <p key={i} className={style.fecha}>{fecha}</p>)}</div>
-            <div className={style.viewPurchase}>
-              <div className={style.containerNames}>{purchase.products.map((prod, i) => (<h5 key={i} className={style.nameProds}>{prod.name}</h5>))}</div>
-              <b className={style.totalPrice}>Total: {purchase.monto}</b>
-            </div>
+          purchase.monto === 0 ? null : (<div key={i} className={style.containerPurchase}>
+          <div className={style.containerFecha}>{purchase.fecha.map((fecha, i) => <p key={i} className={style.fecha}>{fecha}</p>)}</div>
+          <div className={style.viewPurchase}>
+            <div className={style.containerNames}>{purchase.products.map((prod, i) => (<h5 key={i} className={style.nameProds}>{prod.name}</h5>))}</div>
+            <b className={style.totalPrice}>Total: {purchase.monto}</b>
           </div>
+        </div>)
         )):(
         <div className={style.containerImage}>
           hola
