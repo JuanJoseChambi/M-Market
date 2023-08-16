@@ -40,7 +40,7 @@ const updateUser = async (req, res) => {
     const { id } = req.params
     const updateUserData = req.body;
     try {
-        const usuarioActualizado = actualizar(id, updateUserData)
+        const usuarioActualizado = await actualizar(id, updateUserData)
         res.status(201).json(usuarioActualizado)
     } catch (error) {
         res.status(400).json({ error: error.message });
