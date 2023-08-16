@@ -136,3 +136,75 @@
     justify-content: center;
     align-items: center;
 }
+.delivery_option {
+   
+    background-color: #47C7FC;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .delivery_form {
+    font-family:  'Poppins', sans-serif;
+    background-color: #47C7FC;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .delivery_input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  .delivery_label {
+    
+    display: block;
+    margin-top: 10px;
+    font-family:'Poppins', sans-serif;
+
+  }
+  
+  .delivery_radio {
+    margin-right: 5px;
+   
+  }
+
+  .delivery_option_label {
+    display: flex; /* Cambiar a flex para alinear elementos horizontalmente */
+    gap: 5px;  /* Centrar verticalmente */
+    margin-bottom: 10px; /* Separación inferior entre labels */
+  }
+  
+  .delivery_option_label input[type="radio"] {
+    margin-right: 10px; /* Espaciado derecho entre el radio y el texto */
+  }
+  
+  /* Estilos para los botones */
+.button_clear_cart,
+.go_to_pay {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para el botón Ir a Pago habilitado */
+.go_to_pay.enabled {
+  background-color: #ffffff;
+  
+}
+
+/* Estilos para el botón Ir a Pago deshabilitado */
+.go_to_pay.disabled {
+  background-color: #ff4d07; 
+  color: #ffffff;
+  cursor: not-allowed;
+}

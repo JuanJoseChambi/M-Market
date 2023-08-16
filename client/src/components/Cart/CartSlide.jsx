@@ -11,14 +11,20 @@ import {
 import "./cartslide.css";
 import MercadoPago from "../MercadoPago/MercadoPago";
 import Swal from "sweetalert2";
-import { BsCart4 } from 'react-icons/bs';
+import { BsCart4 } from "react-icons/bs";
 
-  const CartSlide = () => {
+const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
   const [showMercadoPago, setShowMercadoPago] = useState(false);
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const access = localStorage.getItem('email');
+  const [deliveryOption, setDeliveryOption] = useState("local"); // local o delivery
+  const [deliveryInfo, setDeliveryInfo] = useState({
+    receiverName: "",
+    deliveryAddress: "",
+    contactPhone: "",
+  });
+  const access = localStorage.getItem("email");
 
   const handleIncrement = (item) => {
     dispatch(incrementQuantity(item.id));
@@ -45,7 +51,6 @@ import { BsCart4 } from 'react-icons/bs';
       });
     }
   };
-  
 
   const handleRemove = (item) => {
     dispatch(removeFromCart(item.id));
@@ -66,17 +71,41 @@ import { BsCart4 } from 'react-icons/bs';
   const isCartEmpty = cartItems.length === 0;
   const totalAmount = calculateTotal().toFixed(2);
 
-  const idProducts = cartItems.map(producto => producto.id);
-  const idUser = localStorage.getItem('userId');
-  
+  const idProducts = cartItems.map((producto) => producto.id);
+  const idUser = localStorage.getItem("userId");
+
   const purchase = {
     monto: totalAmount,
     userId: idUser,
     prodId: idProducts,
   };
 
+  const handleDeliveryOptionChange = (option) => {
+    setDeliveryOption(option);
+  };
+
+  const handleDeliveryInfoChange = (field, value) => {
+    setDeliveryInfo((prevInfo) => ({
+      ...prevInfo,
+      [field]: value,
+    }));
+  };
+
   const handleGoToPayment = async () => {
-    // Mostrar el diálogo de confirmación
+    if (deliveryOption === "delivery") {
+      if (
+        !deliveryInfo.receiverName ||
+        !deliveryInfo.deliveryAddress ||
+        !deliveryInfo.contactPhone
+      ) {
+        Swal.fire(
+          "Campos incompletos",
+          "Por favor completa todos los campos de entrega.",
+          "error"
+        );
+        return;
+      }
+    }
     Swal.fire({
       title: "Confirmar compra",
       text: "¿Estás seguro de proceder con la compra?",
@@ -86,10 +115,9 @@ import { BsCart4 } from 'react-icons/bs';
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, proceder",
       cancelButtonText: "Cancelar",
-    }).then( async (result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         setShowMercadoPago(true);
-        
       }
     });
   };
@@ -101,7 +129,9 @@ import { BsCart4 } from 'react-icons/bs';
     if (savedCart) {
       savedCart.forEach((item) => {
         // Verifica si el elemento ya está en el carrito actual
-        const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+        const isItemInCart = cartItems.some(
+          (cartItem) => cartItem.id === item.id
+        );
         if (!isItemInCart) {
           dispatch(addToCart(item));
         }
@@ -112,7 +142,9 @@ import { BsCart4 } from 'react-icons/bs';
   return (
     <div className="cartSlide_container">
       <div className="cartSlide_allItems">
-        <h1 className="cartSlide_title"><BsCart4 className="svg"/> Mi Carrito</h1>
+        <h1 className="cartSlide_title">
+          <BsCart4 className="svg" /> Mi Carrito
+        </h1>
         <hr />
         <div className="cartSlide_items">
           <ul>
@@ -139,33 +171,106 @@ import { BsCart4 } from 'react-icons/bs';
             ))}
           </ul>
         </div>
-        
+
         <div className="cartSlide_total">
           <p>Total: ${calculateTotal().toFixed(2)}</p>
         </div>
+        <div className="delivery_option">
+          <label className="delivery_option_label">
+            <input
+              type="radio"
+              value="local"
+              checked={deliveryOption === "local"}
+              onChange={() => handleDeliveryOptionChange("local")}
+            />
+            Retirar en local
+          </label>
+
+          <label className="delivery_option_label">
+            <input
+              type="radio"
+              value="delivery"
+              checked={deliveryOption === "delivery"}
+              onChange={() => handleDeliveryOptionChange("delivery")}
+            />
+            Enviar a domicilio
+          </label>
+        </div>
+
+        {deliveryOption === "delivery" && (
+          <div className="delivery_form">
+            <h2>Datos de Entrega</h2>
+            <label className="delivery_label">
+              Nombre de quien recibe
+              <input
+                type="text"
+                placeholder="Nombre de quien recibe"
+                value={deliveryInfo.receiverName}
+                onChange={(e) =>
+                  handleDeliveryInfoChange("receiverName", e.target.value)
+                }
+                className="delivery_input"
+              />
+            </label>
+            <label className="delivery_label">
+              Dirección de entrega
+              <input
+                type="text"
+                placeholder="Dirección de entrega"
+                value={deliveryInfo.deliveryAddress}
+                onChange={(e) =>
+                  handleDeliveryInfoChange("deliveryAddress", e.target.value)
+                }
+                className="delivery_input"
+              />
+            </label>
+            <label className="delivery_label">
+              Teléfono de contacto
+              <input
+                type="text"
+                placeholder="Teléfono de contacto"
+                value={deliveryInfo.contactPhone}
+                onChange={(e) => {
+                  const onlyNumbers = e.target.value.replace(/\D/g, ""); // Elimina cualquier carácter que no sea número
+                  handleDeliveryInfoChange("contactPhone", onlyNumbers);
+                }}
+                className="delivery_input"
+                pattern="[0-9]*" // Asegura que solo se ingresen números
+              />
+            </label>
+          </div>
+        )}
+
         <div className="buttons_cart_container">
           <button onClick={handleClearCart} className="button_clear_cart">
-              Vaciar Carrito
+            Vaciar Carrito
           </button>
           <div className="cartSlide_link">
-              {!isCartEmpty && totalAmount > 0 && access ? (
+            {!isCartEmpty && totalAmount > 0 && access ? (
               <button
-                className="go_to_pay"
+                className={`go_to_pay ${
+                  deliveryOption === "delivery" &&
+                  (!deliveryInfo.receiverName ||
+                    !deliveryInfo.deliveryAddress ||
+                    !deliveryInfo.contactPhone)
+                    ? "disabled"
+                    : "enabled"
+                }`}
                 onClick={handleGoToPayment}
               >
                 Ir a Pago
               </button>
-            ): 
-            <NavLink to="/login">
-              <button className="go_to_pay">Ir a Pago</button>
-            </NavLink>
-            }
+            ) : (
+              <NavLink to="/login">
+                <button className="go_to_pay">Ir a Pago</button>
+              </NavLink>
+            )}
           </div>
         </div>
 
         <br />
 
-        {showMercadoPago && <MercadoPago totalAmount={totalAmount}  />}
+        {showMercadoPago && <MercadoPago totalAmount={totalAmount} />}
       </div>
     </div>
   );
