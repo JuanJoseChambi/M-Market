@@ -39,10 +39,15 @@ const Login = () => {
           confirmButton: "buttonAlert",
         },
       });
+      const {data} = await axios.get("/user");
+      const userGGle = data.find(user => user.email === email)
       localStorage.setItem('email', email);
+      localStorage.setItem('userId', userGGle.id)
       dispatch(loginSuccess());
       navigate('/home');
-      await axios.post("/notification/register", {email: email})
+      if (!userGGle) {
+        await axios.post("/user", {email: email, userGoogle: true})
+      }
     } catch (error) {
       console.error('Error during login:', error);
     }

@@ -1,4 +1,3 @@
-const { sendMail } = require("../routerNodemailer")
 const mercadopago = require("mercadopago");
 
 // REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
@@ -40,7 +39,6 @@ const payHandler = async (req, res) => {
 	try {
 		const response = await mercadopago.preferences.create(preference);
 		const preferenceId = response.body.id;
-		await sendMail({ name: req.body.description, price: req.body.price, quantity: req.body.quantity, email: req.body.email});
 		res.json({ id: preferenceId });
 	  } catch (error) {
 		console.error("Error:", error);

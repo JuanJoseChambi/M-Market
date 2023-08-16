@@ -19,6 +19,8 @@ const Nav = () => {
   const access = localStorage.getItem('email');
   const showCart = () => {
     setOpenedCart(!openedCart);
+    localStorage.removeItem("PurchaseInfo")
+    // localStorage.removeItem("preferenceMP")
   };
   useEffect(() => {
     setProductsInCart(prod)

@@ -7,6 +7,7 @@ const { register } = require("../handlers/routerNodemailer")
 const createUserGoogle= async (email)=>{
     const userExist  = await User.findOne({ where: { email } });
     if (userExist) throw new Error("El usuario ya existe");
+    if (!userExist) await register(email);
     const userGoogle = {
         name: "N/A",
         lastname:"N/A",
