@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const routerProduct = require('./routerProduct');
 const purchaseR = require('./purchase.routes')
+const routerStadistics = require("./stadistics")
 
 const pay = require('./mp.routes')
 
@@ -20,6 +21,7 @@ router.use('/product', routerProduct);
 router.use('/user',routerUser)
 router.use('/pay', pay)
 router.use('/purchase', purchaseR)
+router.use("/stadistics", routerStadistics)
 
 
 
