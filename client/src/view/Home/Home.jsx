@@ -29,8 +29,6 @@ export default function Home() {
     if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
     
   }
-  console.log(storedProducts)
-  console.log(notificationConfirmed)
 
   useEffect(() => {
     if (window.location.search.includes("status=approved")) {
