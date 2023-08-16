@@ -1,4 +1,4 @@
-const { User, Purchase } = require('../db')
+const { User, Purchase, UserAdmin } = require('../db')
 const bcrypt = require("bcryptjs");
 
 const { register } = require("../handlers/routerNodemailer")
@@ -44,27 +44,48 @@ const createUser = async (name, lastname, email, password) => {
 
 
 const consultUser = async (email, password) => {
+    let userA = await UserAdmin.findAll()
+    const filterAdmin = userA.find(item=> item.email===email)
+    
+    if(filterAdmin){
+        const aux2 = filterAdmin.password
+        const adminId = filterAdmin.id
+        const emcrip = await bcrypt.compare(password, aux2)
+        let pass1 = { access: true, admin: true, adminId: adminId }
+       
+        if(!emcrip){
+            throw new Error("contraseña de administrador incorrecta")
+        }else{
+            return pass1
+        }
+    }
+    
     let user = await User.findAll({ where: { email } })
     let userP = user[0].password
     let userPiD = user[0].id
-
-    // console.log(userP);
-
+    
     if (!user) return "no existe el usuario"
-
-    let pass = { access: true, userId: userPiD }
-
+    let pass = { access: true, admin: false ,userId: userPiD }
     const aux = await bcrypt.compare(password, userP)
-    //  console.log(aux);
-
-   
     const res = aux ? pass : {access: false}
 
-
-
-
     return res
+
 }
+    
+   
+
+    
+    
+
+
+
+
+   
+
+
+
+
 
 
 

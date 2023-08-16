@@ -57,3 +57,28 @@ y mandando por boby
 
 **ruta de estadisticas-> prod mas vendidos**
 hacer un get en http://localhost:3001/stadistics
+
+
+## **rutas para el login de usuadios o administradores 🦍**
+en la carpeta utils de back, encontraran un archivo llamado userAdmin, en cual en la linea 5 econtraran un array en donde deveran poner sus respectivos email de adminstradores y guardar...
+ruta post en http://localhost:3001/user/login
+##  **desde el body**
+
+ - "email": "jonny@hotmail.com",
+ - "password": "code123"
+
+
+## **para logearte... admin/noAdmin**
+
+- **Admin** tendras esta response:
+
+ - "access": true,
+ - "admin": true,
+ - "adminId": "4bc638a0-2244-4610-9db4-7679bfaf617b"
+
+
+**no Admin** tendras esta response:
+
+- "access": true,
+- "admin": false,
+-  "userId": "a58b92a6-452a-424f-bfa2-3ac581e938d9"
