@@ -12,7 +12,6 @@ import "./cartslide.css";
 import MercadoPago from "../MercadoPago/MercadoPago";
 import Swal from "sweetalert2";
 import { BsCart4 } from 'react-icons/bs';
-import axios from "axios"
 
   const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
@@ -20,20 +19,6 @@ import axios from "axios"
   const [showMercadoPago, setShowMercadoPago] = useState(false);
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const access = localStorage.getItem('email');
-
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart"));
-    if (savedCart) {
-      savedCart.forEach((item) => {
-        // Verifica si el elemento ya está en el carrito actual
-        const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
-        if (!isItemInCart) {
-          dispatch(addToCart(item));
-        }
-      });
-    }
-  }, [cartItems, dispatch]);
-  
 
   const handleIncrement = (item) => {
     dispatch(incrementQuantity(item.id));
@@ -78,10 +63,6 @@ import axios from "axios"
     return cartItems.reduce((total, item) => total + subtotal(item), 0);
   };
 
-  // if (isAuthenticated === undefined) {
-  //   return null; // O podrías mostrar un spinner de carga u otro indicador
-  // }
-
   const isCartEmpty = cartItems.length === 0;
   const totalAmount = calculateTotal().toFixed(2);
 
@@ -93,7 +74,6 @@ import axios from "axios"
     userId: idUser,
     prodId: idProducts,
   };
-  console.log(idProducts);
 
   const handleGoToPayment = async () => {
     // Mostrar el diálogo de confirmación
@@ -109,10 +89,25 @@ import axios from "axios"
     }).then( async (result) => {
       if (result.isConfirmed) {
         setShowMercadoPago(true);
-        await axios.post("/purchase", purchase)
+        
       }
     });
   };
+
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart"));
+    localStorage.setItem("PurchaseInfo", JSON.stringify(purchase));
+
+    if (savedCart) {
+      savedCart.forEach((item) => {
+        // Verifica si el elemento ya está en el carrito actual
+        const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+        if (!isItemInCart) {
+          dispatch(addToCart(item));
+        }
+      });
+    }
+  }, [cartItems, dispatch]);
 
   return (
     <div className="cartSlide_container">

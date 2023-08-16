@@ -4,6 +4,22 @@ const bcrypt = require("bcryptjs");
 const { register } = require("../handlers/routerNodemailer")
 
 
+const createUserGoogle= async (email)=>{
+    const userExist  = await User.findOne({ where: { email } });
+    if (userExist) throw new Error("El usuario ya existe");
+    if (!userExist) await register(email);
+    const userGoogle = {
+        name: "N/A",
+        lastname:"N/A",
+        email: email,
+        password:"N/A"
+    }
+    const regGoogle = await User.create(userGoogle)
+ 
+    return regGoogle;
+}
+
+
 const createUser = async (name, lastname, email, password) => {
 
     name = name.toUpperCase();
@@ -54,6 +70,10 @@ const consultUser = async (email, password) => {
 
 
 const actualizar = async (id, updateUserData) => {
+    
+    const userPass = updateUserData.password
+    
+    const passwordHash = await bcrypt.hash(userPass, 10);
 
     const userToUpdate = await User.findByPk(id)
     if (!userToUpdate) {
@@ -62,7 +82,7 @@ const actualizar = async (id, updateUserData) => {
     userToUpdate.name = updateUserData.name || userToUpdate.name
     userToUpdate.lastname = updateUserData.lastname || userToUpdate.lastname
     userToUpdate.email = updateUserData.email || userToUpdate.email
-    userToUpdate.password = updateUserData.password || userToUpdate.password
+    userToUpdate.password = passwordHash || userToUpdate.password
 
     await userToUpdate.save()
     return userToUpdate
@@ -77,9 +97,9 @@ const getDataUser = async() => {
               model: Purchase,
               as: "Purchase",
               attributes: ["monto"],
-              
-              
             },
+              
+              
           
           ],
     })
@@ -105,4 +125,4 @@ const getIdDataUser= async(id)=>{
 
 
 
-module.exports = { createUser, consultUser, actualizar, getDataUser, getIdDataUser }
+module.exports = { createUser, consultUser, actualizar, getDataUser, getIdDataUser, createUserGoogle }

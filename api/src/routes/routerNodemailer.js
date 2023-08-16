@@ -1,8 +1,8 @@
 const { Router } = require("express");
-const { thirdPartyRegistration } = require('../handlers/routerNodemailer')
+const { sendMail } = require('../handlers/routerNodemailer')
 
 const routerNodemailer = Router();
 
-routerNodemailer.post("/register", thirdPartyRegistration);
+routerNodemailer.post("/purchase", sendMail)
 
 module.exports = routerNodemailer

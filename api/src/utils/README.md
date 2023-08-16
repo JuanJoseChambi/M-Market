@@ -43,3 +43,17 @@ para poder ver las compras, quien compro, y que compro
 get en http://localhost:3001/user/
 
 trae todo
+
+
+**para capturar el email que viene de google**
+haciend un post en http://localhost:3001/user
+
+y mandando por boby
+
+{
+  "email":"jonnytapias55@hotmail.com",  
+  "userGoogle": true
+}
+
+**ruta de estadisticas-> prod mas vendidos**
+hacer un get en http://localhost:3001/stadistics
