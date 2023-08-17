@@ -76,10 +76,12 @@
 
 .nav_menu {
   background-color: #ff8000;
-  width: 250px;
+  min-width: 250px; /* Establece un ancho mínimo */
+  max-width: 300px; /* Establece un ancho máximo */
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  justify-content: start;
   position: fixed;
   top: 0;
   left: -100%;
@@ -90,6 +92,7 @@
   left: 0;
   transition: 350ms;
 }
+
 
 .sidebar_text {
   display: flex;
@@ -156,21 +159,24 @@ span {
   text-decoration: none;
   color: white;
   font-size: 17px;
-  width: 95%;
-  height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 0;
+  padding: 8px 16px; /* Agrega relleno para crear espacio alrededor del texto */
   border: none;
   background: none;
   border-radius: 5px;
   font-family: "Poppins";
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  overflow: hidden; /* Oculta el texto que desborda */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto desbordado */
+  transition: background-color 0.3s;
 }
 
 .sidebar_button:hover {
   background-color: #47c7fc;
   cursor: pointer;
 }
+
 
 /* ------ CART ------ */
 .cart_menu {

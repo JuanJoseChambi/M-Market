@@ -1,10 +1,10 @@
-const {getIdRepetidos} = require("../controllers/stadisticsController")
+const { getInfo } = require("../controllers/stadisticsController")
 
 
 const getProductoMasVendido = async (req, res) => {
     try {
 
-        const getAll = await getIdRepetidos()
+        const getAll = await getInfo()
 
         res.status(201).json(getAll)
     } catch (error) {
