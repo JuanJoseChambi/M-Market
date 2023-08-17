@@ -1,18 +1,39 @@
-//import {useState} from 'react'
+import {useState} from 'react'
 import { Bar, Pie, Line } from 'react-chartjs-2'
 import TotalSales from './TotalSales'
 import BestSellingProducts from './BestSellingProducts'
 import AmountSales from './AmountSales'
 import {Chart as ChartJS} from 'chart.js/auto'
+import { useEffect } from 'react'
+import axios from 'axios'
 
 
 function Statistics() {
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/stadistics');
+        const data = response.data;
+        setData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
+
+  
 
   const dataBar={
     labels:TotalSales.map((item)=>item.month),
     datasets:[
       {
-        label:'Ventas año 2023',
+        label:'Monto Ventas Año 2023',
         backgroundColor:'green',
         borderColor:'rgba(255, 99, 132, 1)',
         borderWidth:1,
@@ -24,7 +45,7 @@ function Statistics() {
   }
 
   const dataPie={
-    labels:BestSellingProducts.map((item)=>item.product),
+    labels:data.map((item)=>item.name),
     datasets:[
       {
         label:'Productos mas vendidos del año 2023',
@@ -33,7 +54,7 @@ function Statistics() {
         borderWidth:1,
         hoverBackgroundColor:'rgba(255, 99, 132, 0.8)',
         hoverBorderColor:'rgba(255, 99, 132, 1)',
-        data:BestSellingProducts.map((item)=>item.quantity)
+        data:data.map((item)=>item.count)
   }
     ]
   }
@@ -52,11 +73,6 @@ function Statistics() {
   }
     ]
   }
-
-
-
-
-
 
   return (
     <div>

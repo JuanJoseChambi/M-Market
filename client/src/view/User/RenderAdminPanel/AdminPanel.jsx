@@ -31,6 +31,7 @@ function AdminPanel() {
       </div>
       <div className={style.adminInterface}>
         {contentRender}
+
       </div>
     </div>
   );
