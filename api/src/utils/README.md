@@ -82,3 +82,25 @@ ruta post en http://localhost:3001/user/login
 - "access": true,
 - "admin": false,
 -  "userId": "a58b92a6-452a-424f-bfa2-3ac581e938d9"
+
+
+## **como agregar datos para hacer delivery**
+
+- tenemos que hacer un post en la ruta "http://localhost:3001/delivery"
+-y enviarle los parametros de esta manera:
+- el user id debe ser de un usuario ya registrado
+<br/>
+
+{ <br/>
+  "receives": "Blade", <br/>
+  "address": "cazador de vampiritos", <br/>
+  "phone": "5047788", <br/>
+  "pickUp": "No", <br/>
+  "delivery": "yes", <br/>
+  "userID":"e74161a1-28ca-4b80-a184-508d4e337dc4"<br/>
+}<br/>
+
+
+## **Podemos traer todos los usuarios y veriamos el modelo Delivery incluido**
+- haremos una peticion a la siguiente get en url -> http://localhost:3001/user
+- podemos buscar por id ej: http://localhost:3001/user/6d221ecd-4049-4cae-bd67-c02a9ad61022
