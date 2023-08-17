@@ -20,7 +20,7 @@ const Nav = () => {
   const showCart = () => {
     setOpenedCart(!openedCart);
     localStorage.removeItem("PurchaseInfo")
-    // localStorage.removeItem("preferenceMP")
+    localStorage.removeItem("preferenceMP")
   };
   useEffect(() => {
     setProductsInCart(prod)

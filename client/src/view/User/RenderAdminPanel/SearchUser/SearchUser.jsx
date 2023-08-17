@@ -69,11 +69,11 @@ function SearchUser() {
         <div className={style.viewPurchse}> 
         <button className={style.btnExitUserPurchase} onClick={() => setPurchseId("")}><i class='bx bx-x-circle' ></i></button>
           {infoUserPurchase.map((purchase, i) => (
-            purchase.monto === 0 ? null :
+            purchase.monto === 0 || purchase.name === null? null :
           (<div key={i} className={style.containerPurchase}>
             <div className={style.containerFecha}>{purchase.fecha.map((fecha, i) => <p key={i} className={style.fecha}>{fecha}</p>)}</div>
             <div className={style.viewPurchase}>
-              <div className={style.containerNames}>{purchase.products.map((prod, i) => (<h5 key={i} className={style.nameProds}>{prod.name}</h5>))}</div>
+              <div className={style.containerNames}>{purchase.products.map((prod, i) => (<p key={i} className={style.nameProds}>{prod.name}</p>))}</div>
               <b className={style.totalPrice}>Total: {purchase.monto}</b>
             </div>
           </div>)

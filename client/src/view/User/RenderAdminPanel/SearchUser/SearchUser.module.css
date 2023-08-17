@@ -5,7 +5,7 @@
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    min-height: 50vh;
+    min-height: 100vh;
     /* background-color: purple; */
 }
 .searchInput{
@@ -44,9 +44,9 @@
 }
 .viewCards{
     display: flex;
-    flex-direction: column;
     justify-content: start;
     align-items: center;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
     min-height: 50vh;
@@ -81,12 +81,13 @@
 /* ------------------------------------------------------------------ */
 .viewPurchse{
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     width: 100%;
     min-height: 50vh;
     position: relative;
+    /* background-color: violet; */
 }
 .btnExitUserPurchase{
     border: 0;
@@ -105,7 +106,7 @@
     align-items: center;
     flex-direction: column;
     width: 80%;
-    /* background-color: #ff8000; */
+    background-color: #ff8000;
     border-radius: 10px;
     margin: 10px 0;
     border: 1px solid rgba(0, 0, 0, 0.227);
@@ -138,8 +139,8 @@
     display: flex;
     flex-direction: column;
     width: 85%;
+    padding: 5px;
     /* background-color: rgb(53, 53, 227); */
-    padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.227);
     border-radius: 10px 0 0 10px;
   }
