@@ -1,4 +1,4 @@
-const { User, Purchase, UserAdmin, Delivery } = require('../db')
+const { User, Purchase, UserAdmin, Delivery, Review } = require('../db')
 const bcrypt = require("bcryptjs");
 
 const { register } = require("../handlers/routerNodemailer")
@@ -74,21 +74,6 @@ const consultUser = async (email, password) => {
 
 }
     
-   
-
-    
-    
-
-
-
-
-   
-
-
-
-
-
-
 
 const actualizar = async (id, updateUserData) => {
     
@@ -124,16 +109,18 @@ const getDataUser = async() => {
               as: "Delivery",
               attributes: [ "id","receives", "address", "phone", "pickUp", "delivery" ],
             },
+            {
+              model: Review,
+              as: "Review",
+              attributes: [ "review" ],
+            },
               
+        ],
               
-          
-          ],
     })
-
-     return allUser
+    return allUser
 };
-
-
+          
 
 const getIdDataUser= async(id)=>{
      let aux = await getDataUser()

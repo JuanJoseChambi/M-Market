@@ -84,11 +84,13 @@ ruta post en http://localhost:3001/user/login
 -  "userId": "a58b92a6-452a-424f-bfa2-3ac581e938d9"
 
 
-## **como agregar datos para hacer delivery**
+## **Deliverys**
 
-- tenemos que hacer un post en la ruta "http://localhost:3001/delivery"
--y enviarle los parametros de esta manera:
-- el user id debe ser de un usuario ya registrado
+- haremos una peticion **post** a la siguiente url ->"http://localhost:3001/delivery"
+- haremos una peticion **get** a la siguiente url ->"http://localhost:3001/delivery"
+- haremos una peticion **get** a la siguiente url ->"http://localhost:3001/user"
+- haremos una peticion **get** a la siguiente url ->http://localhost:3001/user/6d221ecd-4049-4cae-bd67-c02a9ad61022
+- y enviandole como parametros los siguientes datos por body:
 <br/>
 
 { <br/>
@@ -97,10 +99,28 @@ ruta post en http://localhost:3001/user/login
   "phone": "5047788", <br/>
   "pickUp": "No", <br/>
   "delivery": "yes", <br/>
-  "userID":"e74161a1-28ca-4b80-a184-508d4e337dc4"<br/>
+  "userEmail":"abcd@gmail.com"<br/>
 }<br/>
 
 
-## **Podemos traer todos los usuarios y veriamos el modelo Delivery incluido**
-- haremos una peticion a la siguiente get en url -> http://localhost:3001/user
-- podemos buscar por id ej: http://localhost:3001/user/6d221ecd-4049-4cae-bd67-c02a9ad61022
+
+
+
+
+## **Reviews**
+
+- haremos una peticion **post** a la siguiente en url -> http://localhost:3001/reviews
+- haremos una peticion **get** a la siguiente url -> http://localhost:3001/reviews 
+- haremos una peticion **get** a la siguiente url -> http://localhost:3001/user 
+- haremos una peticion **get** a la siguiente url ->http://localhost:3001/user/6d221ecd-4049-4cae-bd67-c02a9ad61022
+<br/>
+
+**Datos a ingresar por body** <br/>
+{<br/>
+  "userEmail": "abcd@gmail.com",<br/>
+  "review":"hola como te va  "<br/>
+}<br/>
+
+
+
+
