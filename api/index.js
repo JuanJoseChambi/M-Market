@@ -24,7 +24,7 @@ const CategoryBD = require('./src/utils/categories.js')
 const Admin = require('./src/utils/userAdmin.js')
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     ChargedDB()
     CategoryBD()

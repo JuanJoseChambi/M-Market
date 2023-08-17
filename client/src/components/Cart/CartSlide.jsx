@@ -21,9 +21,12 @@ const CartSlide = () => {
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [deliveryOption, setDeliveryOption] = useState("local"); // local o delivery
   const [deliveryInfo, setDeliveryInfo] = useState({
-    receiverName: "",
-    deliveryAddress: "",
-    contactPhone: "",
+    receives: "",
+    address: "",
+    phone: "",
+    pickUp: "",
+    delivery: "",
+    userEmail: "",
   });
   const access = localStorage.getItem("email");
 
@@ -92,14 +95,12 @@ const CartSlide = () => {
     }));
   };
 
-  
-
   const handleGoToPayment = async () => {
     if (deliveryOption === "delivery") {
       if (
-        !deliveryInfo.receiverName ||
-        !deliveryInfo.deliveryAddress ||
-        !deliveryInfo.contactPhone
+        !deliveryInfo.receives ||
+        !deliveryInfo.address ||
+        !deliveryInfo.phone
       ) {
         Swal.fire({
           text: "Por favor completa todos los campos de entrega.",
@@ -110,23 +111,16 @@ const CartSlide = () => {
         return;
       }
 
-      console.log("Datos de entrega a enviar:", {
-        receiverName: deliveryInfo.receiverName,
-        deliveryAddress: deliveryInfo.deliveryAddress,
-        contactPhone: deliveryInfo.contactPhone,
-        purchaseInfo: purchase,
-      });
-
-
       // Si todos los campos de entrega están completos, envía los datos al backend
       try {
         await axios.post("/delivery", {
-          receiverName: deliveryInfo.receiverName,
-          deliveryAddress: deliveryInfo.deliveryAddress,
-          contactPhone: deliveryInfo.contactPhone,
-          purchaseInfo: purchase, // También puedes enviar información de compra si es necesario
+          receives: deliveryInfo.receives,
+          address: deliveryInfo.address,
+          phone: deliveryInfo.phone,
+          pickUp: deliveryOption === "local",
+          delivery: deliveryOption === "delivery",
+          userEmail: access,
         });
-
         // Continúa con el flujo de pago
         setShowMercadoPago(true);
       } catch (error) {
@@ -234,9 +228,9 @@ const CartSlide = () => {
               <input
                 type="text"
                 placeholder="Nombre de quien recibe"
-                value={deliveryInfo.receiverName}
+                value={deliveryInfo.receives}
                 onChange={(e) =>
-                  handleDeliveryInfoChange("receiverName", e.target.value)
+                  handleDeliveryInfoChange("receives", e.target.value)
                 }
                 className="delivery_input"
               />
@@ -246,9 +240,9 @@ const CartSlide = () => {
               <input
                 type="text"
                 placeholder="Dirección de entrega"
-                value={deliveryInfo.deliveryAddress}
+                value={deliveryInfo.address}
                 onChange={(e) =>
-                  handleDeliveryInfoChange("deliveryAddress", e.target.value)
+                  handleDeliveryInfoChange("address", e.target.value)
                 }
                 className="delivery_input"
               />
@@ -258,10 +252,10 @@ const CartSlide = () => {
               <input
                 type="text"
                 placeholder="Teléfono de contacto"
-                value={deliveryInfo.contactPhone}
+                value={deliveryInfo.phone}
                 onChange={(e) => {
                   const onlyNumbers = e.target.value.replace(/\D/g, ""); // Elimina cualquier carácter que no sea número
-                  handleDeliveryInfoChange("contactPhone", onlyNumbers);
+                  handleDeliveryInfoChange("phone", onlyNumbers);
                 }}
                 className="delivery_input"
                 pattern="[0-9]*" // Asegura que solo se ingresen números
@@ -279,9 +273,9 @@ const CartSlide = () => {
               <button
                 className={`go_to_pay ${
                   deliveryOption === "delivery" &&
-                  (!deliveryInfo.receiverName ||
-                    !deliveryInfo.deliveryAddress ||
-                    !deliveryInfo.contactPhone)
+                  (!deliveryInfo.receives ||
+                    !deliveryInfo.address ||
+                    !deliveryInfo.phone)
                     ? "disabled"
                     : "enabled"
                 }`}
