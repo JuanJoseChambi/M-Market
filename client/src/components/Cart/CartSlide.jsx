@@ -98,11 +98,13 @@ const CartSlide = () => {
         !deliveryInfo.deliveryAddress ||
         !deliveryInfo.contactPhone
       ) {
-        Swal.fire(
-          "Campos incompletos",
-          "Por favor completa todos los campos de entrega.",
-          "error"
-        );
+        Swal.fire({
+          text: "Por favor completa todos los campos de entrega.",
+
+          confirmButtonColor: "#ff8000",
+          cancelButtonColor: "#d33",
+          icon: "warning",
+        });
         return;
       }
     }
