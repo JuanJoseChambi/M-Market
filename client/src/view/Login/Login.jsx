@@ -41,13 +41,16 @@ const Login = () => {
       });
       const {data} = await axios.get("/user");
       const userGGle = data.find(user => user.email === email)
-      localStorage.setItem('email', email);
-      localStorage.setItem('userId', userGGle.id)
-      dispatch(loginSuccess());
-      navigate('/home');
       if (!userGGle) {
-        await axios.post("/user", {email: email, userGoogle: true})
-      }
+        const { data } = await axios.post("/user", {email: email, userGoogle: true})
+        localStorage.setItem('email', data.email);
+        localStorage.setItem('userId', data.id)
+        navigate('/home');
+    }
+      localStorage.setItem('email', userGGle.email);
+      localStorage.setItem('userId', userGGle.id)
+      navigate('/home');
+      dispatch(loginSuccess());
     } catch (error) {
       console.error('Error during login:', error);
     }
@@ -68,10 +71,7 @@ const Login = () => {
       email,
       password,
     });
-
-    const success = response.data;
-    console.log(success);
-    
+    const success = response.data;    
     if (success.access === true) {
       await Swal.fire({
         title: `Usuario ${email} login exitoso`,
@@ -91,7 +91,11 @@ const Login = () => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          localStorage.setItem('userId', success.userId)
+          if (success.userId) {
+            localStorage.setItem('userId', success.userId)
+          }else{
+            localStorage.setItem('adminId', success.adminId)
+          }
           localStorage.setItem('email', email);
           dispatch(loginSuccess());
           navigate('/home');

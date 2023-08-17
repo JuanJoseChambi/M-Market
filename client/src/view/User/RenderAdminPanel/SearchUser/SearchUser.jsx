@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./SearchUser.module.css";
 import axios from "axios";
-import { setUsers, search } from "../../../../redux/slices/searchUser";
+import { setUsers, search } from "../../../../redux/slices/dashBoard";
 import { useSelector, useDispatch } from "react-redux"
 
 
@@ -31,7 +31,7 @@ function SearchUser() {
     setInfoUserPurchase(purchseFiltered)
   }
   
-  const { Wanted } = useSelector(state => state.search);
+  const { WantedUser } = useSelector(state => state.search);
   const dispatch = useDispatch();
   
   async function handlerUser() {
@@ -58,7 +58,7 @@ function SearchUser() {
         </button>
       </div>
       <div className={style.viewCards}>
-        {!purchaseId ? Wanted.map((user, i) => (
+        {!purchaseId ? WantedUser.map((user, i) => (
           <div key={i} onClick={() => setPurchseId(user.id)} className={style.cardUser}>
             <p className={style.id}>{user.id}</p>
             <p className={style.name}>{user.name}</p>

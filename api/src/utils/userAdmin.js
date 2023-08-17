@@ -4,8 +4,7 @@ const bcrypt = require("bcryptjs");
 
 let arr = [
     {name:"jonny", lastname:"Fernandez", email:"jonny@hotmail.com", password: "code123" },
-    {name:"Matias", lastname:"Bagaso", email:"mati25@hotmail.com", password: "pepe"},
-              
+    {name:"admin", lastname:"admin", email:"admin@test.com", password: "admin" },              
 ]
 
 
