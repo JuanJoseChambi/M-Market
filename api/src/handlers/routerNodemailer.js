@@ -9,15 +9,12 @@ const oAuth2Client = new google.auth.OAuth2(
   SECRETO_DEL_CLIENTE,
   "https://developers.google.com/oauthplayground"
 );
-oAuth2Client.setCredentials({
-  refresh_token: REFRESH_TOKEN,
-});
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN});
 
 const sendMail = async (req, res) => {   
   const { description, price, quantity, email } = req.body
   try {
     const accessToken = await oAuth2Client.getAccessToken();
-
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
