@@ -18,17 +18,17 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         pickUp: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             
         },
         delivery: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             
         },
        
