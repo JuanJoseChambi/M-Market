@@ -22,7 +22,7 @@ const getIdRepetidos = async () => {
       const repeated = [];
       
       for (let name in count) {
-        if (count[name] > 1) {
+        if (count[name] >= 1) {
           repeated.push({ name, count: count[name] });
         }
       }
