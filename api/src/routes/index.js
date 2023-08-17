@@ -11,6 +11,8 @@ const sendMail = require('./routerNodemailer')
 
 const delivery = require('./delivery.routes')
 
+const reviewR = require('./review.routes')
+
 
 const router = Router();
 
@@ -22,6 +24,7 @@ router.use('/pay', pay)
 router.use('/purchase', purchaseR)
 router.use("/stadistics", routerStadistics)
 router.use("/delivery", delivery)
+router.use("/reviews", reviewR)
 
 
 
