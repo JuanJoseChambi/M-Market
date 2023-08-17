@@ -9,6 +9,7 @@ import axios from 'axios'
 import styles from './Statistics.module.css'
 
 
+
 function Statistics() {
 
   const [data, setData] = useState([])
