@@ -9,8 +9,9 @@ const routerUser = require('./routerUser')
 
 const sendMail = require('./routerNodemailer')
 
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+const delivery = require('./delivery.routes')
+
+const reviewR = require('./review.routes')
 
 
 const router = Router();
@@ -22,6 +23,8 @@ router.use('/user',routerUser)
 router.use('/pay', pay)
 router.use('/purchase', purchaseR)
 router.use("/stadistics", routerStadistics)
+router.use("/delivery", delivery)
+router.use("/reviews", reviewR)
 
 
 

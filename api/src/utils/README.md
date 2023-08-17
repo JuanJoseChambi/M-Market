@@ -82,3 +82,45 @@ ruta post en http://localhost:3001/user/login
 - "access": true,
 - "admin": false,
 -  "userId": "a58b92a6-452a-424f-bfa2-3ac581e938d9"
+
+
+## **Deliverys**
+
+- haremos una peticion **post** a la siguiente url ->"http://localhost:3001/delivery"
+- haremos una peticion **get** a la siguiente url ->"http://localhost:3001/delivery"
+- haremos una peticion **get** a la siguiente url ->"http://localhost:3001/user"
+- haremos una peticion **get** a la siguiente url ->http://localhost:3001/user/6d221ecd-4049-4cae-bd67-c02a9ad61022
+- y enviandole como parametros los siguientes datos por body:
+<br/>
+
+{ <br/>
+  "receives": "Blade", <br/>
+  "address": "cazador de vampiritos", <br/>
+  "phone": "5047788", <br/>
+  "pickUp": "No", <br/>
+  "delivery": "yes", <br/>
+  "userEmail":"abcd@gmail.com"<br/>
+}<br/>
+
+
+
+
+
+
+## **Reviews**
+
+- haremos una peticion **post** a la siguiente en url -> http://localhost:3001/reviews
+- haremos una peticion **get** a la siguiente url -> http://localhost:3001/reviews 
+- haremos una peticion **get** a la siguiente url -> http://localhost:3001/user 
+- haremos una peticion **get** a la siguiente url ->http://localhost:3001/user/6d221ecd-4049-4cae-bd67-c02a9ad61022
+<br/>
+
+**Datos a ingresar por body** <br/>
+{<br/>
+  "userEmail": "abcd@gmail.com",<br/>
+  "review":"hola como te va  "<br/>
+}<br/>
+
+
+
+
