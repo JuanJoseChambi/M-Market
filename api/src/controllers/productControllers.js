@@ -20,8 +20,8 @@ const product = async (name) => {
     return detailProduct;
 };
 
-const allProducts = async () => {
-
+const allProducts = async () => { 
+   
     const allProducts = await Prod.findAll(({
         include: [{
             model: Category,
@@ -57,7 +57,6 @@ const createProduct = async (brand, name, price, unit, description, image, score
         description,
         image,
         score,
-
     }
 
     //    console.log(product.image);
@@ -81,9 +80,25 @@ const createProduct = async (brand, name, price, unit, description, image, score
 }
 
 
-const ApdateProd = async (id, unit) => {
+const ApdateProd = async (id,brand,name,price,unit,description,image,score,category, state) => {
     const aux = await productById(id)
-    aux.unit = unit
+    if( !state || unit === 0){
+        aux.state = false;
+        await aux.save();
+        return aux;
+    }
+    unit?aux.unit=unit:aux.unit;
+    brand?aux.brand=brand:aux.brand;
+    name?aux.name=name:aux.namet;
+    price?aux.price=price:aux.price;
+    description?aux.description=description:aux.description;
+    image?aux.image=image:aux.image;
+    score?aux.score=score:aux.score;
+    category?aux.category=category:aux.category;
+    state?aux.state=state:aux.state
+
+    
+    // aux.unit = unit
     await aux.save()
     return aux
 }

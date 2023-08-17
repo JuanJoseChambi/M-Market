@@ -3,13 +3,15 @@ const { allProducts, createProduct, productById, product, ApdateProd } = require
 
 const getProducts=async (req, res)=>{
     try {
-     const {name} = req.query;
-     if(!name){
+        const {name} = req.query;
+        
+        if(!name){
          const response =await allProducts();
          return res.status(200).json(response);
-     }
-     const response = await product(name)
-     res.status(200).json(response);
+        }
+        const response = await product(name)
+        res.status(200).json(response);
+
     } catch (error) {
      res.status(400).json({ error: error.message });
     }
@@ -42,9 +44,9 @@ try {
 const updateStock =async(req,res)=>{
     try {
         const {id} = req.params;
-        const {unit} = req.body;
+        const {brand,name,price,unit,description,image,score,category, state} = req.body;
 
-        const updateUnit = await ApdateProd(id, unit)
+        const updateUnit = await ApdateProd(id,brand,name,price,unit,description,image,score,category, state)
 
     res.status(200).json(updateUnit);
          
