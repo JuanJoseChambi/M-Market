@@ -12,6 +12,7 @@ import "./cartslide.css";
 import MercadoPago from "../MercadoPago/MercadoPago";
 import Swal from "sweetalert2";
 import { BsCart4 } from "react-icons/bs";
+import axios from "axios";
 
 const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
@@ -91,6 +92,8 @@ const CartSlide = () => {
     }));
   };
 
+  
+
   const handleGoToPayment = async () => {
     if (deliveryOption === "delivery") {
       if (
@@ -100,28 +103,52 @@ const CartSlide = () => {
       ) {
         Swal.fire({
           text: "Por favor completa todos los campos de entrega.",
-
           confirmButtonColor: "#ff8000",
           cancelButtonColor: "#d33",
           icon: "warning",
         });
         return;
       }
-    }
-    Swal.fire({
-      title: "Confirmar compra",
-      text: "¿Estás seguro de proceder con la compra?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#ff8000",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, proceder",
-      cancelButtonText: "Cancelar",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
+
+      console.log("Datos de entrega a enviar:", {
+        receiverName: deliveryInfo.receiverName,
+        deliveryAddress: deliveryInfo.deliveryAddress,
+        contactPhone: deliveryInfo.contactPhone,
+        purchaseInfo: purchase,
+      });
+
+
+      // Si todos los campos de entrega están completos, envía los datos al backend
+      try {
+        await axios.post("/delivery", {
+          receiverName: deliveryInfo.receiverName,
+          deliveryAddress: deliveryInfo.deliveryAddress,
+          contactPhone: deliveryInfo.contactPhone,
+          purchaseInfo: purchase, // También puedes enviar información de compra si es necesario
+        });
+
+        // Continúa con el flujo de pago
         setShowMercadoPago(true);
+      } catch (error) {
+        // Manejo de errores si la solicitud no se pudo completar
+        console.error("Error al enviar los datos de entrega:", error);
       }
-    });
+    } else {
+      Swal.fire({
+        title: "Confirmar compra",
+        text: "¿Estás seguro de proceder con la compra?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#ff8000",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, proceder",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          setShowMercadoPago(true);
+        }
+      });
+    }
   };
 
   useEffect(() => {
