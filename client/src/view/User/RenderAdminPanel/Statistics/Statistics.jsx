@@ -6,6 +6,7 @@ import AmountSales from './AmountSales'
 import {Chart as ChartJS} from 'chart.js/auto'
 import { useEffect } from 'react'
 import axios from 'axios'
+import styles from './Statistics.module.css'
 
 
 function Statistics() {
@@ -75,12 +76,18 @@ function Statistics() {
   }
 
   return (
-    <div>
-      <Bar data={dataBar}/>
-      <Pie data={dataPie}/>
-      <Line data={dataLine}/>
+    <div className={styles.chartContainer}>
+      <div className={styles.chart}>
+        <Bar data={dataBar} />
+      </div>
+      <div className={styles.chart}>
+        <Pie data={dataPie} />
+      </div>
+      <div className={styles.chart}>
+        <Line data={dataLine} />
+      </div>
     </div>
-  )
+  );
 }
 
 export default Statistics;
