@@ -13,30 +13,44 @@ function ProductControl() {
     dispatch(allProducts())
   }, [])
 
-  const cardsInPage = 30;
-  const totalCards = products.length;
-  const lastIndex = currentPage * cardsInPage;
-  const firstIndex = lastIndex - cardsInPage;
-  const cardsShowed = products.slice(firstIndex, lastIndex);
-  
-  const [editUnit, setEditUnit] = useState({});
-  const [upDate, setUpDate] = useState(undefined)
-  function handlerInput (event) {
-    const UpDateNumber = event.target.value;
-    setUpDate(UpDateNumber)
-  }
-  async function handlerEdit(id) {
-    setEditUnit({
-      ...editUnit,
-      [id]: !editUnit[id]
-    });
+  const [edit, setEditUnit] = useState({});
+  const [upDate, setUpDate] = useState({
+    brand:"",
+    name:"",
+    price: undefined,
+    unit: undefined,
+    description: "",
+    image: "",
+    score: undefined,
+    state: true
+  })
 
-    if (upDate) {
-      const unit = Number(upDate)
-      await axios.put(`/product/${id}`, {unit: unit})
+  async function handlerEdit(product) {
+    setEditUnit({[product.id]: !edit[product.id]});
+
+    if (upDate.brand || upDate.name || upDate.price || upDate.unit || upDate.description || upDate.image || upDate.score || upDate.state || upDate.state ) {
+      await axios.put(`/product/${product.id}`, upDate)
+      setUpDate({
+        brand:"",
+        name:"",
+        price: undefined,
+        unit: undefined,
+        description: "",
+        image: "",
+        score: undefined,
+        state: product.state
+      })
     }
-    setUpDate(undefined)
+    const {data} = await axios.get("/product")
+    dispatch(setProducts(data))
   }
+  async function handlerBlock (product) {
+    let state = {state: !product.state}
+    await axios.put(`/product/${product.id}`, state)
+    const {data} = await axios.get("/product")
+    dispatch(setProducts(data))
+  }
+
   function searchProduct(event) {
     const searchValue = event.target.value;
     dispatch(searchName(searchValue));
@@ -76,7 +90,7 @@ function ProductControl() {
     setUnidadesOrden(newOrden);
     const sortedProducts = [...products];
     sortedProducts.sort((a, b) => {
-        return newOrden === 'asc' ? a.unit - b.unit : b.unit - a.unit;
+      return newOrden === 'asc' ? a.unit - b.unit : b.unit - a.unit;
     });
     dispatch(setProducts(sortedProducts));
   }
@@ -87,6 +101,27 @@ function ProductControl() {
     setUnidadesOrden('')
     dispatch(allProducts())        
   };
+
+  const cardsInPage = 30;
+  const totalCards = products.length;
+  const lastIndex = currentPage * cardsInPage;
+  const firstIndex = lastIndex - cardsInPage;
+  const cardsShowed = products.slice(firstIndex, lastIndex);  
+  
+  const preset_key = "szmwmrsq";
+  const cloud_name = "dvu3hvpzu";
+  const URL = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+
+  function handlerUploadImage (event) {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", preset_key);
+    axios.post(URL, formData)
+      .then((response) => { setUpDate({ ...upDate, image: response.data.secure_url });
+    })
+    .catch((err) => alert(err));
+  }
 
   return (
     <div className={style.viewProductControl}>
@@ -118,35 +153,58 @@ function ProductControl() {
             <option value="desc">MAX - Min</option>
         </select>
       </div>
-      <div className={style.containerProducts}>
+        <div className={style.containerPagination}>
         <Paginado cardsInPage={cardsInPage} totalCards={totalCards} currentPage={currentPage}/>
+        </div>
+        <div className={style.propertyTable}>
+          <p className={style.property}>Imagen</p>
+          <p className={style.property}>Nombre</p>
+          <p className={style.property}>Marca</p>
+          <p className={style.property}>Descripcion</p>
+          <p className={style.property}>Precio</p>
+          <p className={style.property}>Unidades</p>
+          <p className={style.property}>Puntajes</p>
+          <p className={style.property}>Opciones</p>
+        </div>
+      <div className={style.containerProducts}>
         {cardsShowed.map((product, i) => (
           <div key={i} className={style.product}>
-            <p className={style.name}>{product.name}</p>
-            <div className={style.containerUpdates}>
-              <div className={style.containerUpDatePrice}>
-                <p className={style.pUnit}>$</p>
-              <input
-                  type="text"
-                  className={style.upDatePrice}
-                  disabled={!editUnit[product.id]}
-                  placeholder={product.price}
-                  onChange={handlerInput}
-                />
+            {/* ----------------------------------- */}
+              <div className={style.contanierProductsInputsImage}>
+                <div className={style.conatinerImage}>
+                  <img src={product.image} alt="imagen" className={style.image} />
+                </div>
+              <input disabled={!edit[product.id]} className={style.btnCloudinary} name="image" autoComplete="off" type="file" placeholder={product.image} onChange={handlerUploadImage}/>
               </div>
-              <div className={style.ContanierUpdateUnit}>
-                <p className={style.pUnit}>U</p>
-                <input
-                  type="text"
-                  className={style.updateUnit}
-                  disabled={!editUnit[product.id]}
-                  placeholder={product.unit}
-                  onChange={handlerInput}
-                />
-                <button className={style.btnUpD} onClick={() => handlerEdit(product.id)}>
-                  <i className={`${editUnit[product.id] ? 'bx bx-edit-alt' : 'bx bxs-edit-alt'}`}></i>
+              <div className={style.contanierProductsInputs}>
+                <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.name} onChange={(e) => setUpDate({...upDate, name : e.target.value})}/>
+              </div>
+              <div className={style.contanierProductsInputs}>
+                <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.brand} onChange={(e) => setUpDate({...upDate, brand : e.target.value})}/>
+              </div>
+              <div className={style.contanierProductsInputs}>
+                <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.description} onChange={(e) => setUpDate({...upDate, description : e.target.value})}/>
+              </div>
+            {/* ------------------------------------ */}
+                <div className={style.contanierProductsInputs}>
+                  <p className={style.pInput}>$</p>
+                  <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.price} onChange={(e) => setUpDate({...upDate, price : e.target.value})}/>
+                </div>
+                <div className={style.contanierProductsInputs}>
+                  <p className={style.pInput}>U</p>
+                  <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.unit} onChange={(e) => setUpDate({...upDate, unit : e.target.value})}/>
+                </div>
+                <div className={style.contanierProductsInputs}>
+                  <p className={style.pInput}>⭐</p>
+                  <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.score} onChange={(e) => setUpDate({...upDate, score : e.target.value})}/>
+                </div>
+            <div className={style.contanierSwitch}>
+                {product.state
+                ? <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: false}), handlerBlock(product)}}><i className='bx bx-lock-open'></i></button> 
+                : <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: true}) , handlerBlock(product)}}><i className='bx bxs-lock'></i></button>}
+                <button className={style.btnState} onClick={() => handlerEdit(product)}>
+                  <i className={`${edit[product.id] ? 'bx bx-check' : 'bx bxs-edit-alt'}`}></i>
                 </button>
-              </div>
             </div>
           </div>
         ))}
