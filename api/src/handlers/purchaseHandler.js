@@ -1,10 +1,10 @@
-const {createPurchase,getAllPurchase} = require('../controllers/purchaseCtrl')
+const { createPurchase, getAllPurchase, getById } = require('../controllers/purchaseCtrl')
 
 
 const postPurchase = async (req, res) => {
     try {
         const { monto, userId, prodId } = req.body
-        const aux = monto ? await createPurchase(monto, userId,prodId) : "monto require";
+        const aux = monto ? await createPurchase(monto, userId, prodId) : "monto require";
 
         res.status(201).json(aux)
     } catch (error) {
@@ -26,5 +26,17 @@ const getPurchase = async (req, res) => {
     }
 }
 
+const purchaseById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const aux1 = await getById(id)
+        res.status(201).json(aux1)
 
-module.exports = {postPurchase, getPurchase}
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+
+    }
+}
+
+
+module.exports = { postPurchase, getPurchase, purchaseById }

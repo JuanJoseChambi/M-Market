@@ -5,7 +5,7 @@ const postDelivery = async (req, res) => {
     try {
         
         const { receives, address, phone, pickUp, delivery, userEmail } = req.body;
-       console.log(req.body)
+    //    console.log(req.body)
         if (![receives, address, phone, userEmail].every(Boolean)) 
         
         return res.status(404).send('Falta enviar datos obligatorios')
