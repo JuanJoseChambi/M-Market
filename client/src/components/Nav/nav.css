@@ -77,7 +77,7 @@
 .nav_menu {
   background-color: #ff8000;
   min-width: 250px; /* Establece un ancho mínimo */
-  max-width: 300px; /* Establece un ancho máximo */
+  max-width: 350px; /* Establece un ancho máximo */
   height: 100vh;
   display: flex;
   flex-direction: column; /* Apila los elementos verticalmente */
@@ -98,9 +98,10 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  padding: 8px 0px 8px 16px;
+  padding: 8px 0px 8px 0px;
   list-style: none;
-  height: 60px;
+  height: 50px;
+  width: 100%;
 }
 
 /* .sidebar_text a {
@@ -120,7 +121,7 @@
 } */
 
 .nav_menu_items {
-  width: 100%;
+  width: 110%;
   overflow-y: scroll;
 }
 
