@@ -22,13 +22,16 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         pickUp: {
-            type: DataTypes.STRING,
+            type: DataTypes.BOOLEAN,
             allowNull: true,
+            defaultValue: false
             
         },
         delivery: {
-            type: DataTypes.STRING,
+            type: DataTypes.BOOLEAN,
             allowNull: true,
+            defaultValue: false
+
             
         },
        
