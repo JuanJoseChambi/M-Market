@@ -16,19 +16,19 @@ function SearchUser() {
   }, [purchaseId]);
 
   async function handlerPurchase () {
-    const {data} = await axios.get("/purchase");
-    const purchseFiltered = data.filter((purchase) => purchase.userPurchase === purchaseId).map(obj => {
+    const {data} = await axios.get(`/purchase/${purchaseId}`);
+    const purchseFiltered = data.map(obj => {
       const fecha = new Date(obj.createdAt);
       const year = fecha.getFullYear();
       const month = fecha.getMonth() + 1;
       const day = fecha.getDate();
       return {
-      id: obj.id,
-      monto: obj.monto,
-      products: obj.Prods,
-      fecha : [year, month, day]
-    }})
-    setInfoUserPurchase(purchseFiltered)
+        id: obj.id,
+        monto: obj.monto,
+        products: obj.Prods,
+        fecha : [year, month, day]
+      }})
+      setInfoUserPurchase(purchseFiltered)
   }
   
   const { WantedUser } = useSelector(state => state.search);
@@ -67,7 +67,7 @@ function SearchUser() {
           </div>
         )):
         <div className={style.viewPurchse}> 
-        <button className={style.btnExitUserPurchase} onClick={() => setPurchseId("")}><i class='bx bx-x-circle' ></i></button>
+        <button className={style.btnExitUserPurchase} onClick={() => setPurchseId("")}><i className='bx bx-x-circle' ></i></button>
           {infoUserPurchase.map((purchase, i) => (
             purchase.monto === 0 || purchase.name === null? null :
           (<div key={i} className={style.containerPurchase}>

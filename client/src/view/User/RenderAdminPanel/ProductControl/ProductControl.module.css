@@ -24,7 +24,7 @@
   padding: 0 5px;
   font-size: 14px;
   color: #000;
-  margin: 0 5px; /* Ajusta el margen entre los selects */
+  margin: 0 5px;
 }
 .buttonReset {
   height: 30px;
@@ -37,13 +37,12 @@
   font-weight: 500;
   cursor: pointer;
   padding: 0 15px;
-  margin-left: 10px; /* Ajusta el margen izquierdo del botón */
+  margin-left: 10px;
 }
 .containerInput {
   display: flex;
   flex-direction: row;
   width: 25%;
-  /* height: 40px; */
   /* background-color: blue; */
 }
 .input {
@@ -80,7 +79,7 @@
   min-height: 100px;
   /* background-color: #4444c3; */
 }
-.containerPagination{
+.containerPagination {
   display: flex;
   justify-content: center;
   align-items: end;
@@ -91,7 +90,7 @@
   background-color: #3e3e3f;
   border-bottom: 1px solid rgba(0, 0, 0, 0.227);
 }
-.propertyTable{
+.propertyTable {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -101,7 +100,7 @@
   background-color: #3e3e3f;
   /* background-color: red; */
 }
-.property{
+.property {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,7 +124,7 @@
   border: 1px solid rgba(0, 0, 0, 0.227);
   position: relative;
 }
-.contanierProductsInputsImage{
+.contanierProductsInputsImage {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,7 +135,7 @@
   border-right: 1px solid rgba(0, 0, 0, 0.227);
   padding: 0;
 }
-.conatinerImage{
+.conatinerImage {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,10 +143,10 @@
   position: relative;
   /* background-color: red; */
 }
-.image{
+.image {
   width: 100%;
 }
-.contanierProductsInputs{
+.contanierProductsInputs {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,14 +154,12 @@
   position: relative;
   width: 12.5%;
   min-height: 90px;
-  
-  /* border-left: 1px solid rgba(0, 0, 0, 0.227); */
   border-right: 1px solid rgba(0, 0, 0, 0.227);
   padding: 5px 0;
   margin: 0;
   /* background-color: rgb(181, 54, 54); */
 }
-.btnCloudinary{
+.btnCloudinary {
   width: 135px;
   font-size: 12px;
 }
@@ -174,16 +171,16 @@
   outline: none;
   background-color: transparent;
   border-bottom: 1px solid rgb(166, 161, 161);
-  font-family: 'Poppins', sans-serif;
-  transition: border-bottom .5s;
+  font-family: "Poppins", sans-serif;
+  transition: border-bottom 0.5s;
   margin-top: 10px;
-  
+
   /* Centrar verticalmente y horizontalmente */
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.upDateText{
+.upDateText {
   width: 98%;
   padding: 0 10px;
   outline: none;
@@ -203,7 +200,7 @@
 .pInput {
   margin: 0;
 }
-.contanierSwitch{
+.contanierSwitch {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -215,7 +212,7 @@
   padding: 5px 0;
   margin: 0;
 }
-.btnState{
+.btnState {
   border: 0;
   background-color: rgb(210, 208, 208);
   padding: 5px 10px;
