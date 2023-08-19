@@ -6,11 +6,13 @@ import Purchase from "./RenderView/Purchase/Purchase";
 import AdminPanel from "./RenderAdminPanel/AdminPanel";
 import SearchUser from "./RenderAdminPanel/SearchUser/SearchUser";
 import ProductControl from "./RenderAdminPanel/ProductControl/ProductControl";
+import { useDispatch } from "react-redux";
+import { setCurrentPage } from "../../redux/slices/productsData";
 
 function User() {
-  
   const [renderInterface, setRenderInterface] = useState(undefined);
   const accessAdmin = localStorage.getItem('adminId');
+  const dispatch = useDispatch()
 
 useEffect(() => {
   if (accessAdmin) {
@@ -32,7 +34,7 @@ useEffect(() => {
   return (
     <div className={style.viewUser}>
       <NavLink to="/home">
-        <button className={style.returnBack}>Home</button>
+        <button className={style.returnBack} onClick={() => dispatch(setCurrentPage(1))}>Home</button>
       </NavLink>
       <div className={style.userSections}>
         {!accessAdmin

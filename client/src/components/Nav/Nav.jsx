@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import CartSlide from '../Cart/CartSlide';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentPage } from '../../redux/slices/productsData';
 
 const Nav = () => {
   const { cart } = useSelector(state => state.products) 
@@ -15,6 +16,7 @@ const Nav = () => {
   const [productsInCart, setProductsInCart] = useState(prod)
   const[openedCart, setOpenedCart] = useState(false);
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch()
 
   const access = localStorage.getItem('email');
   const showCart = () => {
@@ -55,7 +57,7 @@ const Nav = () => {
           </div>
           {access 
           ?<Link to="/user">
-            <button className="icons"><i className='bx bx-user' ></i></button>
+            <button onClick={() => dispatch(setCurrentPage(1))} className="icons"><i className='bx bx-user' ></i></button>
           </Link> 
           : <Link to="/login">
             <button className="icons"><i className='bx bx-user-circle' ></i></button>
