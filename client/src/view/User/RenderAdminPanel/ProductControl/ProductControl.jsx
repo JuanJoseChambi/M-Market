@@ -4,6 +4,7 @@ import { allProducts, searchName, setProducts, setFiltred } from "../../../../re
 import style from "./ProductControl.module.css";
 import axios from "axios"
 import Paginado from "../../../../components/Paginado/Paginado";
+import productEmpty from "../../../../assets/userEmpty.svg"
 
 function ProductControl() {
   const { products, currentPage } = useSelector((state) => state.products);
@@ -167,47 +168,53 @@ function ProductControl() {
           <p className={style.property}>Opciones</p>
         </div>
       <div className={style.containerProducts}>
-        {cardsShowed.map((product, i) => (
-          <div key={i} className={style.product}>
-            {/* ----------------------------------- */}
-              <div className={style.contanierProductsInputsImage}>
-                <div className={style.conatinerImage}>
-                  <img src={product.image} alt="imagen" className={style.image} />
-                </div>
-              <input disabled={!edit[product.id]} className={style.btnCloudinary} name="image" autoComplete="off" type="file" placeholder={product.image} onChange={handlerUploadImage}/>
-              </div>
-              <div className={style.contanierProductsInputs}>
-                <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.name} onChange={(e) => setUpDate({...upDate, name : e.target.value})}/>
-              </div>
-              <div className={style.contanierProductsInputs}>
-                <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.brand} onChange={(e) => setUpDate({...upDate, brand : e.target.value})}/>
-              </div>
-              <div className={style.contanierProductsInputs}>
-                <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.description} onChange={(e) => setUpDate({...upDate, description : e.target.value})}/>
-              </div>
-            {/* ------------------------------------ */}
-                <div className={style.contanierProductsInputs}>
-                  <p className={style.pInput}>$</p>
-                  <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.price} onChange={(e) => setUpDate({...upDate, price : e.target.value})}/>
+        {cardsShowed.length !== 0 
+          ? cardsShowed.map((product, i) => (
+            <div key={i} className={style.product}>
+              {/* ----------------------------------- */}
+                <div className={style.contanierProductsInputsImage}>
+                  <div className={style.conatinerImage}>
+                    <img src={product.image} alt="imagen" className={style.image} />
+                  </div>
+                <input disabled={!edit[product.id]} className={style.btnCloudinary} name="image" autoComplete="off" type="file" placeholder={product.image} onChange={handlerUploadImage}/>
                 </div>
                 <div className={style.contanierProductsInputs}>
-                  <p className={style.pInput}>U</p>
-                  <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.unit} onChange={(e) => setUpDate({...upDate, unit : e.target.value})}/>
+                  <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.name} onChange={(e) => setUpDate({...upDate, name : e.target.value})}/>
                 </div>
                 <div className={style.contanierProductsInputs}>
-                  <p className={style.pInput}>⭐</p>
-                  <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.score} onChange={(e) => setUpDate({...upDate, score : e.target.value})}/>
+                  <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.brand} onChange={(e) => setUpDate({...upDate, brand : e.target.value})}/>
                 </div>
-            <div className={style.contanierSwitch}>
-                {product.state
-                ? <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: false}), handlerBlock(product)}}><i className='bx bx-lock-open'></i></button> 
-                : <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: true}) , handlerBlock(product)}}><i className='bx bxs-lock'></i></button>}
-                <button className={style.btnState} onClick={() => handlerEdit(product)}>
-                  <i className={`${edit[product.id] ? 'bx bx-check' : 'bx bxs-edit-alt'}`}></i>
-                </button>
+                <div className={style.contanierProductsInputs}>
+                  <input disabled={!edit[product.id]} className={style.upDateText} type="text" placeholder={product.description} onChange={(e) => setUpDate({...upDate, description : e.target.value})}/>
+                </div>
+              {/* ------------------------------------ */}
+                  <div className={style.contanierProductsInputs}>
+                    <p className={style.pInput}>$</p>
+                    <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.price} onChange={(e) => setUpDate({...upDate, price : e.target.value})}/>
+                  </div>
+                  <div className={style.contanierProductsInputs}>
+                    <p className={style.pInput}>U</p>
+                    <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.unit} onChange={(e) => setUpDate({...upDate, unit : e.target.value})}/>
+                  </div>
+                  <div className={style.contanierProductsInputs}>
+                    <p className={style.pInput}>⭐</p>
+                    <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.score} onChange={(e) => setUpDate({...upDate, score : e.target.value})}/>
+                  </div>
+              <div className={style.contanierSwitch}>
+                  {product.state
+                  ? <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: false}), handlerBlock(product)}}><i className='bx bx-lock-open'></i></button> 
+                  : <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: true}) , handlerBlock(product)}}><i className='bx bxs-lock'></i></button>}
+                  <button className={style.btnState} onClick={() => handlerEdit(product)}>
+                    <i className={`${edit[product.id] ? 'bx bx-check' : 'bx bxs-edit-alt'}`}></i>
+                  </button>
+              </div>
             </div>
-          </div>
-        ))}
+            ))
+          : <div className={style.containerImageEmptyUser}>
+              <img className={style.imageEmptyUser} src={productEmpty} alt="El producto no existe" />
+              <p className={style.noUserText}>El Producto No Existe</p>
+            </div> 
+          }
         </div>
     </div>
   );

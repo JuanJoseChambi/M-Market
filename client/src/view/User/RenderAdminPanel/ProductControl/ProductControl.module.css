@@ -219,3 +219,26 @@
   border-radius: 50px;
   font-size: 25px;
 }
+/* ------------------------------------------------------- */
+.containerImageEmptyUser{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+  position: relative;
+  margin-top: 80px;
+  /* background-color: red; */
+}
+.imageEmptyUser{
+  width: 100%;
+}
+.noUserText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* background-color: purple; */
+  font-size: 25px;
+  margin: 50px 0;
+}

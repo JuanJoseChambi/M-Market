@@ -1,165 +1,208 @@
-.viewSearch{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-    min-height: 100vh;
-    /* background-color: purple; */
+.viewSearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 50vh;
+  /* background-color: purple; */
 }
-.searchInput{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    background-color: #3e3e3f;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.227);
-   
+.searchInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: #3e3e3f;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.227);
 }
-.input{
-    width: 20%;
-    height: 30px;
-    border: 0;
-    border-radius: 50px 0 0 50px;
-    padding: 5px 10px;
-    outline: none;
-    background-color: rgb(231, 224, 224);
-    font-size: 12px;
+.input {
+  width: 21%;
+  height: 30px;
+  border: 0;
+  border-radius: 50px 0 0 50px;
+  padding: 5px 10px;
+  outline: none;
+  background-color: rgb(231, 224, 224);
+  font-size: 12px;
 }
-.btnSearch{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-    border: 0;
-    /* padding: 4px 10px 4px 7px; */
-    padding: 14px;
-    background-color: #ff8000;
-    border-radius: 0 50px 50px 0;
+.btnSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border: 0;
+  /* padding: 4px 10px 4px 7px; */
+  padding: 14px;
+  background-color: #ff8000;
+  border-radius: 0 50px 50px 0;
 }
-.btnSearch i{
-    font-size: 17px;
+.btnSearch i {
+  font-size: 17px;
 }
-.viewCards{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 100%;
-    min-height: 50vh;
-    /* background-color: red; */
-    padding: 50px 0;
-    font-size: 12px;
-    
+.viewCards {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 50vh;
+  /* background-color: red; */
+  padding: 50px 0;
+  font-size: 12px;
 }
-.cardUser{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-    text-align: center;
-    width: 90%;
-    min-height: 5vh;
-    padding: 10px;
-    background-color: #d9d5d3;
-    border-radius: 0px;
-    margin: 0;
-    border: 1px solid rgba(0, 0, 0, 0.227);
-    box-shadow: 0px 5px 10px 0px rgb(32, 31, 31);
-    cursor: pointer;
-    user-select: none;
-    
+.cardUser {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  width: 90%;
+  min-height: 5vh;
+  padding: 10px;
+  background-color: #d9d5d3;
+  border-radius: 0px;
+  margin: 0;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  box-shadow: 0px 5px 10px 0px rgb(32, 31, 31);
+  cursor: pointer;
+  user-select: none;
 }
-.name, .lastname, .email, .id{
-    margin: 0;
+.name,
+.lastname,
+.email,
+.id {
+  margin: 0;
 }
-
 
 /* ------------------------------------------------------------------ */
-.viewPurchse{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    min-height: 50vh;
-    position: relative;
-    /* background-color: violet; */
+.viewPurchse {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 50vh;
+  position: relative;
+  /* background-color: violet; */
 }
-.btnExitUserPurchase{
-    border: 0;
-    position: absolute;
-    top: -30px;
-    right: 30px;
-    background-color: transparent;
-    color: #ff8000;
+.btnExitUserPurchase {
+  border: 0;
+  position: absolute;
+  top: -30px;
+  right: 30px;
+  background-color: transparent;
+  color: #ff8000;
 }
-.btnExitUserPurchase i{
-    font-size: 45px;
+.btnExitUserPurchase i {
+  font-size: 45px;
 }
 .containerPurchase {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 80%;
-    background-color: #ff8000;
-    border-radius: 10px;
-    margin: 10px 0;
-    border: 1px solid rgba(0, 0, 0, 0.227);
-    position: relative;
-    box-shadow: 0px 5px 15px 0px rgb(34, 33, 33);
-  
-  }
-  .containerFecha {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    position: absolute;
-    width: 10%;
-    background-color: #ff8811;
-    top: -15px;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.227);
-  }
-  .fecha {
-    /* background-color: purple; */
-    margin: 0;
-  }
-  .viewPurchase {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
-  .containerNames {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-    padding: 5px;
-    /* background-color: rgb(53, 53, 227); */
-    border: 1px solid rgba(0, 0, 0, 0.227);
-    border-radius: 10px 0 0 10px;
-  }
-  .nameProds {
-    /* border-radius: 10px; */
-    background-color: #ffffff;
-    margin: 0;
-    padding: 0 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.227);
-  
-  }
-  .totalPrice {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 15%;
-    height: auto;
-    border-radius: 0 10px 10px 0;
-    background-color: #ff8000;
-    border: 1px solid rgba(0, 0, 0, 0.227);
-    margin: 0;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  background-color: #ff8000;
+  border-radius: 10px;
+  margin: 10px 0;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  position: relative;
+  box-shadow: 0px 5px 15px 0px rgb(34, 33, 33);
+}
+.containerFecha {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  width: 10%;
+  background-color: #ff8811;
+  top: -15px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+}
+.fecha {
+  /* background-color: purple; */
+  margin: 0;
+}
+.viewPurchase {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.containerNames {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  padding: 5px;
+  /* background-color: rgb(53, 53, 227); */
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  border-radius: 10px 0 0 10px;
+}
+.nameProds {
+  /* border-radius: 10px; */
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.227);
+}
+.totalPrice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 15%;
+  height: auto;
+  border-radius: 0 10px 10px 0;
+  background-color: #ff8000;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  margin: 0;
+}
+/* ---------------------------------------------------------- */
+.containerImageEmpty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  height: 73vh;
+  position: relative;
+  /* background-color: red; */
+}
+.imageEmpty {
+  width: 80%;
+  /* background-color: blue; */
+}
+.noPurchaseText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* background-color: purple; */
+  font-size: 25px;
+  margin: 50px 0;
+}
+/* ---------------------------------------------------------- */
+.containerImageEmptyUser{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+  position: relative;
+  /* background-color: red; */
+}
+.imageEmptyUser{
+  width: 100%;
+}
+.noUserText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* background-color: purple; */
+  font-size: 25px;
+  margin: 50px 0;
+}

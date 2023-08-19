@@ -12,11 +12,14 @@ import { setCurrentPage } from "../../redux/slices/productsData";
 function User() {
   const [renderInterface, setRenderInterface] = useState(undefined);
   const accessAdmin = localStorage.getItem('adminId');
+  const accessGmail = localStorage.getItem('gmail');
   const dispatch = useDispatch()
 
 useEffect(() => {
   if (accessAdmin) {
     setRenderInterface("AdminPanel")
+  }else if(accessGmail) {
+    setRenderInterface("detalles")
   }else{
     setRenderInterface("profile")
   }
@@ -38,10 +41,12 @@ useEffect(() => {
       </NavLink>
       <div className={style.userSections}>
         {!accessAdmin
-        ? <>
+        ? (accessGmail 
+          ? <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button>  
+          : <>
             <button onClick={() => setRenderInterface("profile")} className={renderInterface === "profile"? style.btnsActive: style.btnsInactive}> Perfil </button>
             <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button> 
-          </> 
+            </> )
         : <>
             <button onClick={() => setRenderInterface("AdminPanel")} className={renderInterface === "AdminPanel"? style.btnsActive: style.btnsInactive}>Panel de Admin</button>
             <button onClick={() => setRenderInterface("SearchUser")} className={renderInterface === "SearchUser"? style.btnsActive: style.btnsInactive}>Buscar Usuario</button>

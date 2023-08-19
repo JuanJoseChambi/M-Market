@@ -46,11 +46,14 @@ const Login = () => {
         localStorage.setItem('email', data.email);
         localStorage.setItem('userId', data.id)
         navigate('/home');
-    }
+      }
       localStorage.setItem('email', userGGle.email);
       localStorage.setItem('userId', userGGle.id)
       navigate('/home');
       dispatch(loginSuccess());
+      if (userGGle.name === "N/A" && userGGle.lastname === "N/A" && userGGle.password === "N/A") {
+        localStorage.setItem('gmail', true)
+      }
     } catch (error) {
       console.error('Error during login:', error);
     }

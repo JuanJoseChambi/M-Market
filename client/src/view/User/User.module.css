@@ -6,7 +6,7 @@
   width: 100%;
   min-height: 100vh;
   overflow: auto;
-  background-color: #ff0000;
+  /* background-color: #ff0000; */
   position: relative;
   font-family: "Poppins", sans-serif;
 }
@@ -62,7 +62,7 @@
 }
 .userInterface {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   width: 85%;
   min-height: 100vh;
