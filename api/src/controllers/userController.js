@@ -76,15 +76,15 @@ const consultUser = async (email, password) => {
     
 
 const actualizar = async (id, updateUserData) => {
-    
     const userPass = updateUserData.password
-    
     const passwordHash = await bcrypt.hash(userPass, 10);
 
     const userToUpdate = await User.findByPk(id)
     if (!userToUpdate) {
         return "Usuario no encontrado"
     }
+    updateUserData.admin?userToUpdate.admin=true:userToUpdate.admin=false;
+
     userToUpdate.name = updateUserData.name || userToUpdate.name
     userToUpdate.lastname = updateUserData.lastname || userToUpdate.lastname
     userToUpdate.email = updateUserData.email || userToUpdate.email
