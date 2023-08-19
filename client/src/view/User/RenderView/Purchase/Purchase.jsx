@@ -14,8 +14,8 @@ function Purchase() {
   }, [])
 
   async function purchaseUser () {
-    const {data} = await axios.get("/purchase");
-    const infoFiltered = data.filter((purchase) => purchase.userPurchase === idUser).map(obj => {
+    const {data} = await axios.get(`/purchase/${idUser}`);
+    const infoFiltered = data.map(obj => {
       const fecha = new Date(obj.createdAt);
       const year = fecha.getFullYear();
       const month = fecha.getMonth() + 1;

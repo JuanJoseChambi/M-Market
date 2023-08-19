@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { allProducts, searchName, setProducts, setFiltred } from "../../../../redux/slices/productsData";
+import { allProducts, searchName, setProducts, setFiltred, setCurrentPage } from "../../../../redux/slices/productsData";
 import style from "./ProductControl.module.css";
 import axios from "axios"
 import Paginado from "../../../../components/Paginado/Paginado";
@@ -54,6 +54,7 @@ function ProductControl() {
 
   function searchProduct(event) {
     const searchValue = event.target.value;
+    dispatch(setCurrentPage(1))
     dispatch(searchName(searchValue));
   }
   
