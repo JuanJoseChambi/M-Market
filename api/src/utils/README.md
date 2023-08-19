@@ -6,8 +6,12 @@
 **2** para logear un usuario "http://localhost:3001/user/login",
       desde el boby manda email y password
 
-**3** para crear una orden de compra relacionada a unn usuario, que tenga el monto de lo gastado, el userID del usuario en cuestion, y un array con los productos que compro el usuario...
-   **nota** hacemos post en "http://localhost:3001/purchase
+**3** para crear una orden de compra relacionada a unn usuario, que tenga el monto de lo gastado, el userID del usuario en cuestion, y un array con los productos que compro el usuario... <br/>
+
+**Para crear una nueva compra de productos** 
+- **post** en la url "http://localhost:3001/purchase" <br/>
+**para traer por Id todas las compra que hizo un usuario, usando su UUID**<br/>
+- **get** en la url http://localhost:3001/purchase/e254ddcd-0ab4-4914-b315-74bb48b3a72f
 
 necesitamos enviar por body, 
 **el monto de la comora** : cuanto salio la compra total, 
@@ -97,8 +101,8 @@ ruta post en http://localhost:3001/user/login
   "receives": "Blade", <br/>
   "address": "cazador de vampiritos", <br/>
   "phone": "5047788", <br/>
-  "pickUp": "No", <br/>
-  "delivery": "yes", <br/>
+  "pickUp": false, <br/>
+  "delivery": true, <br/>
   "userEmail":"abcd@gmail.com"<br/>
 }<br/>
 
@@ -124,3 +128,8 @@ ruta post en http://localhost:3001/user/login
 
 
 
+## **mercado pago**
+Comprador:<br/>
+
+Usuario:  TESTUSER743118449<br/>
+Contra: bmz3npfMmp<br/>

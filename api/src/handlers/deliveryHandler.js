@@ -1,10 +1,14 @@
 const {newDelivery, getAllDelivery} = require('../controllers/dliveryCtrl')
 
 const postDelivery = async (req, res) => {
+     
     try {
+        
         const { receives, address, phone, pickUp, delivery, userEmail } = req.body;
-        if (![receives, address, phone, pickUp, delivery, userEmail].every(Boolean)) 
-        return res.status(404).send('Flata enviardatos obligatorios')
+    //    console.log(req.body)
+        if (![receives, address, phone, userEmail].every(Boolean)) 
+        
+        return res.status(404).send('Falta enviar datos obligatorios')
         const aux = await newDelivery(receives, address, phone, pickUp, delivery, userEmail)
         res.status(201).json(aux)
     } catch (error) {

@@ -18,17 +18,20 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         pickUp: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false
             
         },
         delivery: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false
+
             
         },
        

@@ -5,24 +5,24 @@ const { Purchase, User, Prod } = require('../db')
 
 const createPurchase = async (monto, userId, prodId) => {
 
-    //    ----- relacion user--> compra
-    const user = await User.findByPk(userId);
-    const getProd = await Prod.findAll({where:{id:prodId}});
-    
-    if(!user || !getProd) throw new Error("Error en la Compra")
+  //    ----- relacion user--> compra
+  const user = await User.findByPk(userId);
+  const getProd = await Prod.findAll({ where: { id: prodId } });
 
-    const newPurchase = await Purchase.create({monto})
-    
-    await user.addPurchase(newPurchase)
+  if (!user || !getProd) throw new Error("Error en la Compra")
 
-    // ---relacion Purchase--> product
-    
-    await newPurchase.addProd(getProd)
-     
-   
-   
-   
-     return "created purchase"
+  const newPurchase = await Purchase.create({ monto })
+
+  await user.addPurchase(newPurchase)
+
+  // ---relacion Purchase--> product
+
+  await newPurchase.addProd(getProd)
+
+
+
+
+  return "created purchase"
 
 }
 
@@ -32,53 +32,36 @@ const createPurchase = async (monto, userId, prodId) => {
 
 
 const getAllPurchase = async () => {
-    const getAll = await Purchase.findAll({
-        include: [
-          {
-            model: Prod,
-            attributes: ["name", "id"],
-            through: {
-              attributes: [],
-            },
-          },
-        //   {
-        //     model: Show,
-        //     attributes: ["id", "date", "hour", "type", "stock"],
-        //     through: {
-        //       attributes: [],
-        //     },
-        //   },
-        //   {
-        //     model: Rating,
-        //     as: "ratings",
-        //     attributes: ["id", "count"],
-        //   },
-        ],
-      })
+  const getAll = await Purchase.findAll({
+    include: [
+      {
+        model: Prod,
+        attributes: ["name", "id"],
+        through: {
+          attributes: [],
+        },
+      },
 
-    if (getAll.length > 0) {
-        return getAll
-    } else {
-        return "No purchases"
-    }
+    ],
+  })
+
+  if (getAll.length > 0) {
+    return getAll
+  } else {
+    return "No purchases"
+  }
+}
+
+
+const getById = async (id) => {
+  if(id.length !== 36) throw new Error("ingresar los 36 caracteres del UUID usuario")
+  const info = await getAllPurchase()
+  let purchaseFilter = info.filter(item => item.userPurchase === id)
+  if(!purchaseFilter) throw new Error("aun no hay compras con ese usuario")
+  return purchaseFilter;
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = { createPurchase, getAllPurchase }
+module.exports = { createPurchase, getAllPurchase, getById }
