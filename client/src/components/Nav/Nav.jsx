@@ -74,7 +74,7 @@ const Nav = () => {
         </div>
         {access ? (
           <Link to="/user">
-            <button className="icons">
+            <button onClick={() => dispatch(setCurrentPage(1))} className="icons">
               <i className="bx bx-user"></i>
             </button>
           </Link>
