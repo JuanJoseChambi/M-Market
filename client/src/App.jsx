@@ -8,7 +8,7 @@ import Detail from "./view/Detail/Detail";
 import Login from "./view/Login/Login";
 import CreateAccount from "./view/Login/CreateAccount";
 import User from "./view/User/User";
-
+import Nosotros from "./components/Nosotros/Nosotros";
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/createAccount" element={<CreateAccount/>}/>
         <Route exact path="/user" element={<User/>}/>
+        <Route exact path="/nosotros" element={<Nosotros/>} />
       </Routes>
     </div>
   );
