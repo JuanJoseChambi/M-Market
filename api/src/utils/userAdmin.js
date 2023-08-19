@@ -1,42 +1,53 @@
-const {UserAdmin} = require('../db')
+const {UserAdmin, User} = require('../db')
 const bcrypt = require("bcryptjs");
 
 
-let arr = [
-    {name:"jonny", lastname:"Fernandez", email:"jonny@hotmail.com", password: "code123" },
-    {name:"Matias", lastname:"Bagaso", email:"mati25@hotmail.com", password: "pepe"},
-    {name:"Andres", lastname:"Pardo", email:"apardo@gmail.com", password: "prueba"},
+// let arr = [
+//     {name:"jonny", lastname:"Fernandez", email:"jonny@hotmail.com", password: "code123" },
+//     {name:"Matias", lastname:"Bagaso", email:"mati25@hotmail.com", password: "pepe"},
+//     {name:"Andres", lastname:"Pardo", email:"apardo@gmail.com", password: "prueba"},
               
-]
+// ]
+const createAdmin=async()=>{
+    const adminGeneral = {name:"admin", lastname:"admin", email:"admin@gmail.com", password: "admin"}
+    const passwordHash = await bcrypt.hash(adminGeneral.password, 10);
+    
+   
+    await User.findOrCreate({
+        where:{name: adminGeneral.name},
+        defaults:{lastname: adminGeneral.lastname, email: adminGeneral.email, password: passwordHash}
+    });
+
+}
 
 
-const AdminUser = async (name, lastname, email, password) => {
+// const AdminUser = async (name, lastname, email, password) => {
 
-    name = name.toUpperCase();
-    lastname = lastname.toUpperCase();
-    email = email.toLowerCase();
+//     name = name.toUpperCase();
+//     lastname = lastname.toUpperCase();
+//     email = email.toLowerCase();
         
-    const passwordHash = await bcrypt.hash(password, 10);
+//     const passwordHash = await bcrypt.hash(password, 10);
 
  
-    await UserAdmin.findOrCreate({
-        where:{name: name},
-        defaults:{lastname: lastname, email: email, password: passwordHash}
-    });
+//     await UserAdmin.findOrCreate({
+//         where:{name: name},
+//         defaults:{lastname: lastname, email: email, password: passwordHash}
+//     });
 
     
 
-}
+// }
 
 
-const Admin = ()=>{
+// const Admin = ()=>{
 
-    arr.forEach(item => {
-        AdminUser(
-            item.name, item.lastname, item.email, item.password
-        )
-      });
-}
+//     arr.forEach(item => {
+//         AdminUser(
+//             item.name, item.lastname, item.email, item.password
+//         )
+//       });
+// }
 
 
-module.exports = Admin
+module.exports = createAdmin
