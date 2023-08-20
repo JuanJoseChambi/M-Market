@@ -10,6 +10,8 @@ const getInfo = async () => {
 
 const getIdRepetidos = async () => {
     const allPurchase = await getAllPurchase()
+
+    if(allPurchase) throw new Error('No tenemos compra registradas, no hay estadisticas de ventas')
     
     const allProduct = await allPurchase.map(item=> item.Prods)
     
