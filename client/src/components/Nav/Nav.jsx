@@ -15,6 +15,7 @@ const Nav = () => {
   const prod = cart.length;
   const [productsInCart, setProductsInCart] = useState(prod);
   const [openedCart, setOpenedCart] = useState(false);
+ 
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch()
 
@@ -31,9 +32,9 @@ const Nav = () => {
   // console.log(productsInCart);
   return (
     <div>
-    <div className="iconAbout">
+    <div className="iconAbout" >
     <Link to="/nosotros">
-        <button className="custom-icon">
+        <button className="custom-icon" >
         <span className="icon-text">Nosotros</span>
       </button>
     </Link>
@@ -73,19 +74,20 @@ const Nav = () => {
           {openedCart && <CartSlide />}
         </div>
         {access ? (
-          <Link to="/user">
-            <button onClick={() => dispatch(setCurrentPage(1))} className="icons">
-              <i className="bx bx-user"></i>
-            </button>
-          </Link>
-        ) : (
-          <Link to="/login">
-            <button className="icons">
-              <i className="bx bx-user-circle"></i>
-            </button>
-          </Link>
-        )}
-        {access && <LogOut />}
+    <Link to="/user">
+      <button onClick={() => dispatch(setCurrentPage(1))} className="icons user-button">
+        <i className="bx bx-user"></i>
+      </button>
+    </Link>
+  ) : (
+    <Link to="/login">
+      <button className="icons">
+        <i className="bx bx-user-circle"></i>
+      </button>
+    </Link>
+  )}
+  {access && <span className="username-message">🟢 {access}</span>}
+  {access && <LogOut />}
       </div>
     </div>
     </div>
