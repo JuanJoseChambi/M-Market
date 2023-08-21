@@ -9,7 +9,7 @@ routerUser
 .post('/',postUser)
 .post('/login',getUser)
 .put("/:id", updateUser)
-// .get('/', getUserPurchase)
+.get('/', getUserPurchase)
 .get('/:id', getUserPurchaseID)
 
 module.exports = routerUser;
