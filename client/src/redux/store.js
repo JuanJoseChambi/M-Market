@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import productsData from './slices/productsData'
 import userAuth from './slices/userAuth';
-import searchUser from "./slices/searchUser"
+import dashBoard from "./slices/dashBoard"
 
 
 export const store = configureStore({
@@ -9,7 +9,7 @@ export const store = configureStore({
     //AQUI VAN LOS REDUCERS DE CADA SLICE
     products: productsData,
     auth: userAuth,
-    search: searchUser
+    search: dashBoard
   }
 
 })

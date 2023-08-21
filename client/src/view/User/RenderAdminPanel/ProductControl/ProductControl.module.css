@@ -1,0 +1,245 @@
+.viewProductControl {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  /* background-color: red; */
+}
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: #3e3e3f;
+  border: 0;
+}
+.select {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0 5px;
+  font-size: 14px;
+  color: #000;
+  margin: 0 5px;
+}
+.buttonReset {
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 15px;
+  margin-left: 10px;
+}
+.containerInput {
+  display: flex;
+  flex-direction: row;
+  width: 25%;
+  /* background-color: blue; */
+}
+.input {
+  width: 90%;
+  height: 30px;
+  border: 0;
+  border-radius: 50px 0 0 50px;
+  padding: 5px 10px;
+  outline: none;
+  background-color: rgb(231, 224, 224);
+  font-size: 12px;
+}
+.btnSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  border: 0;
+  padding: 14px;
+  background-color: #ff8000;
+  border-radius: 0 50px 50px 0;
+}
+.btnSearch i {
+  font-size: 17px;
+}
+/* ----------------------------Input------------------------------------------------- */
+.containerProducts {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 100px;
+  /* background-color: #4444c3; */
+}
+.containerPagination {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  margin: 0;
+  background-color: #3e3e3f;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.227);
+}
+.propertyTable {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  min-height: 43px;
+  background-color: #3e3e3f;
+  /* background-color: red; */
+}
+.property {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+
+  width: 12.5%;
+  padding: 5px 0;
+  background-color: white;
+  margin: 0;
+  font-size: 13px;
+}
+/* ----------------------------------- */
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  min-height: 20px;
+  background-color: #f7f9f3;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  position: relative;
+}
+.contanierProductsInputsImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 12.5%;
+  /* background-color: red; */
+  margin: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.227);
+  padding: 0;
+}
+.conatinerImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100px;
+  position: relative;
+  /* background-color: red; */
+}
+.image {
+  width: 100%;
+}
+.contanierProductsInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  width: 12.5%;
+  min-height: 90px;
+  border-right: 1px solid rgba(0, 0, 0, 0.227);
+  padding: 5px 0;
+  margin: 0;
+  /* background-color: rgb(181, 54, 54); */
+}
+.btnCloudinary {
+  width: 135px;
+  font-size: 12px;
+}
+
+.inputs_file {
+  width: 80%;
+  padding: 5px 5px;
+  border: 0px;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid rgb(166, 161, 161);
+  font-family: "Poppins", sans-serif;
+  transition: border-bottom 0.5s;
+  margin-top: 10px;
+
+  /* Centrar verticalmente y horizontalmente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.upDateText {
+  width: 98%;
+  padding: 0 10px;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid rgb(167, 160, 160);
+  border-radius: 5px;
+}
+.upDateInput {
+  width: 60%;
+  padding: 0 10px;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid rgb(167, 160, 160);
+  border-radius: 5px;
+}
+
+.pInput {
+  margin: 0;
+}
+.contanierSwitch {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  width: 12.5%;
+  min-height: 90px;
+  border-right: 1px solid rgba(0, 0, 0, 0.227);
+  padding: 5px 0;
+  margin: 0;
+}
+.btnState {
+  border: 0;
+  background-color: rgb(210, 208, 208);
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-size: 25px;
+}
+/* ------------------------------------------------------- */
+.containerImageEmptyUser{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+  position: relative;
+  margin-top: 80px;
+  /* background-color: red; */
+}
+.imageEmptyUser{
+  width: 100%;
+}
+.noUserText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* background-color: purple; */
+  font-size: 25px;
+  margin: 50px 0;
+}

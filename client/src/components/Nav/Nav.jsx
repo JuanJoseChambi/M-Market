@@ -1,12 +1,13 @@
-import "./nav.css";
-import Sidebar from "./Sidebar.jsx";
-import Search from "../Search/Search";
-import LogOut from "../../view/Login/Logout.jsx";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import CartSlide from "../Cart/CartSlide";
-import { useSelector } from "react-redux";
+import './nav.css';
+import Sidebar from './Sidebar.jsx';
+import Search from '../Search/Search';
+import LogOut from '../../view/Login/Logout.jsx';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import CartSlide from '../Cart/CartSlide';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentPage } from '../../redux/slices/productsData';
 
 const Nav = () => {
   const { cart } = useSelector((state) => state.products);
@@ -16,12 +17,13 @@ const Nav = () => {
   const [openedCart, setOpenedCart] = useState(false);
  
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch()
 
   const access = localStorage.getItem("email");
   const showCart = () => {
     setOpenedCart(!openedCart);
-    localStorage.removeItem("PurchaseInfo");
-    // localStorage.removeItem("preferenceMP")
+    localStorage.removeItem("PurchaseInfo")
+    localStorage.removeItem("preferenceMP")
   };
   useEffect(() => {
     setProductsInCart(prod);
@@ -73,7 +75,7 @@ const Nav = () => {
         </div>
         {access ? (
     <Link to="/user">
-      <button className="icons user-button">
+      <button onClick={() => dispatch(setCurrentPage(1))} className="icons user-button">
         <i className="bx bx-user"></i>
       </button>
     </Link>
