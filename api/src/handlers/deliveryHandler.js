@@ -1,11 +1,16 @@
 const {newDelivery, getAllDelivery} = require('../controllers/dliveryCtrl')
+const {validarDeliveri} = require('../utils/validate')
 
 const postDelivery = async (req, res) => {
      
     try {
         
+        
         const { receives, address, phone, pickUp, delivery, userEmail } = req.body;
-    //    console.log(req.body)
+       let validar = validarDeliveri(userEmail, receives)
+       if(validar) return res.status(400).json(validar)
+
+    
         if (![receives, address, phone, userEmail].every(Boolean)) 
         
         return res.status(404).send('Falta enviar datos obligatorios')
