@@ -5,19 +5,21 @@ const {validarCorreo} = require('../utils/validate')
 const postUser = async (req, res) => {
     try {
         const { name, lastname, email, password, userGoogle } = req.body;
-
+        if (email && userGoogle) {
+            const response = await createUserGoogle(email);
+            
+            return res.status(200).json(response);
+        }
         let validar = validarCorreo(email, password,name,lastname)
         if (validar) return res.status(400).json(validar)
         
 
-        
+        console.log(email, userGoogle)
 
-        if (email && userGoogle) {
-            const response = await createUserGoogle(email);
-            return res.status(200).json(response);
-        }
+        
         // Aqui debo encriptar la contraseña
         if (!name || !lastname || !email || !password) {
+
             return res.status(400).send("Datos incompletos")
         }
         const response = await createUser(name, lastname, email, password)
