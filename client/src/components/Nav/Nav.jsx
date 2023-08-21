@@ -54,11 +54,6 @@ const Nav = () => {
         </Link>
       </div>
       <div className="containerIcons">
-        <Link to="/favorites">
-          <button className="icons">
-            <i className="bx bx-heart"></i>
-          </button>
-        </Link>
         <Link to="#">
           <button className="icons" onClick={showCart}>
             <i className="bx bx-cart"></i>
