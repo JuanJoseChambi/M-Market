@@ -33,13 +33,7 @@ const Nav = () => {
   // console.log(productsInCart);
   return (
     <div>
-    <div className="iconAbout" >
-    <Link to="/nosotros">
-        <button className="custom-icon" >
-        <span className="icon-text">Nosotros</span>
-      </button>
-    </Link>
-  </div>
+   
     <div className="nav_container">
     
       <div className="sideBar">
@@ -52,11 +46,6 @@ const Nav = () => {
         <Search />
       </div>
       <div className="containerIcons">
-        <Link to="/favorites">
-          <button className="icons">
-            <i className="bx bx-heart"></i>
-          </button>
-        </Link>
         <Link to="#">
           <button className="icons" onClick={showCart}>
             <i className="bx bx-cart"></i>
