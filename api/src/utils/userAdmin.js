@@ -9,14 +9,16 @@ const bcrypt = require("bcryptjs");
               
 // ]
 const createAdmin=async()=>{
-    const adminGeneral = {name:"admin", lastname:"admin", email:"admin@gmail.com", password: "admin"}
+    const adminGeneral = {name:"admin", lastname:"admin", email:"admin@gmail.com", password: "admin", admin:true}
     const passwordHash = await bcrypt.hash(adminGeneral.password, 10);
+
     
    
     await User.findOrCreate({
         where:{name: adminGeneral.name},
         defaults:{lastname: adminGeneral.lastname, email: adminGeneral.email, password: passwordHash, admin: true}
     });
+   
 
 }
 
