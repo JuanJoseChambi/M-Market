@@ -32,13 +32,7 @@ const Nav = () => {
   // console.log(productsInCart);
   return (
     <div>
-    <div className="iconAbout" >
-    <Link to="/nosotros">
-        <button className="custom-icon" >
-        <span className="icon-text">Nosotros</span>
-      </button>
-    </Link>
-  </div>
+   
     <div className="nav_container">
     
       <div className="sideBar">
