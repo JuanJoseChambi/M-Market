@@ -8,6 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import CartSlide from '../Cart/CartSlide';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../redux/slices/productsData';
+import LogoMMarket from "../../assets/LogoMMarket.png"
 
 const Nav = () => {
   const { cart } = useSelector((state) => state.products);
@@ -44,14 +45,11 @@ const Nav = () => {
       <div className="sideBar">
         <Sidebar />
       </div>
-      
+      <div className="logoMMarket">
+          <img className="imageLogo" src={LogoMMarket} alt="M-Market" />
+        </div>
       <div className="search">
         <Search />
-      </div>
-      <div className="nav_form_button">
-        <Link to="/form">
-          <button className="nav_f_button">Formulario</button>
-        </Link>
       </div>
       <div className="containerIcons">
         <Link to="/favorites">

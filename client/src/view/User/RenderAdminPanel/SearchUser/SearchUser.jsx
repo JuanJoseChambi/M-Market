@@ -42,7 +42,8 @@ function SearchUser() {
   }
   async function handlerAdmin (info) {
     const {id, admin} = info;
-    await axios.put(`/user/${id}`, admin)
+    console.log(info);
+    await axios.put(`/user/${id}`, {admin: admin})
     const {data} = await axios.get("/user");
     dispatch(setUsers(data))
   }
@@ -67,7 +68,7 @@ function SearchUser() {
           <p className={style.property}>Email</p>
           <p className={style.property}>Nombre</p>
           <p className={style.property}>Apellido</p>
-          <p className={style.property}>Admin</p>
+          <p className={style.property}>Admin | Compras</p>
         </div>
       <div className={style.viewCards}>
         {!purchaseId 

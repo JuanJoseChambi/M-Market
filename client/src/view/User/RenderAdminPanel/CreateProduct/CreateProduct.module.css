@@ -1,0 +1,322 @@
+.formView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+  }
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: 95vh;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.227);
+  background-color: #ffffff;
+    box-shadow: 0px 15px 20px 0px rgb(34, 33, 33);
+  }
+  .blocksInputs {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    width: 95%;
+    height: 20vh;
+    /* background-color: rgb(80, 80, 186); */
+  }
+  .inputRight,
+  .inputLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    min-height: 90%;
+    font-size: 15px;
+    /* background-color: red; */
+  }
+  .inputRightSelect{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    min-height: 150%;
+    margin-bottom: 130px;
+    /* background-color: red; */
+  }
+  
+  .inputs {
+    width: 80%;
+    padding: 5px 5px;
+    border: 0px;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(166, 161, 161);
+    font-family: 'Poppins', sans-serif;
+    transition: border-bottom .5s;
+  }
+  .inputs:hover, .inputs:focus{
+    border-bottom: 1px solid rgb(0, 0, 0);
+  }
+  .textArea {
+    width: 140%;
+    height: 50px;
+    padding: 5px 5px;
+    border: 0px;
+    outline: none;
+    /* background-color: red; */
+    resize: none;
+    border-bottom: 1px solid rgb(166, 161, 161);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    transition: border-bottom .5s;
+  }
+  .textArea:hover, .textArea:focus{
+    border-bottom: 1px solid rgb(0, 0, 0);
+  }
+  .select{
+      border: 0px;
+      outline: none;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 30px;
+      font-size: 14px;
+  }
+  .viewOptions{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 80%;
+    min-height: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.227);
+    color: white;
+    border-radius: 15px;
+    padding: 2px 3px;
+  }
+  .categoryInBlock{
+    /* height: 20px; */
+    background-color: #ff8000;
+    border: 1px solid rgba(0, 0, 0, 0.227);
+    margin: 3px 2px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    position: relative;
+  }
+  .error {
+    color: rgb(255, 0, 0);
+    text-align: center;
+    margin: 0px;
+    font-size: 11px;
+    width: 100%;
+    height: 2.5vh;
+    margin-left: 0px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .btnActive, .btnDesactive {
+    padding: 8px 25px;
+    border: 0px;
+    color: white;
+    user-select: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    margin: 10px 0;
+  }
+  .btnDesactive{
+    color: #3a3737;
+    background-color: #b4712e;
+  }
+  .btnActive{
+    color: #ffffff;
+    background-color: #ff8000;
+  }
+  .titleCreate{
+    width: 400px;
+    height: 65px;
+    animation: escribiendo 6s steps(20) forwards;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    margin-top: 10px;
+    /* background-color: rebeccapurple; */
+  }
+  
+  @keyframes escribiendo {
+    0%,
+    100%{
+      width: 0;
+    }
+    40%,
+    60% {
+      width: 305px;
+    }
+    100%{
+      width: 305px;
+    }
+  }
+  
+  @media (min-width: 601px) and (max-width: 1024px) {
+    /*Pantallas medianas*/
+    .titleCreate{
+      display: none;
+    }
+    .formView{
+      padding: 30px 0;
+    }
+    .form{
+      width: 90%;
+      min-height:100vh;
+    }
+    .blocksInputs{
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      font-size: 20px;
+    }
+    .inputLeft{
+      width: 90%;
+      min-height: 10vh;
+      /* background-color: red; */
+      /* margin: 10px 0; */
+    }
+    .inputRight{
+      width: 90%;
+      min-height: 10vh;
+      /* background-color: green; */
+    }
+    .select{
+      position: absolute;
+      top: 0;
+      margin: 0;
+    }
+    .inputRightSelect{
+      /* background-color: red; */
+      min-height: 80%;
+      width: 100%;
+      position: relative;
+    }
+    .viewOptions{
+      min-width: 90%;
+      /* background-color: rebeccapurple; */
+    }
+    .textArea{
+      width: 90%;
+    }
+    .returnBack{
+      display: none;
+    }
+    .select{
+      width: 60%;
+      /* background-color: red; */
+    }
+    .btnActive, .btnDesactive{
+      width: 80%;
+    }
+    .categoryInBlock{
+      font-size: 10px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    /*Pantallas Pequeñas*/
+    .formView{
+      padding: 10px 0;
+    }
+    .form{
+      width: 90%;
+      min-height:100vh;
+    }
+    .blocksInputs{
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+    }
+    .inputLeft{
+      width: 90%;
+      min-height: 10vh;
+      /* background-color: red; */
+      /* margin: 10px 0; */
+    }
+    .inputRight{
+      width: 90%;
+      min-height: 10vh;
+      /* background-color: green; */
+    }
+    .select{
+      position: absolute;
+      top: 0;
+      margin: 0;
+    }
+    .inputRightSelect{
+      /* background-color: red; */
+      min-height: 80%;
+      width: 100%;
+      position: relative;
+    }
+    .viewOptions{
+      min-width: 90%;
+      /* background-color: rebeccapurple; */
+    }
+    .textArea{
+      width: 90%;
+    }
+    .returnBack{
+      display: none;
+    }
+    .select{
+      width: 60%;
+      /* background-color: red; */
+    }
+    .btnActive, .btnDesactive{
+      width: 80%;
+    }
+    .categoryInBlock{
+      font-size: 10px;
+    }
+  }
+  
+  .inputs_file {
+    width: 80%;
+    padding: 5px 5px;
+    border: 0px;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(166, 161, 161);
+    font-family: 'Poppins', sans-serif;
+    transition: border-bottom .5s;
+    margin-top: 10px;
+    
+    /* Centrar verticalmente y horizontalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .buttonAlert{
+    background-color: #ff8000;
+    border-radius: 5px;
+    font-family:  'Poppins', sans-serif;
+    padding: 7px 10px;
+    border-color: aliceblue;
+    color: aliceblue;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  .mesageAlert{
+    font-family:  'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: black;
+    margin-top: 10px;
+  }

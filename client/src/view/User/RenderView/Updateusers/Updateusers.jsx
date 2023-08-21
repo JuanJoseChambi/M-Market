@@ -7,15 +7,12 @@ function UpDateUser() {
   const [user, setUser] = useState([]);
   const [renderUpDate, setRenderUpDate] = useState("")
   const [vision, setVision] = useState("password")
-  const [verify, setVerify] = useState({
-    NewEmail: "",
-    currentEmail: ""
-  })
   const [updateInfoUser, setUpdateInfoUser] = useState({
       name: "",
       lastname: "",
       email: "",
       password: "",
+      admin: user[0]?user[0].admin:null
     });
   
   const idUser = localStorage.getItem("userId");
@@ -45,6 +42,7 @@ function UpDateUser() {
               lastname: "",
               email: "",
               password: "",
+              admin: updateInfoUser.admin
             })
             handlerInfoUser()
           }
