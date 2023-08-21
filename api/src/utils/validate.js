@@ -12,10 +12,10 @@ function validarCorreo(email, password, name, lastname) {
 
 
 
-    if (!Name) return 'Nombrbre debe contener 5-20 caracteres alfabético, no numeros'
-    if (!Lastname) return 'Apellido debe contener 5-20 caracteres alfabético, no numeros'
-    if (!Email) return "Ingresar un mail valido";
-    if (!Password) return "La contraseña debe de seguir las siguientes politicas: Minimo 8 caracteres, Maximo 15, Al menos una letra mayúscula, Al menos una letra minuscula, Al menos un dígito, No espacios en blanco, Al menos 1 caracter especial, 'eje: password: *Duende25 ' "
+    if (!Name) throw new Error('Nombre debe contener 5-20 caracteres alfabético')
+    if (!Lastname) throw new Error('Apellido debe contener 5-20 caracteres alfabético')
+    if (!Email) throw new Error("Ingresar un mail valido");
+    if (!Password) throw new Error("La contraseña debe de seguir las siguientes politicas: Minimo 8 caracteres, Maximo 15, Al menos una letra mayúscula, Al menos una letra minuscula, Al menos un dígito, No espacios en blanco, Al menos 1 caracter especial, 'eje: password: *Duende25 ' ")
 }
 
 
