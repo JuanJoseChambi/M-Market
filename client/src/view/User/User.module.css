@@ -53,9 +53,14 @@
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   margin: 10px;
+  background-color: white;
+  transition: background-color .5s;
 }
 .btnsInactive {
   background-color: #ff8000;
+}
+.btnsInactive:hover{
+  background-color: white;
 }
 .btnsActive {
   background-color: white;

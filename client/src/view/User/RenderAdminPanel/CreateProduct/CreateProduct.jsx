@@ -81,7 +81,7 @@ export default function CreateProduct() {
 
     function handlerSelectChange (event) {
         const value = event.target.value;
-          if (!newProduct.category.includes(value)) {
+          if (value !== "" && !newProduct.category.includes(value)) {
               setNewProduct({
                   ...newProduct,
                   category:[...newProduct.category, value]
@@ -200,7 +200,7 @@ export default function CreateProduct() {
           </div>
           <div className={style.inputRightSelect}>
           <select value={newProduct.category} name="category" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
-                <option value={null} className={style.options}>Categoria</option>
+                <option value="" className={style.options}>Categoria</option>
                 <option value="Almacen" className={style.options}>Almacen</option>
                 <option value="Perfumeria" className={style.options}>Perfumeria</option>
                 <option value="Lacteos y productos frescos" className={style.options}>Lacteos y productos frescos</option>

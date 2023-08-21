@@ -59,7 +59,10 @@ useEffect(() => {
         </div>
         {!accessAdmin
         ? (accessGmail 
-          ? <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button>  
+          ? <>
+              <button onClick={() => setRenderInterface("profile")} className={renderInterface === "profile"? style.btnsActive: style.btnsInactive}> Perfil </button>
+              <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button>  
+            </>
           : <>
             <button onClick={() => setRenderInterface("profile")} className={renderInterface === "profile"? style.btnsActive: style.btnsInactive}> Perfil </button>
             <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button> 
