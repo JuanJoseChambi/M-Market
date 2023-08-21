@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
         admin:{
             type: DataTypes.BOOLEAN, 
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         }
        
 

@@ -11,6 +11,7 @@ import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
 import axios from "axios";
+import productEmpty from "../../assets/empty.svg"
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -65,16 +66,26 @@ export default function Home() {
 
         <div className="container">
           <div className="row justify-content-center">
-            {cardsShowed.map((item) => (
-              <div className="col-md-4 mb-3" key={item.id}>
+            {cardsShowed.length !== 0
+            ? cardsShowed.map((item) => (
+              item.unit !== 0 
+              ?(item.state 
+                ?  <div className="col-md-4 mb-3" key={item.id}>
                 <Product
                   id={item.id}
                   name={item.name}
                   image={item.image}
                   price={item.price}
                 />
-              </div>
-            ))}
+                  </div> 
+                  : null) 
+              : null
+              )) 
+            : <div className={styles.containerImageEmptyUser}>
+                <img className={styles.imageEmptyUser} src={productEmpty} alt="El producto no existe" />
+                <i className={styles.noUserText}>El producto no existe</i>
+              </div> 
+            }
           </div>
         </div>
         
