@@ -6,11 +6,16 @@ import empty from "../../../../assets/empty.svg"
 function Purchase() {
 
   const [infoPurchase, setInfoPurchase] = useState([])
+  const [user, setUser] = useState([]);
 
   const idUser = localStorage.getItem('userId');
-
+  async function handlerInfoUser() {
+    const { data } = await axios.get(`/user/${idUser}`);
+    setUser([data]);
+  }
   useEffect(() => {
     purchaseUser()
+    handlerInfoUser()
   }, [])
 
   async function purchaseUser () {
@@ -32,6 +37,13 @@ function Purchase() {
   return (
     <div className={style.updateInfo}>
     <h2 className={style.titleSection}>Compras Realizadas</h2>
+    <div className={style.user}>
+          <div className={style.userNL}>
+            <i className={style.textUser}>{user[0]?user[0].name:null}</i>
+            <i className={style.textUser}>{user[0]?user[0].lastname:null}</i>
+          </div>
+          <i className={style.textUser}>{user[0]?user[0].email:null}</i>
+        </div>
         {infoPurchase.length !== 0 ? infoPurchase.map((purchase, i) => (
           purchase.monto === 0 ? null : (<div key={i} className={style.containerPurchase}>
           <div className={style.containerFecha}>{purchase.fecha.map((fecha, i) => <p key={i} className={style.fecha}>{fecha}</p>)}</div>

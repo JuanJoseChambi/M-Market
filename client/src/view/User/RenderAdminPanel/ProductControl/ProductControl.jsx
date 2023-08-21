@@ -29,7 +29,7 @@ function ProductControl() {
   async function handlerEdit(product) {
     setEditUnit({[product.id]: !edit[product.id]});
 
-    if (upDate.brand || upDate.name || upDate.price || upDate.unit || upDate.description || upDate.image || upDate.score || upDate.state || upDate.state ) {
+    if (upDate.brand || upDate.name || upDate.price || upDate.unit || upDate.description || upDate.image || upDate.score) {
       await axios.put(`/product/${product.id}`, upDate)
       setUpDate({
         brand:"",
@@ -202,9 +202,11 @@ function ProductControl() {
                     <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.score} onChange={(e) => setUpDate({...upDate, score : e.target.value})}/>
                   </div>
               <div className={style.contanierSwitch}>
-                  {product.state
-                  ? <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: false}), handlerBlock(product)}}><i className='bx bx-lock-open'></i></button> 
-                  : <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: true}) , handlerBlock(product)}}><i className='bx bxs-lock'></i></button>}
+                  {product.unit === 0 
+                  ? <button className={style.btnState}><i className='bx bxs-lock'></i></button>
+                  : (product.state
+                    ? <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: false}), handlerBlock(product)}}><i className='bx bx-lock-open'></i></button> 
+                    : <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: true}) , handlerBlock(product)}}><i className='bx bxs-lock'></i></button>)}
                   <button className={style.btnState} onClick={() => handlerEdit(product)}>
                     <i className={`${edit[product.id] ? 'bx bx-check' : 'bx bxs-edit-alt'}`}></i>
                   </button>

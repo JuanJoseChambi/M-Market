@@ -4,7 +4,6 @@ const LogOut = () => {
     const handleLogout = () => {
         localStorage.removeItem("email")
         localStorage.removeItem("userId")
-        localStorage.removeItem("adminId")
         localStorage.removeItem("gmail")
         window.location.reload()
     }

@@ -10,11 +10,7 @@ function SearchUser() {
   const [purchaseId, setPurchseId] = useState("");
   const [infoUserPurchase, setInfoUserPurchase] = useState([]);
 
-  useEffect(() => {
-    if (purchaseId) {
-      handlerPurchase();
-    }
-  }, [purchaseId]);
+  
 
   async function handlerPurchase () {
     const {data} = await axios.get(`/purchase/${purchaseId}`);
@@ -44,10 +40,19 @@ function SearchUser() {
       dispatch(search(searchValue))
       setPurchseId("")
   }
+  async function handlerAdmin (info) {
+    const {id, admin} = info;
+    await axios.put(`/user/${id}`, admin)
+    const {data} = await axios.get("/user");
+    dispatch(setUsers(data))
+  }
 
   useEffect(() => {
     handlerUser();
-  }, []);
+    if (purchaseId) {
+      handlerPurchase();
+    }
+  }, [purchaseId]);
 
   return (
     <div className={style.viewSearch}>
@@ -57,15 +62,38 @@ function SearchUser() {
           <i className="bx bx-search-alt"></i>
         </button>
       </div>
+      <div className={style.propertyTable}>
+          <p className={style.property}>Id</p>
+          <p className={style.property}>Email</p>
+          <p className={style.property}>Nombre</p>
+          <p className={style.property}>Apellido</p>
+          <p className={style.property}>Admin</p>
+        </div>
       <div className={style.viewCards}>
         {!purchaseId 
           ?(WantedUser.length !== 0 
             ?  WantedUser.map((user, i) => (
-              <div key={i} onClick={() => setPurchseId(user.id)} className={style.cardUser}>
-                <p className={style.id}>{user.id}</p>
-                <p className={style.name}>{user.name}</p>
-                <p className={style.lastname}>{user.lastname}</p>
-                <p className={style.email}>{user.email}</p>
+              <div key={i}  className={style.cardUser}>
+                <div className={style.contanierInfoUser}>
+                  <p className={style.id}>{user.id}</p>
+                </div>
+                <div className={style.contanierInfoUser}>
+                  <p className={style.email}>{user.email}</p>
+                </div>
+                <div className={style.contanierInfoUser}>
+                  <p className={style.name}>{user.name}</p>
+                </div>
+                <div className={style.contanierInfoUser}>
+                  <p className={style.lastname}>{user.lastname}</p>
+                </div>
+                <div className={style.contanierSwitch}>
+                  {user.admin
+                  ? <button onClick={() => handlerAdmin({id: user.id, admin: false})} className={style.btnState}><i className='bx bxs-shield-alt-2'></i></button>
+                  : <button onClick={() => handlerAdmin({id: user.id, admin: true})} className={style.btnState}><i className='bx bx-shield-alt-2' ></i></button>}
+                  {(user.Purchase).length !== 0 
+                  ? <button onClick={() => setPurchseId(user.id)} className={style.btnState}><i className='bx bxs-archive'></i></button> 
+                  : <button onClick={() => setPurchseId(user.id)} className={style.btnState}><i className='bx bx-archive' ></i></button>}
+                </div>
               </div>
             ))
             : <div className={style.containerImageEmptyUser}>

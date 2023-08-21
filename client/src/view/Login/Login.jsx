@@ -43,12 +43,15 @@ const Login = () => {
       const userGGle = data.find(user => user.email === email)
       if (!userGGle) {
         const { data } = await axios.post("/user", {email: email, userGoogle: true})
+        if (data.name === "N/A" && data.lastname === "N/A" && data.password === "N/A") {
+          localStorage.setItem('gmail', true)
+        }
         localStorage.setItem('email', data.email);
         localStorage.setItem('userId', data.id)
         navigate('/home');
       }
       localStorage.setItem('email', userGGle.email);
-      localStorage.setItem('userId', userGGle.id)
+      localStorage.setItem('userId', userGGle.id);
       navigate('/home');
       dispatch(loginSuccess());
       if (userGGle.name === "N/A" && userGGle.lastname === "N/A" && userGGle.password === "N/A") {
@@ -94,11 +97,7 @@ const Login = () => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          if (success.userId) {
-            localStorage.setItem('userId', success.userId)
-          }else{
-            localStorage.setItem('adminId', success.adminId)
-          }
+          localStorage.setItem('userId', success.userId)
           localStorage.setItem('email', email);
           dispatch(loginSuccess());
           navigate('/home');

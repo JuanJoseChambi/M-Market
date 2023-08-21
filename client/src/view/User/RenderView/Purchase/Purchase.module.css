@@ -15,6 +15,32 @@
     position: relative;
     /* background-color: rebeccapurple; */
   }
+  .user{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    flex-direction: column;
+    max-width: 20%;
+    position: absolute;
+    top: 3%;
+    right: 10%;
+    /* background-color: red; */
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.227);
+  }
+  .userNL{
+    max-width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+   /* background-color: blue; */
+  }
+  .textUser{
+    margin: 0 5px;
+    color: rgb(170, 169, 169);
+    font-size: 12px;
+  }
   .containerPurchase {
     display: flex;
     justify-content: center;
@@ -24,7 +50,7 @@
     /* height: 50vh; */
     background-color: #ff8000;
     border-radius: 10px;
-    margin: 10px 0;
+    margin: 30px 0;
     border: 1px solid rgba(0, 0, 0, 0.227);
     position: relative;
     box-shadow: 0px 5px 15px 0px rgb(34, 33, 33);
@@ -56,7 +82,7 @@
     flex-direction: column;
     width: 85%;
     /* background-color: rgb(53, 53, 227); */
-    padding: 20px;
+    padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.227);
     border-radius: 10px 0 0 10px;
   }
@@ -66,7 +92,7 @@
     margin: 0;
     padding: 0 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.227);
-  
+    font-size: 15px;
   }
   .totalPrice {
     display: flex;

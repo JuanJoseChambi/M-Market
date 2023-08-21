@@ -8,14 +8,24 @@ import SearchUser from "./RenderAdminPanel/SearchUser/SearchUser";
 import ProductControl from "./RenderAdminPanel/ProductControl/ProductControl";
 import { useDispatch } from "react-redux";
 import { setCurrentPage } from "../../redux/slices/productsData";
+import axios from "axios";
 
 function User() {
   const [renderInterface, setRenderInterface] = useState(undefined);
-  const accessAdmin = localStorage.getItem('adminId');
+  const [accessAdmin, setAccessAdmin] = useState(undefined)
   const accessGmail = localStorage.getItem('gmail');
+  const userId = localStorage.getItem('userId');
+
   const dispatch = useDispatch()
 
+  async function handlerAdmin () {
+    const {data} = await axios.get("/user");
+    const admin = data.find(user => user.id === userId)
+    setAccessAdmin(admin.admin)
+  }
+
 useEffect(() => {
+  handlerAdmin()
   if (accessAdmin) {
     setRenderInterface("AdminPanel")
   }else if(accessGmail) {
@@ -47,11 +57,20 @@ useEffect(() => {
             <button onClick={() => setRenderInterface("profile")} className={renderInterface === "profile"? style.btnsActive: style.btnsInactive}> Perfil </button>
             <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button> 
             </> )
-        : <>
-            <button onClick={() => setRenderInterface("AdminPanel")} className={renderInterface === "AdminPanel"? style.btnsActive: style.btnsInactive}>Panel de Admin</button>
-            <button onClick={() => setRenderInterface("SearchUser")} className={renderInterface === "SearchUser"? style.btnsActive: style.btnsInactive}>Buscar Usuario</button>
-            <button onClick={() => setRenderInterface("ProductControl")} className={renderInterface === "ProductControl"? style.btnsActive: style.btnsInactive}>Productos</button>
-          </> 
+        : (accessGmail
+          ? <>
+          <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button>  
+          <button onClick={() => setRenderInterface("AdminPanel")} className={renderInterface === "AdminPanel"? style.btnsActive: style.btnsInactive}>Panel de Admin</button>
+          <button onClick={() => setRenderInterface("SearchUser")} className={renderInterface === "SearchUser"? style.btnsActive: style.btnsInactive}>Buscar Usuario</button>
+          <button onClick={() => setRenderInterface("ProductControl")} className={renderInterface === "ProductControl"? style.btnsActive: style.btnsInactive}>Productos</button>
+            </>
+          : <>
+          <button onClick={() => setRenderInterface("profile")} className={renderInterface === "profile"? style.btnsActive: style.btnsInactive}> Perfil </button>
+          <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button> 
+          <button onClick={() => setRenderInterface("AdminPanel")} className={renderInterface === "AdminPanel"? style.btnsActive: style.btnsInactive}>Panel de Admin</button>
+          <button onClick={() => setRenderInterface("SearchUser")} className={renderInterface === "SearchUser"? style.btnsActive: style.btnsInactive}>Buscar Usuario</button>
+          <button onClick={() => setRenderInterface("ProductControl")} className={renderInterface === "ProductControl"? style.btnsActive: style.btnsInactive}>Productos</button>
+          </>)
         } 
       </div>
       <div className={style.userInterface}>{contentRender}</div>
