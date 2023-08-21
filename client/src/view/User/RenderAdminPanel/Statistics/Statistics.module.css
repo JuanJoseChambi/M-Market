@@ -5,8 +5,8 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 1000px; /* Aumenta el ancho máximo */
-    height: 600px; /* Aumenta la altura máxima */
+    width: 1000px;
+    height: 600px;
     background: white;
     padding: 15px;
     margin: 15px;
@@ -14,7 +14,7 @@
 
 
   .chartContainer {
-    background-image: url(https://res.cloudinary.com/dvu3hvpzu/image/upload/v1692395682/borroso-abstracto-supermercado_g3y9re.jpg) ;
+    background-image: url(https://res.cloudinary.com/dvu3hvpzu/image/upload/v1692395682/borroso-abstracto-supermercado_g3y9re.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -30,4 +30,3 @@
     justify-content: center;
     align-items: center;
   }
-  
