@@ -1,0 +1,83 @@
+.star_rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_review {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../../assets/market.jpg');
+    background-size: cover;
+}
+
+.container_form_review {
+    margin: 20px;
+    padding: 20px;
+}
+
+.review_card .star {
+    cursor: default; 
+}
+
+.review_form {
+    background-color: #ff8000;
+    display: flex;
+    margin: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0px 15px 20px 0px rgb(34, 33, 33);
+}
+
+.form_name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+}
+
+.textarea_review {
+    resize: none;
+    border: none;
+    width: 60%;
+    height: 20vh;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.h4_review {
+    margin: 20px;
+    font-weight: 600;
+}
+
+.review_button {
+    border: none;
+    border-radius: 5px;
+    width: 10vh;
+    height: auto;
+    font-size: 1rem;
+    padding: 5px;
+    margin: 20px;
+}
+
+.input_star_rating[type=radio] {
+    display: none;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
