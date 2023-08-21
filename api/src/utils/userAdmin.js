@@ -15,7 +15,7 @@ const createAdmin=async()=>{
    
     await User.findOrCreate({
         where:{name: adminGeneral.name},
-        defaults:{lastname: adminGeneral.lastname, email: adminGeneral.email, password: passwordHash}
+        defaults:{lastname: adminGeneral.lastname, email: adminGeneral.email, password: passwordHash, admin: true}
     });
 
 }
