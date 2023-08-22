@@ -102,7 +102,7 @@ function Statistics() {
         <Pie data={dataPie} />
       </div>
       <div className={styles.chart}>
-        <h4>Cantidad de Ventas por Mes 2023</h4>
+        <h4>Cantidad de Compras por Mes 2023</h4>
         <Line data={dataLine} />
       </div>
     </div>
