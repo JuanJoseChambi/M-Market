@@ -6,7 +6,6 @@ import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Product from "../../components/Product/Product";
 import Carousel from "../../components/Carousel/Carousel";
-import ReviewsCarousel from "../../components/ReviewsCarousel/ReviewsCarousel";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
@@ -88,8 +87,6 @@ export default function Home() {
             }
           </div>
         </div>
-        
-        <ReviewsCarousel />
         <Footer />
       </div>
     </div>
