@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { allProducts, searchName, setProducts, setFiltred, setCurrentPage } from "../../../../redux/slices/productsData";
 import style from "./ProductControl.module.css";
 import axios from "axios"
-import Paginado from "../../../../components/Paginado/Paginado";
 import productEmpty from "../../../../assets/userEmpty.svg"
+import Swal from "sweetalert2";
+import PaginadoAdmin from "../../../../components/PaginadoAdmin/PaginadoAdmin";
 
 function ProductControl() {
   const { products, currentPage } = useSelector((state) => state.products);
@@ -28,28 +29,80 @@ function ProductControl() {
 
   async function handlerEdit(product) {
     setEditUnit({[product.id]: !edit[product.id]});
-
-    if (upDate.brand || upDate.name || upDate.price || upDate.unit || upDate.description || upDate.image || upDate.score) {
-      await axios.put(`/product/${product.id}`, upDate)
-      setUpDate({
-        brand:"",
-        name:"",
-        price: undefined,
-        unit: undefined,
-        description: "",
-        image: "",
-        score: undefined,
-        state: product.state
-      })
-    }
-    const {data} = await axios.get("/product")
-    dispatch(setProducts(data))
   }
+  async function sendUpDate (product) {
+    Swal.fire({
+      title: "Actualizar Datos Del Producto",
+      text: "¿Estás seguro de Actualizar los Datos del Producto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, Actualizar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (upDate.brand || upDate.name || upDate.price || upDate.unit || upDate.description || upDate.image || upDate.score) {
+          await axios.put(`/product/${product.id}`, upDate)
+          handlerEdit(product)
+          setUpDate({
+            brand:"",
+            name:"",
+            price: undefined,
+            unit: undefined,
+            description: "",
+            image: "",
+            score: undefined,
+            state: product.state
+          })
+        }
+        const {data} = await axios.get("/product")
+        dispatch(setProducts(data))
+      }else{
+        handlerEdit(product)
+      }
+    });
+  }
+
   async function handlerBlock (product) {
-    let state = {state: !product.state}
-    await axios.put(`/product/${product.id}`, state)
-    const {data} = await axios.get("/product")
-    dispatch(setProducts(data))
+    let state = product.state;
+    if (state) {
+      Swal.fire({
+        title: "Bloquear Producto",
+        text: "¿Estás seguro de Bloquear el Producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, Actualizar",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          let state = {state: !product.state}
+          await axios.put(`/product/${product.id}`, state)
+          const {data} = await axios.get("/product")
+          dispatch(setProducts(data))
+        }
+      });
+    }else{
+      Swal.fire({
+        title: "Desbloquear Producto",
+        text: "¿Estás seguro de Desbloquear el Producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, Actualizar",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          let state = {state: !product.state}
+          await axios.put(`/product/${product.id}`, state)
+          const {data} = await axios.get("/product")
+          dispatch(setProducts(data))
+        }
+      });
+    }  
   }
 
   function searchProduct(event) {
@@ -156,7 +209,7 @@ function ProductControl() {
         </select>
       </div>
         <div className={style.containerPagination}>
-        <Paginado cardsInPage={cardsInPage} totalCards={totalCards} currentPage={currentPage}/>
+          <PaginadoAdmin cardsInPage={cardsInPage} totalCards={totalCards} currentPage={currentPage}/>
         </div>
         <div className={style.propertyTable}>
           <p className={style.property}>Imagen</p>
@@ -165,7 +218,6 @@ function ProductControl() {
           <p className={style.property}>Descripcion</p>
           <p className={style.property}>Precio</p>
           <p className={style.property}>Unidades</p>
-          <p className={style.property}>Puntajes</p>
           <p className={style.property}>Opciones</p>
         </div>
       <div className={style.containerProducts}>
@@ -197,19 +249,15 @@ function ProductControl() {
                     <p className={style.pInput}>U</p>
                     <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.unit} onChange={(e) => setUpDate({...upDate, unit : e.target.value})}/>
                   </div>
-                  <div className={style.contanierProductsInputs}>
-                    <p className={style.pInput}>⭐</p>
-                    <input type="text" className={style.upDateInput} disabled={!edit[product.id]} placeholder={product.score} onChange={(e) => setUpDate({...upDate, score : e.target.value})}/>
-                  </div>
               <div className={style.contanierSwitch}>
                   {product.unit === 0 
                   ? <button className={style.btnState}><i className='bx bxs-lock'></i></button>
                   : (product.state
-                    ? <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: false}), handlerBlock(product)}}><i className='bx bx-lock-open'></i></button> 
-                    : <button className={style.btnState} onClick={() => {setUpDate({...upDate, state: true}) , handlerBlock(product)}}><i className='bx bxs-lock'></i></button>)}
-                  <button className={style.btnState} onClick={() => handlerEdit(product)}>
-                    <i className={`${edit[product.id] ? 'bx bx-check' : 'bx bxs-edit-alt'}`}></i>
-                  </button>
+                    ? <button className={style.btnState} onClick={() => { handlerBlock(product)}}><i className='bx bx-lock-open'></i></button> 
+                    : <button className={style.btnState} onClick={() => { handlerBlock(product)}}><i className='bx bxs-lock'></i></button>)}
+                  {!edit[product.id] 
+                  ? <button className={style.btnState} onClick={() => handlerEdit(product)}><i className='bx bxs-edit-alt'></i></button> 
+                  : <button className={style.btnState} onClick={() => sendUpDate(product)}><i className='bx bx-check'></i></button>}
               </div>
             </div>
             ))
@@ -224,3 +272,8 @@ function ProductControl() {
 }
 
 export default ProductControl;
+// setUpDate({...upDate, state: false}),
+// setUpDate({...upDate, state: true}) ,
+{/* <button className={style.btnState} onClick={() => handlerEdit(product)}> */}
+{/* <i className={`${edit[product.id] ? 'bx bx-check' : 'bx bxs-edit-alt'}`}></i> */}
+{/* </button> */}
