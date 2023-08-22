@@ -1,7 +1,7 @@
 const { getInfo } = require("../controllers/stadisticsController")
 
 
-const getProductoMasVendido = async (req, res) => {
+const getInfoGraficas = async (req, res) => {
     try {
 
         const getAll = await getInfo()
@@ -13,4 +13,6 @@ const getProductoMasVendido = async (req, res) => {
 }
 
 
-module.exports = {getProductoMasVendido}
+ 
+
+module.exports = {getInfoGraficas}

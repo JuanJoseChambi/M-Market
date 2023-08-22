@@ -1,10 +1,30 @@
 const {getAllPurchase} = require("./purchaseCtrl")
+const {User} = require("../db")
 
 
 const getInfo = async () => {
   const idRepetidos = await getIdRepetidos()
   const sumaMes = await sumMontosPorMes()
-  return [idRepetidos, sumaMes]
+  const usersByMonth = await getUsers()
+  return [idRepetidos, sumaMes, usersByMonth]
+}
+
+const getUsers = async () => {
+  const allUser = await User.findAll()
+  const userCountByMonth = {};
+
+  allUser.forEach(user => {
+    const createdAt = new Date(user.createdAt);
+    const monthYear = `${createdAt.getMonth() + 1}-${createdAt.getFullYear()}`;
+    
+    if (!userCountByMonth[monthYear]) {
+      userCountByMonth[monthYear] = 1;
+    } else {
+      userCountByMonth[monthYear]++;
+    }
+  });
+  
+  return userCountByMonth
 }
 
 

@@ -27,7 +27,7 @@ export default function Detail() {
     }
 
 
-  return (
+   return (
     <div>
       <div>
         <Nav />
