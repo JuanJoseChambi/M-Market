@@ -27,7 +27,7 @@ export default function Home() {
   const storedProducts = JSON.parse(localStorage.getItem("PurchaseInfo"));
   const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
   async function purchaseUser () {  
-    await axios.post("m-market-production.up.railway.app/purchase", storedProducts);
+    await axios.post("/purchase", storedProducts);
     if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
     
   }
@@ -67,6 +67,8 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center">
             
+            console.log(cardsShowed);
+
             {/* {cardsShowed.length !== 0
             ? cardsShowed.map((item) => (
               item.unit !== 0 
