@@ -43,7 +43,7 @@ const Login = () => {
       const userGGle = data.find(user => user.email === email)
       if (!userGGle) {
         const { data } = await axios.post("/user", {email: email, userGoogle: true})
-        if (data.name === "N/A" && data.lastname === "N/A" && data.password === "N/A") {
+        if (data.password === "N/A") {
           localStorage.setItem('gmail', true)
         }
         localStorage.setItem('email', data.email);
@@ -54,7 +54,7 @@ const Login = () => {
       localStorage.setItem('userId', userGGle.id);
       navigate('/home');
       dispatch(loginSuccess());
-      if (userGGle.name === "N/A" && userGGle.lastname === "N/A" && userGGle.password === "N/A") {
+      if (userGGle.password === "N/A") {
         localStorage.setItem('gmail', true)
       }
     } catch (error) {
@@ -73,7 +73,7 @@ const Login = () => {
   e.preventDefault();
 
   try {
-    const response = await axios.post('http://localhost:3001/user/login', {
+    const response = await axios.post('/user/login', {
       email,
       password,
     });

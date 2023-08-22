@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addToCart,
@@ -17,6 +17,7 @@ import axios from "axios";
 const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [showMercadoPago, setShowMercadoPago] = useState(false);
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [deliveryOption, setDeliveryOption] = useState("local"); // local o delivery
@@ -145,6 +146,22 @@ const CartSlide = () => {
       });
     }
   };
+  function handlerLoginUser () {
+  Swal.fire({
+    title: "Iniciar Sesion",
+    text: "Para hacer al Pago se necesita Iniciar Sesion",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Iniciar Sesion",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      navigate("/login")
+    }
+  });
+}
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart"));
@@ -288,6 +305,7 @@ const CartSlide = () => {
                 Ir a Pago
               </button>
             ) : (
+
               <button
               className="go_to_pay"
               onClick={() => {
@@ -310,6 +328,7 @@ const CartSlide = () => {
               Ir a Pago
             </button>
           )}
+
           </div>
         </div>
 
@@ -322,3 +341,6 @@ const CartSlide = () => {
 };
 
 export default CartSlide;
+
+
+

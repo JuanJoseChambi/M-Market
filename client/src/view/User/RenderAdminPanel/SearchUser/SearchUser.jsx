@@ -5,12 +5,11 @@ import { setUsers, search } from "../../../../redux/slices/dashBoard";
 import { useSelector, useDispatch } from "react-redux"
 import empty from "../../../../assets/empty.svg"
 import userEmpty from "../../../../assets/userEmpty.svg"
+import Swal from "sweetalert2";
 
 function SearchUser() { 
   const [purchaseId, setPurchseId] = useState("");
   const [infoUserPurchase, setInfoUserPurchase] = useState([]);
-
-  
 
   async function handlerPurchase () {
     const {data} = await axios.get(`/purchase/${purchaseId}`);
@@ -42,9 +41,45 @@ function SearchUser() {
   }
   async function handlerAdmin (info) {
     const {id, admin} = info;
-    await axios.put(`/user/${id}`, admin)
-    const {data} = await axios.get("/user");
-    dispatch(setUsers(data))
+    if (admin) {
+      Swal.fire({
+        title: "Asignar Permisos de Admin",
+        text: "¿Estás seguro de dar Permisos de Administrador a este Usuario?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, Dar Permisos",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.put(`/user/${id}`, {admin: admin})
+          const {data} = await axios.get("/user");
+          dispatch(setUsers(data))
+        }
+      });
+    }else{
+      Swal.fire({
+        title: "Eliminar Permisos de Admin",
+        text: "¿Estás seguro de Quitar Permisos de Administrador a este Usuario?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, Quitar Permisos",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.put(`/user/${id}`, {admin: admin})
+          const {data} = await axios.get("/user");
+          dispatch(setUsers(data))
+        }
+      });
+    }
+
+
+
+   
   }
 
   useEffect(() => {
@@ -67,7 +102,7 @@ function SearchUser() {
           <p className={style.property}>Email</p>
           <p className={style.property}>Nombre</p>
           <p className={style.property}>Apellido</p>
-          <p className={style.property}>Admin</p>
+          <p className={style.property}>Admin | Compras</p>
         </div>
       <div className={style.viewCards}>
         {!purchaseId 

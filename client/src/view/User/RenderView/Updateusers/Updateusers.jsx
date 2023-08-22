@@ -7,17 +7,14 @@ function UpDateUser() {
   const [user, setUser] = useState([]);
   const [renderUpDate, setRenderUpDate] = useState("")
   const [vision, setVision] = useState("password")
-  const [verify, setVerify] = useState({
-    NewEmail: "",
-    currentEmail: ""
-  })
   const [updateInfoUser, setUpdateInfoUser] = useState({
       name: "",
       lastname: "",
       email: "",
       password: "",
+      admin: user[0]?user[0].admin:null
     });
-  
+  const gmail = localStorage.getItem('gmail');
   const idUser = localStorage.getItem("userId");
   async function handlerInfoUser() {
     const { data } = await axios.get(`/user/${idUser}`);
@@ -25,7 +22,10 @@ function UpDateUser() {
   }
 
   async function updateUser() {
+    const {data} = await axios.get("/user");
+    const existEmail = data.find(user => user.email === updateInfoUser.email)
     try {
+     if (!existEmail) {
       Swal.fire({
         title: "Actualizar Datos",
         text: "¿Estás seguro de Actualizar los Datos de tu Perfil?",
@@ -45,11 +45,24 @@ function UpDateUser() {
               lastname: "",
               email: "",
               password: "",
+              admin: updateInfoUser.admin
             })
             handlerInfoUser()
           }
         }
       });
+     }else{
+      Swal.fire({
+        title: "Email Existente" ,
+        icon: 'warning',
+        background: "aliceblue",
+        toast: 'true',
+        position:'top',     
+        confirmButtonText:'OK',
+        padding: '1,4rem',
+        confirmButtonColor:'#ff8000',
+      });
+     }
     } catch (error) {
       console.error("Error al actualizar los datos del usuario:", error);
     }
@@ -126,14 +139,17 @@ function UpDateUser() {
             <p className={style.propertyUpdate}>Cambiar Apellido <button onClick={() => setRenderUpDate("lastname")} className={style.arrow}><i className='bx bxs-chevron-right'></i></button></p>
             <i className={style.userInfo}>{user.lastname}</i>
           </div>
-          <div className={style.containertProperty}>
-            <p className={style.propertyUpdate}>Cambiar Correo <button onClick={() => setRenderUpDate("email")} className={style.arrow}><i className='bx bxs-chevron-right'></i></button></p>
-            <i className={style.userInfo}>{user.email}</i>
-          </div>
-          <div className={style.containertProperty}>
-            <p className={style.propertyUpdate}>Cambiar Contraseña <button onClick={() => setRenderUpDate("password")} className={style.arrow}><i className='bx bxs-chevron-right'></i></button></p>
-            <i className={style.userInfo}>********</i>
-          </div>
+          {!gmail 
+          ?<>
+            <div className={style.containertProperty}>
+              <p className={style.propertyUpdate}>Cambiar Correo <button onClick={() => setRenderUpDate("email")} className={style.arrow}><i className='bx bxs-chevron-right'></i></button></p>
+              <i className={style.userInfo}>{user.email}</i>
+            </div>
+            <div className={style.containertProperty}>
+              <p className={style.propertyUpdate}>Cambiar Contraseña <button onClick={() => setRenderUpDate("password")} className={style.arrow}><i className='bx bxs-chevron-right'></i></button></p>
+              <i className={style.userInfo}>********</i>
+            </div> 
+          </>: null}
         </div>
       )) : contentRender}
     </div>
