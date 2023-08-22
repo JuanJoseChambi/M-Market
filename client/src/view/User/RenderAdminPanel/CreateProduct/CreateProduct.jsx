@@ -7,8 +7,8 @@ import img1 from "../../../../assets/check.png"
 
 export default function CreateProduct() {
   async function CreateProduct (newProduct) {
-    const {name, category, price, description, image, score, brand, unit} = newProduct;
-    if (name && category && price && description && image && score && brand && unit) {
+    const {name, category, price, description, image, brand, unit} = newProduct;
+    if (name && category && price && description && image && brand && unit) {
       await axios.post('/product',newProduct)
       Swal.fire({
         title: 'Buen trabajo!' ,
@@ -183,22 +183,6 @@ export default function CreateProduct() {
             <p className={style.error}>{errors.price}</p>
           </div>
           <div className={style.inputRight}>
-            
-          </div>
-        </div>
-    
-        <div className={style.blocksInputs}>
-          <div className={style.inputLeft}>
-          <label>Puntuacion</label>
-            <input className={style.inputs} type="number"
-            value={newProduct.score}
-            name="score"
-            min="0"
-            onChange={handlerChange}
-            autoComplete="off"/>
-            <p className={style.error}>{errors.score}</p>
-          </div>
-          <div className={style.inputRightSelect}>
           <select value={newProduct.category} name="category" onChange={handlerSelectChange} aria-multiselectable className={style.select}>
                 <option value="" className={style.options}>Categoria</option>
                 <option value="Almacen" className={style.options}>Almacen</option>
@@ -216,18 +200,11 @@ export default function CreateProduct() {
                 <option value="Panaderia" className={style.options}>Panaderia</option>
                 <option value="higiene personal" className={style.options}>higiene personal</option>
             </select>
-            <p className={style.error}>{errors.category}</p>
-            <div className={style.viewOptions}>
-                {categoriesSet?.map((ele, i) => <p key={i} className={style.categoryInBlock}>
-                  {ele}
-                </p>)}
-            </div>
-
           </div>
         </div>
-
+    
         <div className={style.blocksInputs}>
-          <div className={style.inputRight}>
+        <div className={style.inputRight}>
           <label>Descripcion</label>
             <textarea className={style.textArea} type="text"
             value={newProduct.description}
@@ -236,6 +213,19 @@ export default function CreateProduct() {
             autoComplete="off"/>
             <p className={style.error}>{errors.description}</p>
           </div>
+          <div className={style.inputRightSelect}>
+            <p className={style.error}>{errors.category}</p>
+            <div className={style.viewOptions}>
+                {categoriesSet?.map((ele, i) => <p key={i} className={style.categoryInBlock}>
+                  {ele}
+                </p>)}
+            </div>
+          </div>
+          
+        </div>
+
+        <div className={style.blocksInputs}>
+         
         </div>
 
         <button className={
@@ -245,8 +235,7 @@ export default function CreateProduct() {
             !errors.price &&
             !errors.description && 
             !errors.category  &&
-            !errors.unit &&
-            !errors.score
+            !errors.unit 
             ?style.btnActive
             :style.btnDesactive} type="submit" onClick={handlerSubmit}>Crear</button>
 
