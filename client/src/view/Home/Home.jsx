@@ -12,6 +12,8 @@ import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
 import axios from "axios";
 import productEmpty from "../../assets/empty.svg"
+import Delivery from "../../components/Delivery/Delivey";
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -88,7 +90,7 @@ export default function Home() {
             }
           </div>
         </div>
-        
+      {/*  <Delivery/>*/}
         <ReviewsCarousel />
         <Footer />
       </div>
