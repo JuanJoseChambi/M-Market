@@ -10,9 +10,14 @@ import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
 import axios from "axios";
+import productEmpty from "../../assets/empty.svg"
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import img2 from '../../assets/check.png';
 
 export default function Home() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { products, currentPage } = useSelector((state) => state.products);
 
   // PAGINATION VARS
@@ -25,7 +30,7 @@ export default function Home() {
   const storedProducts = JSON.parse(localStorage.getItem("PurchaseInfo"));
   const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
   async function purchaseUser () {  
-    await axios.post("/purchase", storedProducts);
+    await axios.post("m-market-production.up.railway.app/purchase", storedProducts);
     if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
     
   }
@@ -36,6 +41,23 @@ export default function Home() {
       dispatch(clearCart())
       localStorage.removeItem("PurchaseInfo")
       localStorage.removeItem("preferenceMP")
+      Swal.fire({
+        title: `Compra exitosa`,
+        imageUrl: img2,
+        imageWidth: 100,
+        imageHeight: 100,
+        confirmButtonText: "Aceptar",
+        background: "white",
+        width: "40%",
+        heightAuto: false,
+        height: "1%",
+        padding: "3rem",
+        buttonsStyling: false,
+        customClass: {
+          title: "mesageAlert",
+          confirmButton: "buttonAlert",
+        },
+      });
     }
     dispatch(allProducts());
     dispatch(setCategory())
@@ -64,19 +86,29 @@ export default function Home() {
 
         <div className="container">
           <div className="row justify-content-center">
-            {cardsShowed.map((item) => (
-              <div className="col-md-4 mb-3" key={item.id}>
+            
+            {/* {cardsShowed.length !== 0
+            ? cardsShowed.map((item) => (
+              item.unit !== 0 
+              ?(item.state 
+                ?  <div className="col-md-4 mb-3" key={item.id}>
                 <Product
                   id={item.id}
                   name={item.name}
                   image={item.image}
                   price={item.price}
                 />
-              </div>
-            ))}
+                  </div> 
+                  : null) 
+              : null
+              )) 
+            : <div className={styles.containerImageEmptyUser}>
+                <img className={styles.imageEmptyUser} src={productEmpty} alt="El producto no existe" />
+                <i className={styles.noUserText}>El producto no existe</i>
+              </div> 
+            } */}
           </div>
         </div>
-
         <Footer />
       </div>
     </div>

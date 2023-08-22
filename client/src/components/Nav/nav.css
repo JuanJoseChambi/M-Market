@@ -14,6 +14,8 @@
   justify-content: start;
   justify-content: center;
   align-items: center;
+  position: relative;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.15)
 }
 .sideBar {
   position: absolute;
@@ -51,6 +53,18 @@
   box-shadow: 0px 4px 5px 0px rgb(33, 32, 32);
   outline: 1px solid #0000003a;
 }
+.logoMMarket{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  position: absolute;
+  left: 60px;
+  /* background-color: blue; */
+}
+.imageLogo{
+  width: 100%;
+}
 .NumberInCart {
   display: flex;
   justify-content: center;
@@ -77,7 +91,7 @@
 .nav_menu {
   background-color: #ff8000;
   min-width: 250px; /* Establece un ancho mínimo */
-  max-width: 300px; /* Establece un ancho máximo */
+  max-width: 350px; /* Establece un ancho máximo */
   height: 100vh;
   display: flex;
   flex-direction: column; /* Apila los elementos verticalmente */
@@ -98,9 +112,10 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  padding: 8px 0px 8px 16px;
+  padding: 8px 0px 8px 0px;
   list-style: none;
-  height: 60px;
+  height: 50px;
+  width: 100%;
 }
 
 /* .sidebar_text a {
@@ -120,7 +135,7 @@
 } */
 
 .nav_menu_items {
-  width: 100%;
+  width: 110%;
   overflow-y: scroll;
 }
 
@@ -210,4 +225,93 @@ span {
   right: 10px;
   cursor: pointer;
   z-index: 200;
+}
+.iconAbout{
+  
+  background-color: #ff8000;
+}
+.custom-icon {
+  margin-top: 10px; 
+   margin-right: 20px;
+  margin-left: 86%;
+  padding: 2px 8px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: #47C7FC;
+  }
+
+  .icon-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    margin-right: 15px;
+    margin-top: 1px; 
+  }
+}
+.custom-icon::after {
+  content: "Acerca de Nosotros";
+  display: none;
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  transform: translateX(-50%);
+  background-color:  #333;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-family:  'Poppins', sans-serif;
+  font-size: 12px;
+}
+
+.custom-icon:hover::after {
+  display: block;
+}
+
+
+.user-button-container {
+  position: relative;
+}
+
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.username-message {
+  font-size: 12px;
+  margin-left: 5px;
+  position: absolute;
+  top: 7px;
+  left: 0%;
+  transform: translateX(-100%);
+  background-color: #333;
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 5px;
+
+}
+
+@media (max-width: 768px) {
+  .user-section {
+    display: block;
+    text-align: center; 
+  }
+
+  .username-message {
+    position: static; /* Volver a la posición estática */
+    transform: none; /* Anular la transformación */
+    margin-top: 5px; /* Espaciado superior */
+    background-color: transparent;
+    color: #333;
+    padding: 0;
+    border-radius: 0;
+    font-size: 14px;
+  }
 }

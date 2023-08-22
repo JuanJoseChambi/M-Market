@@ -1,17 +1,25 @@
 
 const { createUser, consultUser, actualizar, getDataUser, getIdDataUser, createUserGoogle } = require("../controllers/userController");
+const {validarCorreo} = require('../utils/validate')
 
 const postUser = async (req, res) => {
-    const { name, lastname, email, password , userGoogle} = req.body;
-    // consultar los nombres creados en la BD 
-    // nombre, apellido, correo, contraseña, ususario, domicilio, telefono
     try {
-        if(email && userGoogle){
+        const { name, lastname, email, password, userGoogle } = req.body;
+        if (email && userGoogle) {
             const response = await createUserGoogle(email);
+            
             return res.status(200).json(response);
         }
+        let validar = validarCorreo(email, password,name,lastname)
+        if (validar) return res.status(400).json(validar)
+        
+
+        console.log(email, userGoogle)
+
+        
         // Aqui debo encriptar la contraseña
         if (!name || !lastname || !email || !password) {
+
             return res.status(400).send("Datos incompletos")
         }
         const response = await createUser(name, lastname, email, password)
@@ -60,16 +68,16 @@ const getUserPurchase = async (req, res) => {
     }
 };
 
-const getUserPurchaseID =async(req,res)=>{
-       try {
-           const {id} = req.params;
-           const getOneUser = await  getIdDataUser(id);
-            res.status(201).json(getOneUser)
-        } catch (error) {
-         res.status(400).json({ error: error.message });
-           
-        }
- }
+const getUserPurchaseID = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const getOneUser = await getIdDataUser(id);
+        res.status(201).json(getOneUser)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+
+    }
+}
 
 
 module.exports = {

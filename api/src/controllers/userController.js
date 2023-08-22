@@ -45,28 +45,28 @@ const createUser = async (name, lastname, email, password) => {
 
 
 const consultUser = async (email, password) => {
-    let userA = await UserAdmin.findAll()
-    const filterAdmin = userA.find(item=> item.email===email)
+    // let userA = await UserAdmin.findAll()
+    // const filterAdmin = userA.find(item=> item.email===email)
     
-    if(filterAdmin){
-        const aux2 = filterAdmin.password
-        const adminId = filterAdmin.id
-        const emcrip = await bcrypt.compare(password, aux2)
-        let pass1 = { access: true, admin: true, adminId: adminId }
+    // if(filterAdmin){
+    //     const aux2 = filterAdmin.password
+    //     const adminId = filterAdmin.id
+    //     const emcrip = await bcrypt.compare(password, aux2)
+    //     let pass1 = { access: true, admin: true, adminId: adminId }
        
-        if(!emcrip){
-            throw new Error("contraseña de administrador incorrecta")
-        }else{
-            return pass1
-        }
-    }
+    //     if(!emcrip){
+    //         throw new Error("contraseña de administrador incorrecta")
+    //     }else{
+    //         return pass1
+    //     }
+    // }
     
     let user = await User.findAll({ where: { email } })
     let userP = user[0].password
     let userPiD = user[0].id
-    
+   
     if (!user) return "no existe el usuario"
-    let pass = { access: true, admin: false ,userId: userPiD }
+    let pass = { access: true, admin:user[0].admin ,userId: userPiD }
     const aux = await bcrypt.compare(password, userP)
     const res = aux ? pass : {access: false}
 
@@ -76,20 +76,20 @@ const consultUser = async (email, password) => {
     
 
 const actualizar = async (id, updateUserData) => {
-    
-    const userPass = updateUserData.password
-    
-    const passwordHash = await bcrypt.hash(userPass, 10);
-
     const userToUpdate = await User.findByPk(id)
     if (!userToUpdate) {
         return "Usuario no encontrado"
     }
-    userToUpdate.name = updateUserData.name || userToUpdate.name
-    userToUpdate.lastname = updateUserData.lastname || userToUpdate.lastname
-    userToUpdate.email = updateUserData.email || userToUpdate.email
-    userToUpdate.password = passwordHash || userToUpdate.password
+    updateUserData.admin?userToUpdate.admin=true:userToUpdate.admin=false;
 
+    updateUserData.name ? userToUpdate.name= updateUserData.name : userToUpdate.name;
+    updateUserData.lastname ? userToUpdate.lastname= updateUserData.lastname : userToUpdate.lastname;
+    updateUserData.email ? userToUpdate.email= updateUserData.email : userToUpdate.email;
+
+    if(updateUserData.password ){
+        const userPass = updateUserData.password 
+        userToUpdate.password= await bcrypt.hash(userPass, 10);
+    }
     await userToUpdate.save()
     return userToUpdate
 }

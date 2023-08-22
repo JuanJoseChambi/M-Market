@@ -1,37 +1,32 @@
 import React, { useEffect, useState } from "react";
 import style from "./SearchUser.module.css";
 import axios from "axios";
-import { setUsers, search } from "../../../../redux/slices/searchUser";
+import { setUsers, search } from "../../../../redux/slices/dashBoard";
 import { useSelector, useDispatch } from "react-redux"
-
+import empty from "../../../../assets/empty.svg"
+import userEmpty from "../../../../assets/userEmpty.svg"
+import Swal from "sweetalert2";
 
 function SearchUser() { 
   const [purchaseId, setPurchseId] = useState("");
   const [infoUserPurchase, setInfoUserPurchase] = useState([]);
 
-  useEffect(() => {
-    if (purchaseId) {
-      handlerPurchase();
-    }
-  }, [purchaseId]);
-
   async function handlerPurchase () {
-    const {data} = await axios.get("/purchase");
-    const purchseFiltered = data.filter((purchase) => purchase.userPurchase === purchaseId).map(obj => {
+    const {data} = await axios.get(`/purchase/${purchaseId}`);
+    const purchseFiltered = data.map(obj => {
       const fecha = new Date(obj.createdAt);
       const year = fecha.getFullYear();
       const month = fecha.getMonth() + 1;
       const day = fecha.getDate();
       return {
-      id: obj.id,
-      monto: obj.monto,
-      products: obj.Prods,
-      fecha : [year, month, day]
-    }})
-    setInfoUserPurchase(purchseFiltered)
+        id: obj.id,
+        monto: obj.monto,
+        products: obj.Prods,
+        fecha : [year, month, day]
+      }})
+      setInfoUserPurchase(purchseFiltered)
   }
-  
-  const { Wanted } = useSelector(state => state.search);
+  const { WantedUser } = useSelector(state => state.search);
   const dispatch = useDispatch();
   
   async function handlerUser() {
@@ -44,10 +39,55 @@ function SearchUser() {
       dispatch(search(searchValue))
       setPurchseId("")
   }
+  async function handlerAdmin (info) {
+    const {id, admin} = info;
+    if (admin) {
+      Swal.fire({
+        title: "Asignar Permisos de Admin",
+        text: "¿Estás seguro de dar Permisos de Administrador a este Usuario?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, Dar Permisos",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.put(`/user/${id}`, {admin: admin})
+          const {data} = await axios.get("/user");
+          dispatch(setUsers(data))
+        }
+      });
+    }else{
+      Swal.fire({
+        title: "Eliminar Permisos de Admin",
+        text: "¿Estás seguro de Quitar Permisos de Administrador a este Usuario?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, Quitar Permisos",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios.put(`/user/${id}`, {admin: admin})
+          const {data} = await axios.get("/user");
+          dispatch(setUsers(data))
+        }
+      });
+    }
+
+
+
+   
+  }
 
   useEffect(() => {
     handlerUser();
-  }, []);
+    if (purchaseId) {
+      handlerPurchase();
+    }
+  }, [purchaseId]);
 
   return (
     <div className={style.viewSearch}>
@@ -57,27 +97,61 @@ function SearchUser() {
           <i className="bx bx-search-alt"></i>
         </button>
       </div>
+      <div className={style.propertyTable}>
+          <p className={style.property}>Id</p>
+          <p className={style.property}>Email</p>
+          <p className={style.property}>Nombre</p>
+          <p className={style.property}>Apellido</p>
+          <p className={style.property}>Admin | Compras</p>
+        </div>
       <div className={style.viewCards}>
-        {!purchaseId ? Wanted.map((user, i) => (
-          <div key={i} onClick={() => setPurchseId(user.id)} className={style.cardUser}>
-            <p className={style.id}>{user.id}</p>
-            <p className={style.name}>{user.name}</p>
-            <p className={style.lastname}>{user.lastname}</p>
-            <p className={style.email}>{user.email}</p>
-          </div>
-        )):
-        <div className={style.viewPurchse}> 
-        <button className={style.btnExitUserPurchase} onClick={() => setPurchseId("")}><i class='bx bx-x-circle' ></i></button>
-          {infoUserPurchase.map((purchase, i) => (
-            purchase.monto === 0 ? null :
+        {!purchaseId 
+          ?(WantedUser.length !== 0 
+            ?  WantedUser.map((user, i) => (
+              <div key={i}  className={style.cardUser}>
+                <div className={style.contanierInfoUser}>
+                  <p className={style.id}>{user.id}</p>
+                </div>
+                <div className={style.contanierInfoUser}>
+                  <p className={style.email}>{user.email}</p>
+                </div>
+                <div className={style.contanierInfoUser}>
+                  <p className={style.name}>{user.name}</p>
+                </div>
+                <div className={style.contanierInfoUser}>
+                  <p className={style.lastname}>{user.lastname}</p>
+                </div>
+                <div className={style.contanierSwitch}>
+                  {user.admin
+                  ? <button onClick={() => handlerAdmin({id: user.id, admin: false})} className={style.btnState}><i className='bx bxs-shield-alt-2'></i></button>
+                  : <button onClick={() => handlerAdmin({id: user.id, admin: true})} className={style.btnState}><i className='bx bx-shield-alt-2' ></i></button>}
+                  {(user.Purchase).length !== 0 
+                  ? <button onClick={() => setPurchseId(user.id)} className={style.btnState}><i className='bx bxs-archive'></i></button> 
+                  : <button onClick={() => setPurchseId(user.id)} className={style.btnState}><i className='bx bx-archive' ></i></button>}
+                </div>
+              </div>
+            ))
+            : <div className={style.containerImageEmptyUser}>
+                <img className={style.imageEmptyUser} src={userEmpty} alt="Empty User" />
+                <i className={style.noUserText}>El Usuario No Existe</i>
+            </div>)
+          :<div className={style.viewPurchse}> 
+          <button className={style.btnExitUserPurchase} onClick={() => setPurchseId("")}><i className='bx bx-x-circle' ></i></button>
+          {infoUserPurchase.length !== 0 
+          ? infoUserPurchase.map((purchase, i) => (
+            purchase.monto === 0 || purchase.name === null? null :
           (<div key={i} className={style.containerPurchase}>
             <div className={style.containerFecha}>{purchase.fecha.map((fecha, i) => <p key={i} className={style.fecha}>{fecha}</p>)}</div>
             <div className={style.viewPurchase}>
-              <div className={style.containerNames}>{purchase.products.map((prod, i) => (<h5 key={i} className={style.nameProds}>{prod.name}</h5>))}</div>
+              <div className={style.containerNames}>{purchase.products.map((prod, i) => (<p key={i} className={style.nameProds}>{prod.name}</p>))}</div>
               <b className={style.totalPrice}>Total: {purchase.monto}</b>
             </div>
           </div>)
-        ))}
+          )) 
+          : <div className={style.containerImageEmpty}>
+              <img className={style.imageEmpty} src={empty} alt="empty" />
+              <i className={style.noPurchaseText}>El Usuario No Realizo una Compra</i>
+          </div> }
         </div>
         }
       </div>

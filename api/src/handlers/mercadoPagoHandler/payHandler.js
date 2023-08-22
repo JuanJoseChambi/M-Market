@@ -1,8 +1,10 @@
 const mercadopago = require("mercadopago");
+require('dotenv').config()
+const {ACCESS_TOKEN} = process.env
 
 // REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
 mercadopago.configure({
-	access_token: "TEST-4444724627234549-080912-61296035e399fa084d317fea3d9fd490-1445922728",
+	access_token: `${ACCESS_TOKEN}`,
 });
 
 

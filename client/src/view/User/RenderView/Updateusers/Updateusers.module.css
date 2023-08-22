@@ -1,37 +1,187 @@
 .updateInfo {
-    width: 85%;
-    min-height: 100vh;
-    padding: 20px 0;
-    /* background-color: rebeccapurple; */
-  }
-  .titleSection {
-    font-size: 50px;
-  }
-  .form {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: column;
-  }
-  .blocksInputs {
-    width: 30%;
-    /* background-color: red; */
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-  }
-  .inputs {
-    width: 100%;
-    border: 0;
-    border-left: 1px solid black;
-    background-color: rgb(211, 205, 205);
-    padding: 7px 10px;
-    outline: none;
-  }
-  .updateBtn {
-    width: 15%;
-    padding: 7px;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin: 20px 10px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 0;
+  /* background-color: rebeccapurple; */
+  position: relative;
+}
+
+.titleSection {
+  width: 85%;
+  font-size: 50px;
+  position: absolute;
+  top: 20px;
+  /* background-color: rgb(150, 153, 51); */
+}
+.user {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-direction: column;
+  max-width: 20%;
+  position: absolute;
+  top: 3%;
+  right: 10%;
+  /* background-color: red; */
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+}
+.userNL {
+  max-width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  /* background-color: blue; */
+}
+.textUser {
+  margin: 0 5px;
+  color: rgb(170, 169, 169);
+  font-size: 12px;
+}
+/* ---------------------------------------------- */
+.optionsUpdate {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 60%;
+  background-color: #ff8000;
+  padding: 5px;
+  height: 50vh;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  box-shadow: 0px 15px 25px 0px rgb(84, 78, 78);
+}
+.containertProperty {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+}
+.propertyUpdate {
+  background-color: white;
+  margin: 0;
+  width: 50%;
+  padding: 15px;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+  /* border-right: 2px solid rgba(0, 0, 0, 0.227); */
+}
+.userInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 0;
+  width: 50%;
+  padding: 15px;
+  color: gray;
+  font-size: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.227);
+}
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  border: 0;
+  outline: 0;
+  background-color: white;
+  height: 54px;
+  width: 50px;
+  border-left: 1px solid rgba(0, 0, 0, 0.227);
+}
+/* ----------------------------- */
+.containerUpdate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 70%;
+  min-height: 50vh;
+  /* background-color: red; */
+  position: relative;
+  padding: 0 10px;
+  border-radius: 20px;
+  border: 7px solid #ff8000;
+  box-shadow: 0px 15px 20px 0px rgb(34, 33, 33);
+}
+.btnExitUpdate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  border: 0;
+  outline: none;
+  position: absolute;
+  background-color: white;
+  top: -15px;
+  right: -15px;
+  font-size: 40px;
+  color: #ff8000;
+}
+.btnUpdate,
+.btnUpdateNone {
+  border: 0;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 10px;
+}
+.btnUpdateNone {
+  background-color: #bb640d;
+  color: rgb(195, 194, 194);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.btnUpdate {
+  background-color: #ff8000;
+  color: white;
+}
+.inputUpDate {
+  padding: 3px 10px;
+  margin: 55px;
+  border: 0;
+  border-bottom: 1px solid #ff8000;
+  font-size: 13px;
+  outline: none;
+}
+/* --------- name ------------------ */
+.textName {
+  text-align: center;
+  font-size: 14px;
+  /* background-color: blue; */
+  /* position: absolute; */
+  /* top: 20px; */
+}
+.vision {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+}
+.inputUpDatePassword {
+  padding: 3px 10px;
+  margin: 50px 0;
+  border: 0;
+  border-bottom: 1px solid #ff8000;
+  font-size: 13px;
+  outline: none;
+}
+.btnVision {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: rgb(223, 210, 210);
+  font-size: 20px;
+  border-radius: 50px;
+  padding: 5px 5px;
+  margin-left: 5px;
+}

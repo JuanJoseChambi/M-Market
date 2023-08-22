@@ -1,6 +1,6 @@
 import React from 'react'
 import style from "./Footer.module.css"
-
+import { Link } from 'react-router-dom';
 export default function Footer() {
 
     function handlerScrollHome () {
@@ -22,14 +22,21 @@ export default function Footer() {
                 <a className={style.aLinks} href=''><i className='bx bxl-gmail'></i> Market@gmail.com</a>
                 <a className={style.aLinks} href=''><i className='bx bxl-twitter'></i>MMarket</a>
                 <a className={style.aLinks} href=''><i className='bx bxl-instagram' ></i> MMarket</a>
+                <div >
+                    <Link to="/nosotros">
+                       <button className={style.custom} >
+                          <span className={style.iconText}>👋 Nosotros  </span>
+                       </button>
+                    </Link>
+              </div>
             </div>
-            <div className={style.feedback}>
+            {/* <div className={style.feedback}>
                 <h2 className={style.h2BL}>FeedBack</h2>
                 <input className={style.input} placeholder='Usuario' type="text" />
                 <textarea placeholder="Feedback" className={style.textarea}/>
                 <button className={style.btn}>Enviar</button>
-            </div>
-            
+            </div> */}
+ 
         </div>
         <div className={style.blockRight}>
         <h3 className={style.textIframe}>Donde nos Encontramos</h3>
