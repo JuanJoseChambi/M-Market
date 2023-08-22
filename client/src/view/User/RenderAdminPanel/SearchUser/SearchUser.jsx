@@ -11,8 +11,6 @@ function SearchUser() {
   const [purchaseId, setPurchseId] = useState("");
   const [infoUserPurchase, setInfoUserPurchase] = useState([]);
 
-  
-
   async function handlerPurchase () {
     const {data} = await axios.get(`/purchase/${purchaseId}`);
     const purchseFiltered = data.map(obj => {

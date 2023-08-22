@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { allProducts, searchName, setProducts, setFiltred, setCurrentPage } from "../../../../redux/slices/productsData";
 import style from "./ProductControl.module.css";
 import axios from "axios"
-import Paginado from "../../../../components/Paginado/Paginado";
 import productEmpty from "../../../../assets/userEmpty.svg"
 import Swal from "sweetalert2";
+import PaginadoAdmin from "../../../../components/PaginadoAdmin/PaginadoAdmin";
 
 function ProductControl() {
   const { products, currentPage } = useSelector((state) => state.products);
@@ -209,7 +209,7 @@ function ProductControl() {
         </select>
       </div>
         <div className={style.containerPagination}>
-        <Paginado cardsInPage={cardsInPage} totalCards={totalCards} currentPage={currentPage}/>
+          <PaginadoAdmin cardsInPage={cardsInPage} totalCards={totalCards} currentPage={currentPage}/>
         </div>
         <div className={style.propertyTable}>
           <p className={style.property}>Imagen</p>
