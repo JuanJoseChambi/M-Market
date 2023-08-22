@@ -40,7 +40,9 @@ const Nav = () => {
         <Sidebar />
       </div>
       <div className="logoMMarket">
-          <img className="imageLogo" src={LogoMMarket} alt="M-Market" />
+          <Link to='/home'>
+            <img className="imageLogo" src={LogoMMarket} alt="M-Market" />
+          </Link>
         </div>
       <div className="search">
         <Search />
