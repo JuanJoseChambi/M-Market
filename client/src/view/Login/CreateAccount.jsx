@@ -25,7 +25,7 @@ const CreateAccount = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/user", formData);
+      const response = await axios.post("/user", formData);
       await Swal.fire({
         title: `Usuario ${formData.email} creado con éxito`,
         imageUrl: img2,
