@@ -30,12 +30,12 @@ export default function Footer() {
                     </Link>
               </div>
             </div>
-            <div className={style.feedback}>
+            {/* <div className={style.feedback}>
                 <h2 className={style.h2BL}>FeedBack</h2>
                 <input className={style.input} placeholder='Usuario' type="text" />
                 <textarea placeholder="Feedback" className={style.textarea}/>
                 <button className={style.btn}>Enviar</button>
-            </div>
+            </div> */}
  
         </div>
         <div className={style.blockRight}>

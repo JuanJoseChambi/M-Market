@@ -4,6 +4,8 @@ import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/slices/productsData";
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 
 export default function Detail() {
     const { id } = useParams()
@@ -25,30 +27,37 @@ export default function Detail() {
     }
 
 
-  return (
-    <div className={style.detailView}>
-      <NavLink to="/home">
-        <button className={style.returnBack}>Home</button>
-      </NavLink>
-      <div className={style.cardProduct}>
-        <div className={style.containerImg}>
-            <img src={products.image} alt={products.name} className={style.image} />
-        </div>
-        <div className={style.containerInfoProduct}>
-            <h2 className={style.nameProduct}>{products.name}</h2>
-            <div className={style.brandUnitContainer}>
-                <b className={style.brandProduct}>{products.brand}</b>
-                <p className={style.unitProduct}>| U{products.unit}</p>
-            </div>
-            <div className={style.descriptionCard}>
-            <label className={style.textDescription}>Descripcion</label>
-              {products.description}
+   return (
+    <div>
+      <div>
+        <Nav />
+      </div>
+      <div className={style.detailView}>
+        {/* <NavLink to="/home">
+          <button className={style.returnBack}>Home</button>
+        </NavLink> */}
+        <div className={style.cardProduct}>
+          <div className={style.containerImg}>
+              <img src={products.image} alt={products.name} className={style.image} />
+          </div>
+          <div className={style.containerInfoProduct}>
+              <h2 className={style.nameProduct}>{products.name}</h2>
+              <div className={style.brandUnitContainer}>
+                  <b className={style.brandProduct}>{products.brand}</b>
+                  <p className={style.unitProduct}>| U{products.unit}</p>
               </div>
-            <p className={style.priceProduct}>$ {products.price}</p>
-            <button className={style.btn} onClick={handlerAddCart}>Añadir</button>
+              <div className={style.descriptionCard}>
+              <label className={style.textDescription}>Descripcion</label>
+                {products.description}
+                </div>
+              <p className={style.priceProduct}>$ {products.price}</p>
+              <button className={style.btn} onClick={() => handlerAddCart()}>Añadir</button>
+          </div>
         </div>
       </div>
-      
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
