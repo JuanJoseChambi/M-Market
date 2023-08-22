@@ -27,7 +27,7 @@ export default function Detail() {
     }
 
 
-  return (
+   return (
     <div>
       <div>
         <Nav />
@@ -46,13 +46,12 @@ export default function Detail() {
                   <b className={style.brandProduct}>{products.brand}</b>
                   <p className={style.unitProduct}>| U{products.unit}</p>
               </div>
-              <h6 className={style.scoreProduct}>⭐{products.score}</h6>
               <div className={style.descriptionCard}>
               <label className={style.textDescription}>Descripcion</label>
                 {products.description}
                 </div>
               <p className={style.priceProduct}>$ {products.price}</p>
-              <button className={style.btn} onClick={handlerAddCart}>Añadir</button>
+              <button className={style.btn} onClick={() => handlerAddCart()}>Añadir</button>
           </div>
         </div>
       </div>

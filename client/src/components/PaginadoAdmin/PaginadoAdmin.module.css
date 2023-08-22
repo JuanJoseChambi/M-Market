@@ -1,0 +1,53 @@
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .paginationItem {
+    margin-right: 10px;
+  }
+  .buttonAlert{
+    background-color: #ff8000;
+    border-radius: 5px;
+    font-family:  'Poppins', sans-serif;
+    padding: 7px 10px;
+    font-size: 12px;
+    border-color: aliceblue;
+  }
+  .mesageAlert{
+    font-family:  'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
+
+  .paginationButton {
+    background-color: #ff8000;
+    color: white;
+    font-family:  'Poppins', sans-serif;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 10px;
+    cursor: pointer;
+    border-color: aliceblue;
+  }
+ 
+  .btnDisabled{
+    background-color: #ca7622;
+    color: rgb(171, 164, 164);
+    font-family:  'Poppins', sans-serif;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 10px;
+    pointer-events: none;
+    cursor: not-allowed;
+    border-color: rgb(127, 128, 129);
+  }
+  .activeButton {
+    background-color:  #47C7FC;
+    box-shadow: 0 0 10px 5px rgb(199, 188, 156);
+  }
+  
+  
