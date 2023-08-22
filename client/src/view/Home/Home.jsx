@@ -28,7 +28,7 @@ export default function Home() {
   const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
   async function purchaseUser () {  
     await axios.post("m-market-production.up.railway.app/purchase", storedProducts);
-    if ( notificationConfirmed ) {await axios.post("m-market-production.up.railway.app/notification/purchase", notificationConfirmed)};
+    if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
     
   }
 
