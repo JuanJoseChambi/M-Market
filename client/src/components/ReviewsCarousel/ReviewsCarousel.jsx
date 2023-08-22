@@ -19,7 +19,7 @@ const reviewsCarousel = () => {
     useEffect(() => {
         async function fetchReviews() {
             try {
-                const response = await axios.get('http://localhost:3001/reviews');
+                const response = await axios.get('/reviews');
                 setReviews(response.data);
             } catch (error) {
                 console.error('Error fetching reviews:', error);
