@@ -16,6 +16,7 @@ import axios from "axios";
 
 const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
+  console.log(cartItems);
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const [showMercadoPago, setShowMercadoPago] = useState(false);

@@ -27,14 +27,25 @@ export default function Home() {
 
   const storedProducts = JSON.parse(localStorage.getItem("PurchaseInfo"));
   const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
+  const purchasedProducts = JSON.parse(localStorage.getItem("cart"));
+
   async function purchaseUser () {  
     await axios.post("/purchase", storedProducts);
     if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
-    
   }
-
+  
   useEffect(() => {
     if (window.location.search.includes("status=approved")) {
+
+      async function decrementUnits () {
+      for (const product of purchasedProducts) {
+          const { data } = await axios.get(`/product/${product.id}`);
+          const decrementPurchase = data.unit - product.unit;
+          await axios.put(`/product/${product.id}`, { unit: decrementPurchase, state: true });
+      }
+    };
+    decrementUnits();
+
       purchaseUser()
       dispatch(clearCart())
       localStorage.removeItem("PurchaseInfo")
