@@ -11,15 +11,17 @@ import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
 import axios from "axios";
 import productEmpty from "../../assets/empty.svg"
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import img2 from '../../assets/check.png';
+
 
 export default function Home() {
   const dispatch = useDispatch();
   const { products, currentPage } = useSelector((state) => state.products);
 
   // PAGINATION VARS
-  const cardsInPage = 30;
+  const cardsInPage = 21;
   const totalCards = products.length;
   const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
@@ -96,7 +98,7 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center">
             
-            {cardsShowed.length !== 0
+             {cardsShowed.length !== 0
             ? cardsShowed.map((item) => (
               item.unit !== 0 
               ?(item.state 
@@ -115,9 +117,11 @@ export default function Home() {
                 <img className={styles.imageEmptyUser} src={productEmpty} alt="El producto no existe" />
                 <i className={styles.noUserText}>El producto no existe</i>
               </div> 
-            }
+
+            } 
           </div>
         </div>
+
         <Footer />
       </div>
     </div>
