@@ -1,10 +1,10 @@
 const {Router} =require('express');
-const {getProductoMasVendido} = require("../handlers/stadisticsHandler")
+const {getInfoGraficas} = require("../handlers/stadisticsHandler")
 
 const routerStadistics = Router();
 
 routerStadistics
-.get('/', getProductoMasVendido)
+.get('/', getInfoGraficas)
 
 
 module.exports = routerStadistics

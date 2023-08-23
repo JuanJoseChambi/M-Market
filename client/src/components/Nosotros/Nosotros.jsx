@@ -8,6 +8,8 @@ import Sol from '../../assets/imagenesGrupo/Sol.jpg'
 import Dulce from '../../assets/imagenesGrupo/Dulce.jpg'
 import Jose from '../../assets/imagenesGrupo/Jose.jpg'
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 
 const integrantes = [
     {
@@ -61,46 +63,54 @@ const integrantes = [
 
 const Nosotros = () => {
   return (
-    <div className={styles.bodyContainer}>
-      <h2 className={styles.title}>Nosotros</h2>
-      <p className={styles.introParagraph}>
-        Somos un equipo dedicado a brindar soluciones innovadoras en el ámbito de la compra de
-        supermercado en línea. Nuestra plataforma permite a los comercios locales expandir su
-        alcance y ofrecer un servicio conveniente a sus clientes.
-      </p>
+    <div>
+      <div>
+        <Nav />
+      </div>
+      <div className={styles.bodyContainer}>
+        <h2 className={styles.title}>Nosotros</h2>
+        <p className={styles.introParagraph}>
+          Somos un equipo dedicado a brindar soluciones innovadoras en el ámbito de la compra de
+          supermercado en línea. Nuestra plataforma permite a los comercios locales expandir su
+          alcance y ofrecer un servicio conveniente a sus clientes.
+        </p>
 
-      <h3 className={styles.title2}>Integrantes del Equipo</h3>
-      <div className={styles.integrantesContainer}>
-        {integrantes.map((integrante, index) => (
-          <div className={styles.cardMargin} key={index}>
-            <div className={styles.integranteCard}>
-            <h4 className={styles.name}>{integrante.nombre}</h4>
-              <img
-                src={getImagen(integrante.nombre)}
-                alt={`Foto de ${integrante.nombre}`}
-              />
-              <div className={styles.cardContent}>
-              <p className={styles.especializacion}>{integrante.especializacion}</p>
-              <p>
-              <a href={integrante.github} target="_blank" rel="noopener noreferrer" className={styles.githubLink} >
-                    <AiFillGithub className={styles.icon} />
-                    GitHub
-                  </a>
-                </p>
+        <h3 className={styles.title2}>Integrantes del Equipo</h3>
+        <div className={styles.integrantesContainer}>
+          {integrantes.map((integrante, index) => (
+            <div className={styles.cardMargin} key={index}>
+              <div className={styles.integranteCard}>
+              <h4 className={styles.name}>{integrante.nombre}</h4>
+                <img
+                  src={getImagen(integrante.nombre)}
+                  alt={`Foto de ${integrante.nombre}`}
+                />
+                <div className={styles.cardContent}>
+                <p className={styles.especializacion}>{integrante.especializacion}</p>
                 <p>
-                  <a href={integrante.linkedin} target="_blank" rel="noopener noreferrer" className={styles.linkedinLink} >
-                    <AiFillLinkedin className={styles.icon} />
-                    LinkedIn
-                  </a>
-                </p>
+                <a href={integrante.github} target="_blank" rel="noopener noreferrer" className={styles.githubLink} >
+                      <AiFillGithub className={styles.icon} />
+                      GitHub
+                    </a>
+                  </p>
+                  <p>
+                    <a href={integrante.linkedin} target="_blank" rel="noopener noreferrer" className={styles.linkedinLink} >
+                      <AiFillLinkedin className={styles.icon} />
+                      LinkedIn
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+                  {/* <Link to="/" className={styles.homeLink}>
+                        Volver a Home
+                  </Link> */}
       </div>
-                 <Link to="/" className={styles.homeLink}>
-                       Volver a Home
-                </Link>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };;

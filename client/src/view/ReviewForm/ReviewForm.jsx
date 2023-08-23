@@ -27,7 +27,7 @@ const ReviewForm = () => {
             return;
           }
     
-          const response = await axios.post('http://localhost:3001/reviews', {
+          const response = await axios.post('/reviews', {
             userEmail: userEmail,
             review: review,
             rating: rating,

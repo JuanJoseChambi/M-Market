@@ -6,19 +6,23 @@ import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Product from "../../components/Product/Product";
 import Carousel from "../../components/Carousel/Carousel";
-import ReviewsCarousel from "../../components/ReviewsCarousel/ReviewsCarousel";
+import ReviewCarrusel from "../../components/ReviewsCarousel/ReviewsCarousel";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
 import axios from "axios";
 import productEmpty from "../../assets/empty.svg"
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import img2 from '../../assets/check.png';
+
 
 export default function Home() {
   const dispatch = useDispatch();
   const { products, currentPage } = useSelector((state) => state.products);
 
   // PAGINATION VARS
-  const cardsInPage = 30;
+  const cardsInPage = 21;
   const totalCards = products.length;
   const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
@@ -26,18 +30,46 @@ export default function Home() {
 
   const storedProducts = JSON.parse(localStorage.getItem("PurchaseInfo"));
   const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
+  const purchasedProducts = JSON.parse(localStorage.getItem("cart"));
+
   async function purchaseUser () {  
     await axios.post("/purchase", storedProducts);
     if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
-    
   }
-
+  
   useEffect(() => {
     if (window.location.search.includes("status=approved")) {
+
+      async function decrementUnits () {
+      for (const product of purchasedProducts) {
+          const { data } = await axios.get(`/product/${product.id}`);
+          const decrementPurchase = data.unit - product.unit;
+          await axios.put(`/product/${product.id}`, { unit: decrementPurchase, state: true });
+      }
+    };
+    decrementUnits();
+
       purchaseUser()
       dispatch(clearCart())
       localStorage.removeItem("PurchaseInfo")
       localStorage.removeItem("preferenceMP")
+      Swal.fire({
+        title: `Compra exitosa`,
+        imageUrl: img2,
+        imageWidth: 100,
+        imageHeight: 100,
+        confirmButtonText: "Aceptar",
+        background: "white",
+        width: "40%",
+        heightAuto: false,
+        height: "1%",
+        padding: "3rem",
+        buttonsStyling: false,
+        customClass: {
+          title: "mesageAlert",
+          confirmButton: "buttonAlert",
+        },
+      });
     }
     dispatch(allProducts());
     dispatch(setCategory())
@@ -66,7 +98,10 @@ export default function Home() {
 
         <div className="container">
           <div className="row justify-content-center">
-            {cardsShowed.length !== 0
+
+            
+             {cardsShowed.length !== 0
+
             ? cardsShowed.map((item) => (
               item.unit !== 0 
               ?(item.state 
@@ -87,9 +122,9 @@ export default function Home() {
               </div> 
             }
           </div>
+          <ReviewCarrusel />
         </div>
-        
-        <ReviewsCarousel />
+
         <Footer />
       </div>
     </div>

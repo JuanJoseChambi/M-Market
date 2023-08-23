@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addToCart,
@@ -16,7 +16,9 @@ import axios from "axios";
 
 const CartSlide = () => {
   const cartItems = useSelector((state) => state.products.cart);
+  console.log(cartItems);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [showMercadoPago, setShowMercadoPago] = useState(false);
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [deliveryOption, setDeliveryOption] = useState("local"); // local o delivery
@@ -28,6 +30,7 @@ const CartSlide = () => {
     delivery: "",
     userEmail: "",
   });
+  
   const access = localStorage.getItem("email");
 
   const handleIncrement = (item) => {
@@ -144,6 +147,22 @@ const CartSlide = () => {
       });
     }
   };
+  function handlerLoginUser () {
+  Swal.fire({
+    title: "Iniciar Sesion",
+    text: "Para hacer al Pago se necesita Iniciar Sesion",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Iniciar Sesion",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      navigate("/login")
+    }
+  });
+}
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart"));
@@ -198,6 +217,9 @@ const CartSlide = () => {
         <div className="cartSlide_total">
           <p>Total: ${calculateTotal().toFixed(2)}</p>
         </div>
+
+        {cartItems.length > 0 && (
+
         <div className="delivery_option">
           <label className="delivery_option_label">
             <input
@@ -219,7 +241,7 @@ const CartSlide = () => {
             Enviar a domicilio
           </label>
         </div>
-
+        )}
         {deliveryOption === "delivery" && (
           <div className="delivery_form">
             <h2>Datos de Entrega</h2>
@@ -284,10 +306,30 @@ const CartSlide = () => {
                 Ir a Pago
               </button>
             ) : (
-              <NavLink to="/login">
-                <button className="go_to_pay">Ir a Pago</button>
-              </NavLink>
-            )}
+
+              <button
+              className="go_to_pay"
+              onClick={() => {
+                Swal.fire({
+                  title: "Iniciar sesión",
+                  text: "Para realizar un pedido, primero debes iniciar sesión. ¿Deseas iniciar sesión ahora?",
+                  icon: "info",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Sí, iniciar sesión",
+                  cancelButtonText: "Cancelar",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = "/login";
+                  }
+                });
+              }}
+            >
+              Ir a Pago
+            </button>
+          )}
+
           </div>
         </div>
 
@@ -300,3 +342,6 @@ const CartSlide = () => {
 };
 
 export default CartSlide;
+
+
+

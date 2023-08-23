@@ -14,6 +14,7 @@
     border-radius: 5px;
     font-family:  'Poppins', sans-serif;
     padding: 7px 10px;
+    font-size: 12px;
     border-color: aliceblue;
   }
   .mesageAlert{
@@ -27,22 +28,26 @@
     color: white;
     font-family:  'Poppins', sans-serif;
     border-radius: 5px;
-    padding: 5px 18px;
+    padding: 5px 10px;
+    font-size: 10px;
     cursor: pointer;
     border-color: aliceblue;
   }
  
-  
+  .btnDisabled{
+    background-color: #ca7622;
+    color: rgb(171, 164, 164);
+    font-family:  'Poppins', sans-serif;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 10px;
+    pointer-events: none;
+    cursor: not-allowed;
+    border-color: rgb(127, 128, 129);
+  }
   .activeButton {
     background-color:  #47C7FC;
     box-shadow: 0 0 10px 5px rgb(199, 188, 156);
   }
   
-/* Otros estilos */
-
-.disabledButton {
-  opacity: 0.5; 
-  pointer-events: none; 
- 
-}
-
+  

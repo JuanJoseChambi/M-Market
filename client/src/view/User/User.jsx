@@ -13,9 +13,8 @@ import CreateProduct from "./RenderAdminPanel/CreateProduct/CreateProduct";
 import LogoMMarket from "../../assets/LogoMMarket.png"
 
 function User() {
-  const [renderInterface, setRenderInterface] = useState(undefined);
+  const [renderInterface, setRenderInterface] = useState("profile");
   const [accessAdmin, setAccessAdmin] = useState(undefined)
-  const accessGmail = localStorage.getItem('gmail');
   const userId = localStorage.getItem('userId');
 
   const dispatch = useDispatch()
@@ -28,14 +27,6 @@ function User() {
 
 useEffect(() => {
   handlerAdmin()
-  if (accessAdmin === true) {
-    console.log(accessAdmin);
-    setRenderInterface("AdminPanel")
-  }else if(accessGmail) {
-    setRenderInterface("detalles")
-  }else{
-    setRenderInterface("profile")
-  }
 },[])
 
   let contentRender;
@@ -58,22 +49,9 @@ useEffect(() => {
           <img className={style.imageLogo} src={LogoMMarket} alt="" />
         </div>
         {!accessAdmin
-        ? (accessGmail 
-          ? <>
+        ?  <>
               <button onClick={() => setRenderInterface("profile")} className={renderInterface === "profile"? style.btnsActive: style.btnsInactive}> Perfil </button>
               <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button>  
-            </>
-          : <>
-            <button onClick={() => setRenderInterface("profile")} className={renderInterface === "profile"? style.btnsActive: style.btnsInactive}> Perfil </button>
-            <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button> 
-            </> )
-        : (accessGmail
-          ? <>
-          <button onClick={() => setRenderInterface("detalles")} className={renderInterface === "detalles"? style.btnsActive: style.btnsInactive}>Compras</button>  
-          <button onClick={() => setRenderInterface("Statistics")} className={renderInterface === "Statistics"? style.btnsActive: style.btnsInactive}>Estadisticas</button>
-          <button onClick={() => setRenderInterface("SearchUser")} className={renderInterface === "SearchUser"? style.btnsActive: style.btnsInactive}>Buscar Usuario</button>
-          <button onClick={() => setRenderInterface("ProductControl")} className={renderInterface === "ProductControl"? style.btnsActive: style.btnsInactive}>Productos</button>
-          <button onClick={() => setRenderInterface("CreateProduct")} className={renderInterface === "CreateProduct"? style.btnsActive: style.btnsInactive}>Crear Producto</button>
             </>
           : <>
           <button onClick={() => setRenderInterface("profile")} className={renderInterface === "profile"? style.btnsActive: style.btnsInactive}> Perfil </button>
@@ -82,7 +60,7 @@ useEffect(() => {
           <button onClick={() => setRenderInterface("SearchUser")} className={renderInterface === "SearchUser"? style.btnsActive: style.btnsInactive}>Buscar Usuario</button>
           <button onClick={() => setRenderInterface("ProductControl")} className={renderInterface === "ProductControl"? style.btnsActive: style.btnsInactive}>Productos</button>
           <button onClick={() => setRenderInterface("CreateProduct")} className={renderInterface === "CreateProduct"? style.btnsActive: style.btnsInactive}>Crear Producto</button>
-          </>)
+          </>
         } 
       </div>
       <div className={style.userInterface}>{contentRender}</div>

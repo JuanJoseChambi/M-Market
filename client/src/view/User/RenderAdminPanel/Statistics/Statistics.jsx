@@ -17,7 +17,7 @@ function Statistics() {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const response = await axios.get('http://localhost:3001/stadistics');
+  //       const response = await axios.get('/stadistics');
   //       const data = response.data;
   //       setData(data);
   //     } catch (error) {
@@ -102,7 +102,7 @@ function Statistics() {
         <Pie data={dataPie} />
       </div>
       <div className={styles.chart}>
-        <h4>Cantidad de Ventas por Mes 2023</h4>
+        <h4>Cantidad de Compras por Mes 2023</h4>
         <Line data={dataLine} />
       </div>
     </div>

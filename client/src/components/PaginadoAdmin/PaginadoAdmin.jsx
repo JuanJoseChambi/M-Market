@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Paginado.module.css";
+import styles from "./PaginadoAdmin.module.css";
 import {
   setCurrentPage,
   setPrevPage,
@@ -8,7 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
-export default function Paginado({ cardsInPage, totalCards, currentPage }) {
+export default function PaginadoAdmin({ cardsInPage, totalCards, currentPage }) {
   const dispatch = useDispatch();
 
   const pageNumbers = [];
@@ -89,28 +89,13 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
       <nav>
         {totalCards <= cardsInPage ? null : (
           <ul className={styles.pagination}>
-            {/* <li
-              className={`${styles.paginationItem} ${
-                currentPage === 1 ? styles.disabled : ""
-              }`}
-            >
-              {/* <button
-                className={styles.paginationButton}
-                onClick={handleFirstPageClick}
-              >
+            <li className={`${styles.paginationItem} ${currentPage === 1 ? styles.disabled : ""}`}>
+              <button className={currentPage === 1? styles.btnDisabled : styles.paginationButton } onClick={handleFirstPageClick}>
                 Primera
-              </button> 
-            </li> */}
-            <li
-              className={`${styles.paginationItem} ${
-                currentPage === 1 ? styles.disabledButton : ""
-              }`}
-            >
-              <button
-                className={styles.paginationButton}
-                onClick={handlePreviousClick}
-                disabled={currentPage === 1} // Desactiva el botón si currentPage es 1
-              >
+              </button>
+            </li>
+            <li className={`${styles.paginationItem} ${currentPage === 1 ? styles.disabled : ""}`}>
+              <button className={currentPage === 1? styles.btnDisabled : styles.paginationButton }onClick={handlePreviousClick}>
                 🡸
               </button>
             </li>
@@ -126,31 +111,16 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
                 </button>
               </li>
             ))}
-            <li
-              className={`${styles.paginationItem} ${
-                currentPage === pageNumbers.length ? styles.disabledButton : ""
-              }`}
-            >
-              <button
-                className={styles.paginationButton}
-                onClick={handleNextClick}
-                disabled={currentPage === pageNumbers.length} // Desactiva el botón si currentPage es igual a la última página
-              >
+            <li className={`${styles.paginationItem} ${ currentPage === pageNumbers.length ? styles.disabled : ""}`}>
+              <button className={currentPage === pageNumbers.length? styles.btnDisabled : styles.paginationButton } onClick={handleNextClick}>
                 🡺
               </button>
             </li>
-            {/* <li
-              className={`${styles.paginationItem} ${
-                currentPage === pageNumbers.length ? styles.disabled : ""
-              }`}
-            >
-              {/* <button
-                className={styles.paginationButton}
-                onClick={handleLastPageClick}
-              >
+            <li className={`${styles.paginationItem} ${currentPage === pageNumbers.length ? styles.disabled : ""}`} >
+              <button className={currentPage === pageNumbers.length? styles.btnDisabled : styles.paginationButton } onClick={handleLastPageClick}>
                 Última
-              </button> 
-            </li> */}
+              </button>
+            </li>
           </ul>
         )}
       </nav>

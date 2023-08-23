@@ -13,7 +13,7 @@ const MercadoPago = ({ totalAmount }) => {
       initMercadoPago("TEST-ccf47120-6097-4b48-9ac0-ba94be0334fe");
       const email = localStorage.getItem('email');
       try {
-        const response = await axios.post("http://localhost:3001/pay", {
+        const response = await axios.post("/pay", {
           description: "Compra en MMarket",
           price: totalAmount,
           quantity: 1,

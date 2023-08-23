@@ -1,0 +1,37 @@
+.deliveryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .fetchButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .deliveryDetails {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .deliveryDetails h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .deliveryDetails p {
+    margin: 5px 0;
+  }
+  
