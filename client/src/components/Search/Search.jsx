@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { allProducts, searchName, setCurrentPage } from '../../redux/slices/productsData';
 import './search.css';
 
 const Search = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const [search, setSearch] = useState("");
 
     useEffect(() => {
@@ -22,6 +24,7 @@ const Search = () => {
             setSearch(name);
             dispatch(searchName(search));
             dispatch(setCurrentPage(1))
+            navigate("/home")
         }else{
             setSearch(null)
             dispatch(searchName(null))
