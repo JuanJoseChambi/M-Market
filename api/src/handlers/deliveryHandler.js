@@ -19,7 +19,7 @@ const postDelivery = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
-}
+};
 
 const getDelivery = async(req,res)=>{
      try {

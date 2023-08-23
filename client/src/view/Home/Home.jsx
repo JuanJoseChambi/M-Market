@@ -98,8 +98,10 @@ export default function Home() {
 
         <div className="container">
           <div className="row justify-content-center">
+
             
              {cardsShowed.length !== 0
+
             ? cardsShowed.map((item) => (
               item.unit !== 0 
               ?(item.state 
