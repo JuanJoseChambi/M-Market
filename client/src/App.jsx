@@ -9,6 +9,7 @@ import Login from "./view/Login/Login";
 import CreateAccount from "./view/Login/CreateAccount";
 import User from "./view/User/User";
 import Nosotros from "./components/Nosotros/Nosotros";
+import ReviewForm from "./view/ReviewForm/ReviewForm";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/createAccount" element={<CreateAccount/>}/>
         <Route exact path="/user" element={<User/>}/>
         <Route exact path="/nosotros" element={<Nosotros/>} />
+        <Route exact path="/reviews" element={<ReviewForm />} />
       </Routes>
     </div>
   );

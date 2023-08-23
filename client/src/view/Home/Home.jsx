@@ -6,6 +6,7 @@ import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Product from "../../components/Product/Product";
 import Carousel from "../../components/Carousel/Carousel";
+import ReviewCarrusel from "../../components/ReviewsCarousel/ReviewsCarousel";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
@@ -117,9 +118,9 @@ export default function Home() {
                 <img className={styles.imageEmptyUser} src={productEmpty} alt="El producto no existe" />
                 <i className={styles.noUserText}>El producto no existe</i>
               </div> 
-
-            } 
+            }
           </div>
+          <ReviewCarrusel />
         </div>
 
         <Footer />
