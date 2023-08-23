@@ -16,13 +16,13 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import img2 from '../../assets/check.png';
 
+
 export default function Home() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
   const { products, currentPage } = useSelector((state) => state.products);
 
   // PAGINATION VARS
-  const cardsInPage = 30;
+  const cardsInPage = 21;
   const totalCards = products.length;
   const lastIndex = currentPage * cardsInPage;
   const firstIndex = lastIndex - cardsInPage;
@@ -30,14 +30,25 @@ export default function Home() {
 
   const storedProducts = JSON.parse(localStorage.getItem("PurchaseInfo"));
   const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
+  const purchasedProducts = JSON.parse(localStorage.getItem("cart"));
+
   async function purchaseUser () {  
     await axios.post("/purchase", storedProducts);
     if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
-    
   }
-
+  
   useEffect(() => {
     if (window.location.search.includes("status=approved")) {
+
+      async function decrementUnits () {
+      for (const product of purchasedProducts) {
+          const { data } = await axios.get(`/product/${product.id}`);
+          const decrementPurchase = data.unit - product.unit;
+          await axios.put(`/product/${product.id}`, { unit: decrementPurchase, state: true });
+      }
+    };
+    decrementUnits();
+
       purchaseUser()
       dispatch(clearCart())
       localStorage.removeItem("PurchaseInfo")
@@ -88,7 +99,7 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center">
             
-            {cardsShowed.length !== 0
+             {cardsShowed.length !== 0
             ? cardsShowed.map((item) => (
               item.unit !== 0 
               ?(item.state 
@@ -111,6 +122,7 @@ export default function Home() {
           </div>
           <ReviewCarrusel />
         </div>
+
         <Footer />
       </div>
     </div>
