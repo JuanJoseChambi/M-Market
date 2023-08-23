@@ -89,26 +89,27 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
       <nav>
         {totalCards <= cardsInPage ? null : (
           <ul className={styles.pagination}>
-            <li
+            {/* <li
               className={`${styles.paginationItem} ${
                 currentPage === 1 ? styles.disabled : ""
               }`}
             >
-              <button
+              {/* <button
                 className={styles.paginationButton}
                 onClick={handleFirstPageClick}
               >
                 Primera
-              </button>
-            </li>
+              </button> 
+            </li> */}
             <li
               className={`${styles.paginationItem} ${
-                currentPage === 1 ? styles.disabled : ""
+                currentPage === 1 ? styles.disabledButton : ""
               }`}
             >
               <button
                 className={styles.paginationButton}
                 onClick={handlePreviousClick}
+                disabled={currentPage === 1} // Desactiva el botón si currentPage es 1
               >
                 🡸
               </button>
@@ -127,28 +128,29 @@ export default function Paginado({ cardsInPage, totalCards, currentPage }) {
             ))}
             <li
               className={`${styles.paginationItem} ${
-                currentPage === pageNumbers.length ? styles.disabled : ""
+                currentPage === pageNumbers.length ? styles.disabledButton : ""
               }`}
             >
               <button
                 className={styles.paginationButton}
                 onClick={handleNextClick}
+                disabled={currentPage === pageNumbers.length} // Desactiva el botón si currentPage es igual a la última página
               >
                 🡺
               </button>
             </li>
-            <li
+            {/* <li
               className={`${styles.paginationItem} ${
                 currentPage === pageNumbers.length ? styles.disabled : ""
               }`}
             >
-              <button
+              {/* <button
                 className={styles.paginationButton}
                 onClick={handleLastPageClick}
               >
                 Última
-              </button>
-            </li>
+              </button> 
+            </li> */}
           </ul>
         )}
       </nav>
