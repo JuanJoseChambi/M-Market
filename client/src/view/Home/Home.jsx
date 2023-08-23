@@ -11,9 +11,6 @@ import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
 import axios from "axios";
 import productEmpty from "../../assets/empty.svg"
-
-
-
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import img2 from '../../assets/check.png';
@@ -21,7 +18,6 @@ import img2 from '../../assets/check.png';
 
 export default function Home() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
   const { products, currentPage } = useSelector((state) => state.products);
 
   // PAGINATION VARS
@@ -33,14 +29,25 @@ export default function Home() {
 
   const storedProducts = JSON.parse(localStorage.getItem("PurchaseInfo"));
   const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
+  const purchasedProducts = JSON.parse(localStorage.getItem("cart"));
+
   async function purchaseUser () {  
     await axios.post("/purchase", storedProducts);
     if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
-    
   }
-
+  
   useEffect(() => {
     if (window.location.search.includes("status=approved")) {
+
+      async function decrementUnits () {
+      for (const product of purchasedProducts) {
+          const { data } = await axios.get(`/product/${product.id}`);
+          const decrementPurchase = data.unit - product.unit;
+          await axios.put(`/product/${product.id}`, { unit: decrementPurchase, state: true });
+      }
+    };
+    decrementUnits();
+
       purchaseUser()
       dispatch(clearCart())
       localStorage.removeItem("PurchaseInfo")
@@ -110,6 +117,7 @@ export default function Home() {
                 <img className={styles.imageEmptyUser} src={productEmpty} alt="El producto no existe" />
                 <i className={styles.noUserText}>El producto no existe</i>
               </div> 
+
             } 
           </div>
         </div>
