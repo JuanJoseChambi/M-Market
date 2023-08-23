@@ -6,7 +6,7 @@ const Delivery = () => {
 
   const handleFetchDelivery = async () => {
     try {
-      // Aquí reemplaza 'API_URL' por la URL de tu API que recupera los datos de entrega
+      
       const response = await axios.get('/delivery', {
         params: {
           userEmail: 'it.sergiorodriguez@gmail.com', // Reemplaza esto con el email del usuario logueado
@@ -14,7 +14,7 @@ const Delivery = () => {
         },
       });
 
-      setDeliveryData(response.data);
+    console.log(setDeliveryData(response.data));
     } catch (error) {
       console.error('Error fetching delivery data:', error);
     }
