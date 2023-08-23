@@ -11,9 +11,13 @@ import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
 import axios from "axios";
 import productEmpty from "../../assets/empty.svg"
+
+
+
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import img2 from '../../assets/check.png';
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -109,6 +113,7 @@ export default function Home() {
             } */}
           </div>
         </div>
+
         <Footer />
       </div>
     </div>
