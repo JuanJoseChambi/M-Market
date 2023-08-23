@@ -127,6 +127,7 @@ const sendMail = async (req, res) => {
           Una vez más, te agradecemos por ser parte de M-Market. Valoramos tu confianza y esperamos brindarte una experiencia de compra excepcional.<br>
           ¡Gracias por elegirnos y esperamos que disfrutes de tus productos!<br>
           Saludos cordiales, El equipo de M-Market<br></p>
+          <a href="http://localhost:5173/reviews">Hacer un Review de la Compra</a>
           <p class="message">¡Desde MMarket esperamos que disfrutes de tu compra!</p>
         </div>
       </body>
