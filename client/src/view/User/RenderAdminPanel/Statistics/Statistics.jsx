@@ -17,7 +17,7 @@ function Statistics() {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const response = await axios.get('http://localhost:3001/stadistics');
+  //       const response = await axios.get('/stadistics');
   //       const data = response.data;
   //       setData(data);
   //     } catch (error) {

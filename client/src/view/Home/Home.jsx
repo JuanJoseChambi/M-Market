@@ -6,6 +6,7 @@ import Paginado from "../../components/Paginado/Paginado";
 import Ordenamiento from "../../components/Ordenamiento/Ordenamiento";
 import Product from "../../components/Product/Product";
 import Carousel from "../../components/Carousel/Carousel";
+import ReviewCarrusel from "../../components/ReviewsCarousel/ReviewsCarousel";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css"
 import { clearCart } from "../../redux/slices/productsData";
@@ -30,7 +31,7 @@ export default function Home() {
   const storedProducts = JSON.parse(localStorage.getItem("PurchaseInfo"));
   const notificationConfirmed = JSON.parse(localStorage.getItem("preferenceMP"));
   async function purchaseUser () {  
-    await axios.post("m-market-production.up.railway.app/purchase", storedProducts);
+    await axios.post("/purchase", storedProducts);
     if ( notificationConfirmed ) {await axios.post("/notification/purchase", notificationConfirmed)};
     
   }
@@ -87,7 +88,7 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center">
             
-            {/* {cardsShowed.length !== 0
+            {cardsShowed.length !== 0
             ? cardsShowed.map((item) => (
               item.unit !== 0 
               ?(item.state 
@@ -106,8 +107,9 @@ export default function Home() {
                 <img className={styles.imageEmptyUser} src={productEmpty} alt="El producto no existe" />
                 <i className={styles.noUserText}>El producto no existe</i>
               </div> 
-            } */}
+            }
           </div>
+          <ReviewCarrusel />
         </div>
         <Footer />
       </div>
